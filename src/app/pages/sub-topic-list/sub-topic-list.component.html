@@ -1,0 +1,27 @@
+<div class="row m-5">
+  <div class="col-md-3 adj" *ngFor="let discover of subtopics">
+    <mat-card class="example-card">
+      <div class="imght">
+        <img class="forimg" src="{{discover.btn_image}}" alt="cover pic">
+      </div>
+      <div class="text-for">
+        <h4>{{discover.heading}}</h4>
+        <button mat-raised-button (click)="deleteDis(discover.id)">Delete</button>
+        <button mat-raised-button (click)="onEditExp(discover.id)" class="editbtn">Edit</button>
+        <p>
+          {{discover.html_content}}
+        </p>
+      </div>
+    </mat-card>
+  </div>
+</div>
+<div class="text-center m-5" *ngIf="list">
+  <h3 class="danger m-5 p-5">Uploading data,please wait....</h3>
+  <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+</div>
+
+<div class="row mr-0  mb-5 p-0">
+  <div class="col-md-12 text-right">
+    <button type="button" (click)="backClicked()" class="back" mat-raised-button>Back</button>
+  </div>
+</div>

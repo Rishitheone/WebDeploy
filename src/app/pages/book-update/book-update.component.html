@@ -1,0 +1,142 @@
+<!-- topic box///////////////////////////////// -->
+<div class="row mr-0 my-3 pt-3 bg-light">
+  <div class="col-md-3">
+    <h4 class="pt-3 px-5 lg-1 lg-1 topic">Topic</h4>
+  </div>
+  <div class="col-md-9">
+    <div class="dis1 p-3">
+      <p>Lorem Ipsum refers to a dummy block of text that is often used in publishing and graphic
+        design to fill gaps in the page before the actual words are put into the finished product.
+        Lorem ipsum resembles Latin but has no real meaning
+      </p>
+      <section class="pt-5 pb-3">
+        <div class="example-button-row">
+          <a class="create" routerLink="edit/:id">Create</a>
+          <a class="see" routerLink="">See All</a>
+        </div>
+      </section>
+    </div>
+  </div>
+</div>
+<!-- subtopic box///////////////////////////// -->
+<div class="row mr-0 my-3 pt-3 bg-light">
+  <div class="col-md-3">
+    <h4 class="pt-3 px-5 lg-1 lg-1 topic">Sub-Topic</h4>
+  </div>
+  <div class="col-md-9">
+    <div class="dis1 p-3">
+      <p>Lorem Ipsum refers to a dummy block of text that is often used in publishing and graphic
+        design to fill gaps in the page before the actual words are put into the finished product.
+        Lorem ipsum resembles Latin but has no real meaning
+      </p>
+      <div class="pt-5 pb-3 row">
+        <div class="search-div col-md-4">
+          <mat-form-field class="search-form-field" floatLabel="never">
+            <mat-label>Select Topic</mat-label>
+            <mat-select>
+              <mat-option *ngFor="let food of foods" [value]="food.value">
+                {{food.viewValue}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="col-md-8">
+          <a class="create" routerLink="">Create</a>
+          <a class="see" routerLink="">See All</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- subtopic box///////////////////////////// -->
+<div class="row mr-0 my-3 pt-3 bg-light">
+  <div class="col-md-3">
+    <h4 class="pt-3 px-5 lg-1 lg-1 topic">SubSub-Topic</h4>
+  </div>
+  <div class="col-md-9">
+    <div class="dis1 p-3">
+      <p>Lorem Ipsum refers to a dummy block of text that is often used in publishing and graphic
+        design to fill gaps in the page before the actual words are put into the finished product.
+        Lorem ipsum resembles Latin but has no real meaning
+      </p>
+      <div class="pt-5 pb-3 row">
+        <div class="search-div col-md-4">
+          <mat-form-field class="search-form-field" floatLabel="never">
+            <mat-label>Select Sub-Topic</mat-label>
+            <mat-select>
+              <mat-option *ngFor="let food of foods" [value]="food.value">
+                {{food.viewValue}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="col-md-8">
+          <a class="create" routerLink="">Create</a>
+          <a class="see" routerLink="">See All</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Pie chart///////////////////////////// -->
+<div class="row mr-0 my-3 pt-3 bg-light">
+  <div class="col-md-3">
+    <h4 class="pt-3 px-5 lg-1 lg-1 topic">Pie Chart</h4>
+  </div>
+  <div class="col-md-9">
+    <div class="dis1 p-3">
+      <p>Lorem Ipsum refers to a dummy block of text that is often used in publishing and graphic
+        design to fill gaps in the page before the actual words are put into the finished product.
+        Lorem ipsum resembles Latin but has no real meaning
+      </p>
+      <div class="pt-5 pb-3 row">
+        <div class="search-div col-md-4">
+          <mat-form-field class="search-form-field" floatLabel="never">
+            <mat-label>SubTopic or SubSub-Topic pie</mat-label>
+            <mat-select>
+              <mat-option *ngFor="let food of foods" [value]="food.value">
+                {{food.viewValue}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="col-md-8">
+          <a class="create" routerLink="">Add Entries</a>
+          <a class="see" routerLink="">See All</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- TimeLine///////////////////////////// -->
+<app-timeline-view></app-timeline-view>
+<!-- Bar Graph///////////////////////////// -->
+<div class="row mr-0 my-3 pt-3 bg-light">
+  <div class="col-md-3">
+    <h4 class="pt-3 px-5 lg-1 lg-1 topic">Bar Graph</h4>
+  </div>
+  <div class="col-md-9">
+    <div class="dis1 p-3">
+      <p>Lorem Ipsum refers to a dummy block of text that is often used in publishing and graphic
+        design to fill gaps in the page before the actual words are put into the finished product.
+        Lorem ipsum resembles Latin but has no real meaning
+      </p>
+      <div class="pt-5 pb-3 row">
+        <div class="search-div col-md-4">
+          <mat-form-field class="search-form-field" floatLabel="never">
+            <mat-label>SubTopic or SubSub-Topic Bar Graph</mat-label>
+            <mat-select>
+              <mat-option *ngFor="let food of foods" [value]="food.value">
+                {{food.viewValue}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="col-md-8">
+          <a class="create" routerLink="">Add Entries</a>
+          <a class="see" routerLink="">See All</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,129 @@
+<div class="row mt-3 p-0 mr-0 ml-0 mb-5">
+	<div class="col-md-12">
+		<div class="search-div">
+			<mat-form-field class="search-form-field" floatLabel="never">
+				<input matInput [(ngModel)]="searchKey" placeholder="Search" autocomplete="off"
+					(keyup)="applyFilter($event)" />
+			</mat-form-field>
+		</div>
+		<div class="mat-elevation-z8 bg-light">
+			<table mat-table [dataSource]="dataSource" matSort>
+				<!-- Position Column -->
+				<ng-container matColumnDef="id">
+					<th mat-header-cell *matHeaderCellDef mat-sort-header>ID</th>
+					<td mat-cell *matCellDef="let element">{{ element.id }}</td>
+				</ng-container>
+
+				<!-- Name Column -->
+				<ng-container matColumnDef="first_name">
+					<th mat-header-cell *matHeaderCellDef mat-sort-header>First Name</th>
+					<td mat-cell *matCellDef="let element">{{ element.first_name }}</td>
+				</ng-container>
+
+				<!-- Weight Column -->
+				<ng-container matColumnDef="last_name">
+					<th mat-header-cell *matHeaderCellDef mat-sort-header>Last Name</th>
+					<td mat-cell *matCellDef="let element">{{ element.last_name }}</td>
+				</ng-container>
+
+				<!-- Symbol Column -->
+				<ng-container matColumnDef="email">
+					<th mat-header-cell *matHeaderCellDef mat-sort-header>Mail </th>
+					<td mat-cell *matCellDef="let element">
+						{{ element.email}}
+					</td>
+				</ng-container>
+				<!-- new row start-->
+				<ng-container matColumnDef="mobile">
+					<th mat-header-cell *matHeaderCellDef>Mobile no.</th>
+					<td mat-cell *matCellDef="let element">
+						{{ element.mobile}}
+					</td>
+				</ng-container>
+				<!-- new row start-->
+				<ng-container matColumnDef="dob">
+					<th mat-header-cell *matHeaderCellDef>DOB</th>
+					<td mat-cell *matCellDef="let element">
+						{{ element.dob}}
+					</td>
+				</ng-container>
+				<!-- new row start-->
+				<ng-container matColumnDef="age">
+					<th mat-header-cell *matHeaderCellDef>Age</th>
+					<td mat-cell *matCellDef="let element">
+						{{ element.age}}
+					</td>
+				</ng-container>
+				<!-- new row start-->
+				<ng-container matColumnDef="status">
+					<th mat-header-cell *matHeaderCellDef>Status</th>
+					<td mat-cell *matCellDef="let element">
+						{{ element.status}}
+					</td>
+				</ng-container>
+				<!-- new row start-->
+				<ng-container matColumnDef="role">
+					<th mat-header-cell *matHeaderCellDef>Role</th>
+					<td mat-cell *matCellDef="let element">
+						{{ element.role}}
+					</td>
+				</ng-container>
+				<!-- new row start-->
+				<ng-container matColumnDef="last_login">
+					<th mat-header-cell *matHeaderCellDef>Last login</th>
+					<td mat-cell *matCellDef="let element">
+						{{ element.last_login}}
+					</td>
+				</ng-container>
+
+				<tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+				<tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+			</table>
+
+			<mat-card *ngIf="isLoading" style="display: flex; justify-content: center; align-items: center">
+				<mat-progress-spinner color="primary" mode="indeterminate">
+				</mat-progress-spinner>
+				<div class="alert alert-danger" *ngIf="loginError">
+					{{loginError}}
+				</div>
+				<div class="service-error" *ngIf="error">
+					<h6 class="text-center">{{error}}</h6>
+				</div>
+			</mat-card>
+			<div class="container bg-light">
+				<ul class="nav justify-content-end">
+					<li class="nav-item">
+						<button (click)="firstPage()" [disabled]="counter == 1" mat-button matTooltip="First Page"
+							data-pager-action='first'>
+							<i class="material-icons">
+								first_page
+							</i>
+						</button>
+					</li>
+					<li class="nav-item">
+						<button [disabled]="counter == 1" mat-button matTooltip="Previous Page" (click)="decrement()"
+							data-pager-action='previous'>
+							<i class="material-icons">
+								skip_previous
+							</i>
+						</button>
+					</li>
+					<li class="nav-item">
+						<button mat-button matTooltip="Next Page" (click)="increment()" data-pager-action='next'>
+							<i class="material-icons">
+								skip_next
+							</i>
+						</button>
+					</li>
+					<li class="nav-item">
+						<button (click)="lastPage()" mat-button matTooltip="Last Page" data-pager-action='last'>
+							<i class="material-icons">
+								last_page
+							</i>
+						</button>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>

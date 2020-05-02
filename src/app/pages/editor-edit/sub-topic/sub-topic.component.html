@@ -1,0 +1,145 @@
+<!-- <p>topic id :{{topic_id}}</p>
+{{myForm.value | json}} 
+https://samydigital.com/storage/3d ciyu/scene.gltf
+-->
+
+<form [formGroup]="myForm">
+  <div class="row m-5">
+    <div class="col-md-3 pr-3"  *ngIf="forShow">
+      <div class=" edit-2 p-2 bg-light">
+        <ul class="edit-1 p-1 mt-1">
+          <h3 class="text-center">Sub-Topic</h3>
+          <li class="search-div">
+            <mat-form-field class="search-form-field" floatLabel="never">
+              <mat-label>Select Sub-content type</mat-label>
+              <!-- (valueChange)="someFunction($event)" -->
+              <mat-select formControlName="type" [(ngModel)]="expression" (valueChange)="someFunction($event)">
+                <mat-option *ngFor="let food of types" [value]="food.value">{{food.viewValue}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </li>
+          <li>
+            <label>Heading</label>
+            <input type="text" formControlName="heading">
+          </li>
+          <li>
+            <label>Sub Heading</label>
+            <input type="text" formControlName="sub_heading">
+          </li>
+          <li *ngIf="expression !== 'is_timeline' && expression !=='is_website'">
+            <label>Ar Url</label>
+            <input type="text" formControlName="ar_url">
+          </li>
+          <li *ngIf="expression !== 'is_timeline'">
+            <label>Body Text</label>
+            <!-- html editor start-->
+            <div [ngxSummernote]="config" formControlName="html_content"></div>
+            <!-- html editor end-->
+          </li>
+          <!-- <li>
+            <label>Select background Type</label>
+            <div class="dis2 search-div">
+              <mat-form-field class="search-form-field" floatLabel="never">
+                <mat-select [(value)]="selectedback">
+                  <mat-option value="image">Background Image</mat-option>
+                  <mat-option value="color">Background Color</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+          </li> -->
+          <li *ngIf="expression !=='is_website'">
+            <label>Background Image</label>
+            <input type="text" formControlName="bg_image" placeholder="image url...">
+          </li>
+          <li *ngIf="expression !=='is_website'">
+            <label>Color code</label>
+            <input type="text" formControlName="color_code" placeholder="color code,eg:#fffff">
+          </li>
+          <!-- <li>
+            <label>Select button background Type</label>
+            <div class="dis2 search-div">
+              <mat-form-field class="search-form-field" floatLabel="never">
+                <mat-select [(value)]="selectedbtn">
+                  <mat-option value="image">Background Image</mat-option>
+                  <mat-option value="color">Background Color</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+          </li> -->
+          <li *ngIf="expression !=='is_website'">
+            <label>Background Image</label>
+            <input type="text" formControlName="btn_image" placeholder="image url...">
+          </li>
+          <!-- <li *ngIf="selectedbtn == 'color'">
+            <label>Background color</label>
+            <input type="text" formControlName="color_code" placeholder="color code,eg:#fffff">
+          </li> -->
+          <!-- <li>
+            <label for="chap2">Show Button Text</label>
+            <mat-radio-group aria-labelledby="example-radio-group-label" class="example-radio-group"
+              formControlName="show_button_text">
+              <mat-radio-button class="example-radio-button" *ngFor="let food of texts" [value]="food.value">
+                {{food.viewValue}}
+              </mat-radio-button>
+            </mat-radio-group>
+          </li> -->
+
+          <div formArrayName="sub_topic_files" *ngIf="expression === 'is_text' || expression ==='is_website'">
+            <li class="mt-4" *ngFor="let a of myForm['controls'].sub_topic_files['controls']; let i = index"
+              formGroupName="{{i}}">
+              <button  *ngIf="myForm.controls.sub_topic_files.length > 1" (click)="deleteInvoiceParticulars(i)" class="closebtn" type="button">x</button>
+              <button type="button" class="addbtn" (click)="addPlayer(i)">
+                +</button>
+              <mat-form-field class="search-form-field" floatLabel="never">
+                <mat-label>Select Mime Type</mat-label>
+                <mat-select formControlName="mime_type">
+                  <mat-option value="web">Web</mat-option>
+                  <mat-option value="image">Image</mat-option>
+                  <mat-option value="gif">Gif</mat-option>
+                  <mat-option value="video">Video</mat-option>
+                </mat-select>
+              </mat-form-field>
+              <div class="mt-2">
+                <mat-form-field class="example-full-width my-1 search-form-field" floatLabel="never">
+                  <input matInput placeholder="url..." formControlName="url">
+                </mat-form-field>
+              </div>
+            </li>
+          </div>
+          <li>
+            <div class="edit-2 p-2 bg-light text-right">
+              <button type="submit" (click)="onClick(i)" mat-raised-button style="background:#E8C864;">Save</button>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="col-md-3 adj" *ngIf="addHide">
+      <div class="card  border-d mr-4 ml-4 bg-light" (click)="addItem()">
+        <p class="center"> +</p>
+        <h4 class="content-add">Create Sub-Topic</h4>
+      </div>
+    </div>
+  </div>
+</form>
+
+<div class="splas" *ngIf="apiResSp">
+  <mat-spinner class="for-center">
+  </mat-spinner>
+  <h4 class="texct">Submit Form....Please wait</h4>
+</div>
+
+<!-- ///////////////////////////////////////////////////////////////////////////////// -->
+<!-- ///////////////////////////////////////////////////////////////////////////////// -->
+
+<!-- <button (click)="addReset()">set empty</button>  -->
+<!-- {{myForm.value | json}} -->
+
+<div class="row mr-0  mb-5 p-0">
+  <div class="col-md-12 text-right">
+    <button type="button" (click)="backClicked()" class="back" mat-raised-button>Back</button>
+  </div>
+</div>
+
+<app-photo-upload></app-photo-upload>
+<app-ar-uploader></app-ar-uploader>

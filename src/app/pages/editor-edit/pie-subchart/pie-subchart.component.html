@@ -1,0 +1,80 @@
+<form [formGroup]="mySubForm">
+  <div class="row m-5 pt-3">
+  <div class="col-md-3 mt-2" formArrayName="arr" *ngFor="let a of mySubForm.get('arr')['controls']; let i = index">
+    <div [formGroupName]="i" class="edit-2 p-2 pt-4 bg-light">
+      <p *ngIf="mySubForm.controls.arr.length > 1" class="dtlbtn" color="primary" style="background-color:rgb(223, 49, 49)" (click)="deleteInvoiceParticulars(i)">
+        Delete</p>
+      <ul class="edit-1 p-1 mt-4">
+        <!-- <h3>Sub Pie chart <button class="addbtnpl" (click)="addItem()">+ 1/1</button></h3> -->
+        <li>
+          <label> Heading</label>
+          <input type="text" formControlName="heading">
+        </li>
+        <li>
+          <label> Sub-Heading</label>
+          <input type="text" formControlName="sub_heading">
+        </li>
+        <li>
+          <label> Description</label>
+          <div [ngxSummernote]="config" formControlName="description"></div>
+        </li>
+        <li>
+          <label>Color code</label>
+          <input type="text" formControlName="color_code">
+        </li>
+        <li>
+          <label>Numaric value</label>
+          <input type="number" formControlName="numaric_value">
+        </li>
+        <li>
+          <label>Mime type</label>
+          <mat-form-field class="search-form-field" floatLabel="never">
+            <mat-select formControlName="mime_type">
+              <mat-option value="web">Web</mat-option>
+              <mat-option value="image">Image</mat-option>
+              <mat-option value="gif">Gif</mat-option>
+              <mat-option value="video">Video</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <div class="mt-2">
+            <mat-form-field class="example-full-width my-1 search-form-field" floatLabel="never">
+              <input matInput placeholder="url..." formControlName="url">
+            </mat-form-field>
+          </div>
+          <div class="mt-2">
+            <mat-form-field class="example-full-width my-1 search-form-field" floatLabel="never">
+              <input matInput placeholder="Ar url..." formControlName="ar_url">
+            </mat-form-field>
+          </div>
+        </li>
+      </ul>
+      <!-- <div style="width: 100%;text-align:right;">
+        <button type="button" mat-raised-button style="background:#E8C864;" (click)="onSubSubClick(i)">Save</button>
+      </div> -->
+    </div>
+  </div>
+  <div class="col-md-3 text-center"  >
+    <div (click)="addItem()" class="addbutton">
+      <div class="center">+</div>
+    </div>
+  </div>
+</div>
+</form>
+
+<!-- *ngIf="exampleForm.controls.units.controls.length > 1" -->
+<div class="splas" *ngIf="apiResSp">
+  <mat-spinner class="for-center">
+  </mat-spinner>
+  <h4 class="texct">Submit Form....Please wait</h4>
+</div>
+
+
+<div class="row mr-0  mb-5 p-0">
+  <div class="col-md-12 text-right">
+    <button (click)="onAllsaveform()" class="mr-2" mat-raised-button color="primary">Publish Pie-chart</button>
+    <button type="button" (click)="backClicked()" class="back" mat-raised-button>Back</button>
+  </div>
+</div>
+
+<app-photo-upload></app-photo-upload>
+<app-ar-uploader></app-ar-uploader>

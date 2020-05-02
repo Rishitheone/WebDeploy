@@ -1,0 +1,219 @@
+
+.avatar-upload {
+    position: relative;
+    max-width: 205px;
+    margin: 10px auto 30px;
+  }
+  
+  .avatar-upload .avatar-edit {
+    position: absolute;
+    right: 19px;
+    z-index: 1;
+    top: 13px;
+  }
+  
+  .avatar-upload .avatar-edit input {
+    display: none;
+  }
+  
+  .avatar-upload .avatar-edit .custom-label {
+    display: inline-block;
+    width: 34px;
+    height: 34px;
+    margin-bottom: 0;
+    border-radius: 100%;
+    background: #3efc78;
+    border: 1px solid transparent;
+    box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.25);
+    cursor: pointer;
+    font-weight: normal;
+    transition: all 0.2s ease-in-out;
+  }
+  
+  .avatar-upload .avatar-edit .upload-image {
+    background: #3efc78;
+  }
+  
+  .avatar-upload .avatar-edit .remove-image {
+    background: #e91e63;
+  }
+  
+  .avatar-upload .avatar-edit .custom-label:hover {
+    opacity: 1;
+  }
+  
+  .avatar-upload .avatar-edit .custom-label:after {
+    position: absolute;
+    text-align: center;
+    margin: auto;
+    top: 8px;
+    right: 0;
+    left: 2px;
+    width: 18px;
+  }
+  
+  .avatar-upload .avatar-preview {
+    width: 200px;
+    height: 200px;
+    position: relative;
+    border-radius: 100%;
+    overflow: hidden;
+    border: 12px solid #fff;
+    -webkit-box-shadow: 0 0 45px rgba(0, 0, 0, 0.2);
+    -moz-box-shadow: 0 0 45px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0 45px rgba(0, 0, 0, 0.2);
+  }
+  
+  .avatar-upload .avatar-preview > div {
+    width: 100%;
+    height: 100%;
+    border-radius: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+  mat-form-field{
+    margin-top: 15px !important;
+  }
+  .mat-error {
+    padding-top: 20px;
+  }
+  .dis2 {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .dis2 > * {
+    width: 100%;
+  }
+  .mat-form-field {
+    margin: 10px 0;
+  }
+  .search-form-field{
+  width:100%;
+  }
+  .arng{
+    background: #E8C864;
+    float: right;
+  }
+  .example-additional-selection {
+  opacity: 0.75;
+  font-size: 0.75em;
+  }
+  .tag {
+  border-radius: 50%;
+  height: 15px;
+  width: 15px;
+  display: inline-block;
+  }
+  
+  .tag-default {
+  background-color: gray;
+  }
+  
+  .tag-success {
+  background-color: green;
+  }
+  
+  .tag-warning {
+  background-color: orange;
+  }
+  
+  .tag-danger {
+  background-color: red;
+  }
+  .img-card {
+  width: 100px;
+  height: 150px;
+  border-style: dotted;
+  border-width: 2px;
+  border-color: gray;
+  overflow: hidden;
+  }
+  .upload-btn-wrapper {
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+  box-shadow: 6px 6px 24px rgba(255, 188, 0, 0.59);
+  }
+  
+  .mat-button {
+    border: transparent !important;
+    color: gray;
+    background-color: white;
+    padding: 15px 28px;
+    border-radius: 8px;
+    font-weight: 900;
+  }
+  .arng {
+  float: right;
+  }
+  
+  .upload-btn-wrapper input[type="file"] {
+  font-size: 100px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0;
+  }
+  button.brt.mat-raised-button {
+    position: absolute;
+    top: 51px;
+    right: 0px;
+    resize: 1px;
+  }
+  .upload-btn-wrapper {
+    position: relative;
+    overflow: hidden;
+    display: inline-block;
+  }
+  
+  .btn {
+    border: 2px solid gray;
+    color: gray;
+    background-color: white;
+    padding: 8px 20px;
+    border-radius: 8px;
+    font-size: 20px;
+    font-weight: bold;
+  }
+  
+  .upload-btn-wrapper input[type=file] {
+    font-size: 100px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 0;
+  }
+  .material-icons {
+    vertical-align: text-bottom;
+  }
+  table {
+    width: 100%;
+  }
+  
+  td,
+  th {
+    width: auto;
+  }
+  .mat-form-field {
+    font-size: 17px !important;
+    color: blue;
+    width: 100%;
+    background: #fff;
+    box-shadow: 0 3px 1px -2px rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12);
+  }
+  .example-stretched-tabs {
+    width:100%;
+  }
+  .mat-raised-button.mat-accent {
+    color: #c1272d !important;
+  }
+  .jPager{ margin:20px;}
+  .mat-button {
+    font-weight: inherit !important;
+    color: black !important;
+  }
+button.mat-button[disabled] {
+    cursor: not-allowed;
+}

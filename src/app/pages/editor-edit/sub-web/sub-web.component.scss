@@ -1,0 +1,157 @@
+label {
+    width: 100%;
+    font-weight: 700;
+};
+input[type="text"] {
+    width: 100%;
+};
+ul.edit-1 {
+    list-style: none;
+    margin: 0px;
+    li{
+        label {
+            width: 100%;
+            font-weight: 700;
+        };
+        input[type="text"] {
+            width: 100%;
+        };
+        textarea {
+            width: 100%;
+        }
+    }
+}
+.action {
+    text-align: end;
+    button {
+        outline: none;
+        border: transparent;
+        padding: 0px 15px;
+        margin: 0px 10px;
+    }
+}
+label.bt {
+    text-align: center;
+}
+.search-form-field{
+    width:100%;
+    margin: 0px;
+    background: #fff;
+  }
+  .adj{
+    padding: 0px;  
+    cursor: pointer;
+}
+.card {
+    width: 100%;
+    height:250px;
+}
+.border-d{
+    border-style: dotted;
+    border-width: 2px;
+    border-radius: 10px;
+    background: transparent;
+    border-color: #A8A8A8;
+}
+.center {
+        text-align: center;
+        padding: 10px initial;
+        margin: 76px auto;
+        color: #4E91E8;
+        font-size: 4rem;
+        font-weight: 100;
+    
+}
+.upload-btn-wrapper {
+    position: relative;
+    overflow: hidden;
+    display: inline-block;
+    box-shadow: 6px 6px 24px rgba(255, 188, 0, 0.59);
+  }
+  .upload-btn-wrapper input[type="file"] {
+    font-size: 100px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 0;
+  }
+  li{
+      position: relative;
+  }
+  ul{
+      position: relative;
+  }
+  .mat-radio-button ~ .mat-radio-button {
+    margin-left: 16px;
+  }
+  
+  button.closebtn {
+    z-index: 1;
+    background: #fff;
+    color: red;
+    width: 27px;
+    height: 27px;
+    box-shadow: 0 3px 1px -2px rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12);
+    border: 0px;
+    position: absolute;
+    top: -28px;
+    right: 0px;
+    border-radius: 100%;
+    padding: -23px;
+}
+  .btn {
+    color: black;
+    background-color: #ffbc00;
+    padding: 8px 40px;
+    border-radius: 0;
+    font-size: 17px;
+  }
+  button.back.mat-raised-button {
+    background: darkorange;
+}
+p.dtlbtn {
+    position: absolute;
+    // top: 0px;
+    right: 15px;
+    color: #fff;
+    cursor: pointer;
+    padding: 6px;
+    z-index: 2;
+}
+button.addbtnpl {
+    color: #bdbdbd;
+    border: none;
+    background: inherit;
+    float: right;
+    font-size: 21px;
+    margin-top: 10px;
+    cursor: pointer;
+}
+.addbutton {
+    border: 2px dotted gray;
+    margin-top: 0px;
+    border-radius: 7px;
+    padding: 0px;
+    background: #fff;
+}
+input{
+    width:100%;
+}
+.splas {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    z-index: 1025;
+    background: #b9b9b973;
+    top: 0px;
+}
+.for-center{
+    margin: 233px auto;
+}
+.texct{
+    z-index: 1026;
+    margin: 362px auto;
+    left: 42%;
+    top: 0px;
+    position: fixed;
+}
