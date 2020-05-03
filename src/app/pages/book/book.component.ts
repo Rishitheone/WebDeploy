@@ -33,6 +33,7 @@ export class BookComponent implements OnInit, OnDestroy {
   ExtraArr = [];
 
   form: FormGroup;
+  bookForm: FormGroup;
   pageTitle: string;
   isLinear = true;
   pictureUrl = null;
@@ -137,7 +138,7 @@ export class BookComponent implements OnInit, OnDestroy {
     this.data = this.bookService.getData();
 
   }
-  @ViewChild('stepper', { static: false }) stepper: MatStepper;
+  @ViewChild('stepper') stepper: MatStepper;
   snapid: number = +this._route.snapshot.paramMap.get('id');
   ngOnInit() {
 
@@ -181,8 +182,15 @@ export class BookComponent implements OnInit, OnDestroy {
       )
 
     if (id) {
+      this.bookForm = this.fb.group({
+        book_id:id,
+    });
       this.pageTitle = 'Update Book';
-      this.bookService.getBookById(+id).subscribe(
+      // this.bookService.getBookbyPost(this.bookForm.value).subscribe(
+      //   res=>console.log(res),
+      //   err=>console.log(err)
+      // )
+      this.bookService.getBookbyPost(this.bookForm.value).subscribe(
         res => {
           console.log(res)
           this.selectedValue = res.min_age;

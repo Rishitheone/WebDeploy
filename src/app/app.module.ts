@@ -6,7 +6,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NavbarComponent } from './navbar/navbar.component';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import { HomeComponent } from './pages/home/home.component';
-
 import { BookComponent } from './pages/book/book.component';
 import { MaterialModule } from './material/material.module';
 import {FormsModule,ReactiveFormsModule} from '@angular/forms';

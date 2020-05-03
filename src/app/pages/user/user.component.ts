@@ -29,8 +29,8 @@ export class UserComponent implements OnInit {
   isLoading = true;
   displayedColumns: string[] = ["id", "first_name", "last_name", "email","mobile","dob","age","status","role","last_login"];
   searchKey: string;
-  @ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
-  @ViewChild(MatSort, {static: false}) sort: MatSort;
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatSort) sort: MatSort;
   error: string;
   loginError: string;
   public counter: number = 1;

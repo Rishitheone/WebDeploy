@@ -80,4 +80,18 @@ export class BookService {
   onDeleteTopic(id): Observable<number[]> {
     return this._http.post<number[]>(this._baseUrl + '/delete-topic?topic_id=' + id,id)
   }
+
+  getBookbyPost(user): Observable<any> {
+    return this._http.post<any>(this._baseUrl+'/book-details', user, {
+      headers: new HttpHeaders({
+        'Content-type': 'application/json'
+      })
+
+    }).pipe(
+      map(response => {
+        response = response.data;
+        return response;
+      }))
+  }
+  
 }
