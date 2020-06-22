@@ -32,6 +32,7 @@ import { SubsubtimlineComponent } from './pages/subsubtimline/subsubtimline.comp
 import { SubtimlineListComponent } from './pages/subtimline/subtimline.component';
 import { WeblistComponent } from './pages/weblist/weblist.component';
 import { SubsubweblistComponent } from './pages/subsubweblist/subsubweblist.component';
+import { CreateChapterComponent } from './create-chapter/create-chapter.component';
 
 const routes: Routes = [
   { path: '', redirectTo:'/login', pathMatch: 'full' },
@@ -69,6 +70,7 @@ const routes: Routes = [
   { path: 'home/topic/sub-sub-topic/timeline/list/:id', component: SubsubtimlineComponent,canActivate:[AuthGuard]},
   { path: 'home/topic/sub-topic/Web/list/:id', component: WeblistComponent,canActivate:[AuthGuard]},
   { path: 'home/topic/sub-sub-topic/Web/list/:id', component: SubsubweblistComponent,canActivate:[AuthGuard]},
+  { path: 'home/book/chapter/create/:id', component: CreateChapterComponent,canActivate:[AuthGuard]},
   
 ];
 

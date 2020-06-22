@@ -1,17 +1,18 @@
 <form [formGroup]="Editorform">
   <div class="row m-5 ">
-    <div *ngIf="forShow" class="col-md-3 mb-3">
+    <div class="col-md-3 mb-3">
       <div class="bg-light p-2 pt-3">
+        <h3>Create Topic</h3>
         <div class="edit-2 ">
-          <label for="chap">Topic</label>
+          <label for="chap">Topic Heading</label>
           <input type="text" formControlName="title" name="chap">
         </div>
         <div class="edit-2">
-          <label for="chap2">Subtitle</label>
+          <label for="chap2">Topic Sub-heading</label>
           <input type="text" formControlName="sub_title" name="chap2">
         </div>
         <div class="edit-2 ">
-          <label>Topic Cover</label>
+          <label>Topic Cover-image</label>
           <input type="text" formControlName="topic_cover" placeholder="url..">
         </div>
         <div class="edit-2 ">
@@ -38,12 +39,12 @@
         </div>
       </div>
     </div>
-    <div class="col-md-3 adj" *ngIf="addHide">
+    <!-- <div class="col-md-3 adj" *ngIf="addHide">
       <div class="card  border-d mr-4 ml-4 bg-light" (click)="addItem()">
         <p class="center"> +</p>
         <h4 class="content-add">Create Topic</h4>
       </div>
-    </div>
+    </div> -->
   </div>
 </form>
 

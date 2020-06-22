@@ -1,3 +1,46 @@
+<div class="container m-5">
+  <div class="row mr-0 my-3 pt-3 bg-light">
+    <div class="col-md-3">
+      <h4 class="pt-3 px-5 lg-1 lg-1 topic">SubSub-Topic</h4>
+    </div>
+    <div class="col-md-9">
+      <div class="dis1 p-3">
+        <p>Lorem Ipsum refers to a dummy block of text that is often used in publishing and graphic
+          design to fill gaps in the page before the actual words are put into the finished product.
+          Lorem ipsum resembles Latin but has no real meaning
+        </p>
+        <div class="pt-5 pb-3 row">
+          <div class="search-div col-md-4">
+            <mat-form-field class="search-form-field" floatLabel="never">
+              <mat-label>Select Topic</mat-label>
+              <mat-select [(ngModel)]="selectedIdForSub">
+                <mat-option *ngFor="let item of topics" [value]="item.id" (click)="onClickSub(item.id)">
+                  {{item.title}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="search-div col-md-4">
+            <mat-form-field class="search-form-field" floatLabel="never">
+              <mat-label>Select Topic</mat-label>
+              <mat-select [(ngModel)]="selectedIdForSubId">
+                <mat-option *ngFor="let item of resArr" [value]="item.id">
+                  {{item.heading}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="col-md-4" *ngIf="selectedIdForSubId">
+            <a class="create" (click)="goToSubSubTopic(selectedIdForSubId)">Create</a>
+            <a class="see" (click)="subSubtopiclist(selectedIdForSubId)">See All</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
 <div class="row m-5">
   <div class="col-md-3 adj" *ngFor="let discover of subsubtopics">
     <mat-card class="example-card">
@@ -6,18 +49,27 @@
       </div>
       <div class="text-for">
         <h4>{{discover.heading}}</h4>
-        <button mat-raised-button (click)="deleteDis(discover.id)">Delete</button>
-        <button mat-raised-button (click)="onEditExp(discover.id)" class="editbtn">Edit</button>
+        <button mat-raised-button class="dtlbtn" (click)="deleteDis(discover.id)">Delete</button>
+        <!-- <button mat-raised-button class="dtlbtn" (click)="onEditExp(discover.id)" class="editbtn">Edit</button> -->
         <p>
           {{discover.html_content}}
         </p>
       </div>
     </mat-card>
   </div>
+  <!-- <div class="col-md-3">
+    <div class="box bg-light border" (click)="goToTopic()">
+      <p class="center"><b>+</b></p>
+    </div>
+  </div> -->
 </div>
 <div class="text-center m-5" *ngIf="list">
   <h3 class="danger m-5 p-5">Uploading data,please wait....</h3>
   <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+</div>
+<div class="text-center m-5" *ngIf="lastView">
+  <h3 class="danger m-5 p-5">No data found !!</h3>
+  <h5>Please create first</h5>
 </div>
 
 <div class="row mr-0  mb-5 p-0">

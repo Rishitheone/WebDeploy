@@ -17,6 +17,7 @@ export class PhotoUploadComponent implements OnInit {
   pictureUrl = null;
   fileUpload = { status: '', message: '', filePath: '' };
   imgRes = [];
+  res:string;
   constructor(
     private seriesService: BookService,
     private fb: FormBuilder, private imageUpload: ImageUploadService,
@@ -53,6 +54,8 @@ export class PhotoUploadComponent implements OnInit {
         // this.toastr.success('Submitted successfully', 'Image has been submitted');
         this.imgRes = data.data;
         this.fileUpload = data;
+
+        this.res = data.data;
       },
       err => console.log(err)
     );

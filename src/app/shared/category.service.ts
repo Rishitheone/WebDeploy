@@ -11,7 +11,7 @@ import { Observable } from 'rxjs';
 export class CategoryService {
   private valueid = "";
   // types:DropUser[];
-  private _baseUrl = ' https://samydigital.com/api/admin'
+  private _baseUrl = 'https://samystudios.com/api/admin'
   
   constructor(private http: HttpClient) {
   }

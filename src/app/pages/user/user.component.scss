@@ -11,6 +11,24 @@
     z-index: 1;
     top: 13px;
   }
+  .Activbtn {
+    height: 15px;
+    width: 15px;
+    background-color:green;
+    border-radius: 50%;
+    display: inline-block;
+  }
+  .disablebtn {
+    height: 15px;
+    width: 15px;
+    background-color:red;
+    border-radius: 50%;
+    display: inline-block;
+  }
+  .mat-icon-button {
+    padding: 0;
+    vertical-align: super;
+  }
   
   .avatar-upload .avatar-edit input {
     display: none;

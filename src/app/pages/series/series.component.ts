@@ -87,7 +87,7 @@ export class SeriesComponent implements OnInit {
       this.service.deleteSeries(id)
         .subscribe(
           res => {
-            this.toastr.warning('Deleted successfully', 'Payment Detail Register');
+            this.toastr.warning('Deleted successfully', 'Series has been deleted !!');
             this.service.getAllSeries()
               .subscribe(
                 data => {

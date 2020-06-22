@@ -12,7 +12,7 @@ import { Location } from '@angular/common';
 import { Subscription } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
 import { BookPageCreateService } from 'src/app/shared/book-page-create.service';
-import { MatStepper } from '@angular/material/stepper';
+// import { MatStepper } from '@angular/material/stepper';
 
 @Component({
   selector: 'app-book',
@@ -21,17 +21,6 @@ import { MatStepper } from '@angular/material/stepper';
 })
 export class BookComponent implements OnInit, OnDestroy {
   // new/////////////
-  selectedId: number;
-  selectedIdForSubPieId: number;
-  selectedIdForSub: number;
-  selectedIdForSubId: number;
-  selectedIdForSubPie: number;
-  LastSub: number;
-  resArr = [];
-  subpie = [];
-  subSubpie = [];
-  ExtraArr = [];
-
   form: FormGroup;
   bookForm: FormGroup;
   pageTitle: string;
@@ -43,13 +32,9 @@ export class BookComponent implements OnInit, OnDestroy {
   responceValue: string = "Somthing worng";
   books: Datum[] = []
   randome: string;
-  passingId: number;
+
   apiRes = false;
-  topics = [];
-  selectedIdForSubNext = [];
-  selectedIdForSubNextpie = [];
-  LastSubArr = [];
-  SubsubpieArr = [];
+
   isDataAble = true;
   returnId: number;
   chapValue: number;
@@ -65,7 +50,7 @@ export class BookComponent implements OnInit, OnDestroy {
   types = [
     { value: 'preschool', viewValue: 'Pre School' },
     { value: 'lower-middle-school', viewValue: 'Lower Middle School' },
-    { value: 'upper-middle-school', viewValue: 'Upper Middle School' },
+    { value: 'upprer-middle-school', viewValue: 'Upper Middle School' },
     { value: 'secondary-school', viewValue: 'Secondary School' },
     { value: 'friction', viewValue: 'Friction' },
     { value: 'non-friction', viewValue: 'Non-Friction' },
@@ -76,9 +61,9 @@ export class BookComponent implements OnInit, OnDestroy {
   ]
   template = [
     { value: 1, viewValue: 'Template 1' },
-    { value: 2, viewValue: 'Template 2' },
-    { value: 3, viewValue: 'Template 3' },
-    { value: 4, viewValue: 'Template 4' },
+    // { value: 2, viewValue: 'Template 2' },
+    // { value: 3, viewValue: 'Template 3' },
+    // { value: 4, viewValue: 'Template 4' },
   ]
   minAge = [
     { value: 3, viewValue: '3 years' },
@@ -108,10 +93,10 @@ export class BookComponent implements OnInit, OnDestroy {
     , 'Provençal', 'Romansh', 'Scots', 'Scottish Gaelic', 'Swedish', 'Swedish', 'Tamil', 'Telgue'
 
   ];
-  series = {};
-  author = {};
-  category = {};
-  AllSubCategory = {};
+  series = [];
+  author = [];
+  category = [];
+  AllSubCategory = [];
   // for html editon starting
   config: any = {
     height: '200px',
@@ -133,25 +118,29 @@ export class BookComponent implements OnInit, OnDestroy {
     private authorService: AuthorService,
     private categoryService: CategoryService, private userService: UserService,
     private fb: FormBuilder, private bookService: BookService,
-    private service: BookPageCreateService,
+    private service: BookPageCreateService, private router: Router,
     private _route: ActivatedRoute, private toastr: ToastrService, private route: Router) {
     this.data = this.bookService.getData();
 
   }
-  @ViewChild('stepper') stepper: MatStepper;
+  // @ViewChild('stepper') stepper: MatStepper;
   snapid: number = +this._route.snapshot.paramMap.get('id');
   ngOnInit() {
 
     //topic list
     const id = +this._route.snapshot.paramMap.get('id');
-    this.bookService.getTopicById(id).subscribe(
-      res => {
-        console.log(res),
-          this.topics = res.data;
+    if (id) {
+      this.bookService.getTopicById(id).subscribe(
+        res =>
+          // {
+          console.log(res),
+        // this.topics = res.data;
+
         // console.log(res.data)
-      },
-      err => console.log(err)
-    )
+        // },
+        err => console.log(err)
+      )
+    }
 
     this.returnId = this.service.getData()
     if (this.returnId) {
@@ -163,33 +152,30 @@ export class BookComponent implements OnInit, OnDestroy {
     // for series dropdown
     this.seriesService.getAllSeries()
       .subscribe(
-        res => this.series = res,
+        res => this.series = res['data'],
         err => console.log(err)
       )
 
     //for author dropdown
     this.authorService.getAllAuthor()
       .subscribe(
-        res => this.author = res,
+        res => this.author = res['data'],
         err => console.log(err)
       )
 
     //for Category DropDown
     this.categoryService.getAllCategory()
       .subscribe(
-        res => this.category = res,
+        res => this.category = res['data'],
         err => console.log(err)
       )
 
     if (id) {
       this.bookForm = this.fb.group({
-        book_id:id,
-    });
+        book_id: id,
+      });
       this.pageTitle = 'Update Book';
-      // this.bookService.getBookbyPost(this.bookForm.value).subscribe(
-      //   res=>console.log(res),
-      //   err=>console.log(err)
-      // )
+
       this.bookService.getBookbyPost(this.bookForm.value).subscribe(
         res => {
           console.log(res)
@@ -243,11 +229,13 @@ export class BookComponent implements OnInit, OnDestroy {
       series_id: [''],//yes
       author_id: ['', Validators.required],//yes
       title: ['', Validators.required],//yes
-      sub_title: ['', Validators.required],//yes
-      overview_title: ['', Validators.required],//yes
-      overview_sub_title: ['', Validators.required],//yes
-      description: ['', Validators.compose([Validators.required, Validators.minLength(30), Validators.maxLength(4000)])],//yes
-      overview_description: ['', Validators.compose([Validators.required, Validators.minLength(30), Validators.maxLength(4000)])],//yes
+      sub_title: [''],//yes
+      overview_title: [''],//yes
+      overview_sub_title: [''],//yes
+      description: [''],//yes
+      // description: ['', Validators.compose([Validators.required, Validators.minLength(30), Validators.maxLength(4000)])],//yes
+      overview_description: [''],//yes
+      // overview_description: ['', Validators.compose([Validators.required, Validators.minLength(30), Validators.maxLength(4000)])],//yes
       status: ['published', Validators.required],//yes
       language: ['', Validators.required],//yes
       book_cover: ['', Validators.required],//no
@@ -255,7 +243,7 @@ export class BookComponent implements OnInit, OnDestroy {
       isbn_code: ['', Validators.required],//yes
       min_age: ['', Validators.required],//yes
       max_age: [''],//yes
-      template: ['', Validators.required],//yes
+      template: [1, Validators.required],//yes
       type: [null],//yes
       category: [null],//yes
       tags: this.fb.array([ //no
@@ -278,21 +266,21 @@ export class BookComponent implements OnInit, OnDestroy {
     let filter = value.toLowerCase();
     return this.language.filter(option => option.toLowerCase().startsWith(filter));
   }
-  ngAfterViewInit() {
-    setTimeout(() => {
-      if (this.returnId) {
-        this.apiRes = true;
-        this.stepper.selectedIndex = 1;
-      }
-    }, 1000);
-    setTimeout(() => {
-      if (this.chapValue) {
-        console.log(this.chapValue);
-        this.apiRes = true;
-        this.stepper.selectedIndex = 1;
-      }
-    }, 1000);
-  }
+  // ngAfterViewInit() {
+  //   setTimeout(() => {
+  //     if (this.returnId) {
+  //       this.apiRes = true;
+  //       this.stepper.selectedIndex = 1;
+  //     }
+  //   }, 1000);
+  //   setTimeout(() => {
+  //     if (this.chapValue) {
+  //       console.log(this.chapValue);
+  //       this.apiRes = true;
+  //       this.stepper.selectedIndex = 1;
+  //     }
+  //   }, 1000);
+  // }
 
   ngOnDestroy(): void {
     this.userService.setChap(null)
@@ -343,11 +331,11 @@ export class BookComponent implements OnInit, OnDestroy {
           console.log(res),
             this.toastr.success('Book has been submitted', 'Book Updated successfully');
           this.form.reset();
-          // if (res.status === 1) {
-          //   this.route.navigateByUrl('/home');
-          // } else {
-          //   return;
-          // }
+          if (res.status === 1) {
+            this.route.navigateByUrl('/home');
+          } else {
+            return;
+          }
         },
         err => console.log(err)
       );
@@ -361,14 +349,12 @@ export class BookComponent implements OnInit, OnDestroy {
           array1.forEach(element => {
             test2 = element.id;
           });
-          this.passingId = test2;
+          // this.passingId = test2;
           console.log(test2),
             this.toastr.success('Book has been submitted', 'Book created successfully');
           if (res.status === 1) {
             this.form.reset();
-            // this.route.navigateByUrl('/home');
-          } else {
-            return;
+            this.router.navigate(['home/book/chapter/create', test2])
           }
         },
         err => console.log(err)
@@ -382,53 +368,8 @@ export class BookComponent implements OnInit, OnDestroy {
 
   }
 
-
-  methodSubTopic(id: number) {
-    if (this.selectedId) {
-      this.route.navigate(['home/topic/sub-topic/create/', id])
-    } else {
-      this.route.navigate(['edit/', this.snapid])
-    }
-  }
-  allTopics() {
-      this.route.navigate(['home/books/topic/', this.snapid])
-  }
-  subTopiclist(id:number) {
-      this.route.navigate(['home/books/Sub-topic/', id])
-  }
-  subSubtopiclist(id:number) {
-      this.route.navigate(['home/books/Sub-Sub-topic/', id])
-  }
-  method(id: number) {
-    if (this.passingId) {
-      this.route.navigate(['edit/', id])
-    } else {
-      this.route.navigate(['edit/', this.snapid])
-    }
-  }
-  goToSubLastPie(id: number) {
-    if (this.LastSub) {
-      this.route.navigate(['home/topic/sub-sub-topic/pie-chart/create/', id])
-    } else {
-      this.route.navigate(['edit/', this.snapid])
-    }
-  }
-  goToSubSubPie(id: number) {
-    if (this.selectedIdForSubPieId) {
-      this.route.navigate(['home/topic/sub-topic/pie-chart/create/', id])
-    } else {
-      this.route.navigate(['edit/', this.snapid])
-    }
-  }
-
-  SubpieList(id){
-    this.route.navigate(['home/books/Sub-topic/pie/', id])
-  }
-  SubsubpieList(id){
-    this.route.navigate(['home/books/Sub-Sub-topic/pie/', id])
-  }
-
   onSelect(selectedItem: any) {
+    this.AllSubCategory = [];
     this.callSubCateApi(selectedItem.id);
     console.log(selectedItem.id)
   }
@@ -436,11 +377,12 @@ export class BookComponent implements OnInit, OnDestroy {
     this.categoryService.getAllSubCategory(selectedItem)
       .subscribe(
         data => {
-          this.AllSubCategory = data
+          this.AllSubCategory = data['data']
         },
         err => console.log(err)
       )
   }
+
 
   onFileSelect(event) {
     let reader = new FileReader(); // HTML5 FileReader API
@@ -470,9 +412,14 @@ export class BookComponent implements OnInit, OnDestroy {
   }
 
   callAllType(type) {
+    this.category = [];
+    this.AllSubCategory = [];
     this.categoryService.getType(type)
       .subscribe(
-        res => this.category = res,
+        res => {
+          console.log(res.data)
+          this.category = res.data
+        },
         err => console.log(err)
       )
   }
@@ -491,7 +438,7 @@ export class BookComponent implements OnInit, OnDestroy {
           this.toastr.warning('Topic has been deleted', 'Topic deleted successfully');
           const id = +this._route.snapshot.paramMap.get('id');
           this.bookService.getTopicById(id).subscribe(
-            res => this.topics = res,
+            // res => this.topics = res,
             err => console.log(err),
           )
 
@@ -512,117 +459,6 @@ export class BookComponent implements OnInit, OnDestroy {
     }
   }
 
-  onClickSub(sub) {
-    this.resArr = [];
-    this.categoryService.getAllSubCategoryforTopic(sub)
-      .subscribe(
-        res => {
-          this.selectedIdForSubNext = res.data
-          if (this.selectedIdForSubNext) {
-            this.checkArr();
-          }
-        },
-        err => console.log(err)
-      )
-  }
-  onClickSubSubPie(sub) {
-    this.subSubpie = [];
-    this.ExtraArr = [];
-    this.categoryService.getAllSubCategoryforTopic(sub)
-      .subscribe(
-        res => {
-          this.SubsubpieArr = res.data
-          if (this.SubsubpieArr) {
-            this.SubSubPie();
-          }
-        },
-        err => console.log(err)
-      )
-  }
-  onClickSubPie(sub) {
-    this.categoryService.getAllSubCategoryforTopic(sub)
-      .subscribe(
-        res => {
-          this.selectedIdForSubNextpie = res.data
-          if (this.selectedIdForSubNextpie) {
-            this.SubPie();
-          }
-        },
-        err => console.log(err)
-      )
-  }
-  onLastSub(sub) {
-    this.ExtraArr = [];
-    this.categoryService.getLastArr(sub)
-      .subscribe(
-        res => {
-          this.LastSubArr = res.data
-          if (this.LastSubArr) {
-            this.Extra();
-          }
-          console.log(res)
-         
-        },
-        err => console.log(err)
-      )
-  }
 
-  goToSubSubTopic(id: number) {
-    if (this.selectedIdForSubId) {
-      this.route.navigate(['home/topic/sub-topic/sub-sub-topic/create/', id])
-    } else {
-      this.route.navigate(['edit/', this.snapid])
-    }
-  }
-
-  checkArr() {
-    var i;
-    for (i = 0; i < this.selectedIdForSubNext.length; i++) {
-      if (this.selectedIdForSubNext[i].is_column == 0 && this.selectedIdForSubNext[i].is_pichart == 0 &&
-        this.selectedIdForSubNext[i].is_graphp == 0 && this.selectedIdForSubNext[i].is_timeline == 0 &&
-        this.selectedIdForSubNext[i].is_website == 0
-      ) {
-        this.resArr.push(this.selectedIdForSubNext[i]);
-      }
-    }
-    return this.resArr;
-  }
-  SubPie() {
-    var i;
-    for (i = 0; i < this.selectedIdForSubNextpie.length; i++) {
-      if (this.selectedIdForSubNextpie[i].is_pichart == 1) {
-        this.subpie.push(this.selectedIdForSubNextpie[i]);
-      }
-    }
-    return this.subpie;
-  }
-  SubSubPie() {
-    var i;
-    for (i = 0; i < this.SubsubpieArr.length; i++) {
-      if (this.SubsubpieArr[i].is_column == 0 && this.SubsubpieArr[i].is_pichart == 0 &&
-        this.SubsubpieArr[i].is_graphp == 0 && this.SubsubpieArr[i].is_timeline == 0 &&
-        this.SubsubpieArr[i].is_website == 0
-        ) {
-        this.subSubpie.push(this.SubsubpieArr[i]);
-      }
-    }
-    return this.subSubpie;
-  }
-  Extra() {
-    var i;
-    for (i = 0; i < this.LastSubArr.length; i++) {
-      if (this.LastSubArr[i].is_pichart == 1 
-        ) {
-        this.ExtraArr.push(this.LastSubArr[i]);
-      }
-    }
-    return this.ExtraArr;
-  }
-  onResetarray(){
-    this.subpie = [];
-    this.subSubpie = [];
-    this.subSubpie = [];
-    this.ExtraArr = [];
-  }
 
 }

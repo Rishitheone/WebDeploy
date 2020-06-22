@@ -28,6 +28,8 @@ export class TopicComponent implements OnInit {
     private service: BookPageCreateService,
     private _route: ActivatedRoute, private toastr: ToastrService, private route: Router) { }
 
+  snapId = +this._route.snapshot.paramMap.get('id');
+
   ngOnInit() {
     const id = +this._route.snapshot.paramMap.get('id');
     this.bookService.getTopicById(id).subscribe(
@@ -47,5 +49,30 @@ export class TopicComponent implements OnInit {
     this._location.back();
     this.userService.setChap(1)
   }
+
+  deleteDis(id: number) {
+    if (confirm('Are you sure to delete this record ?')) {
+      this.bookService.onDeleteTopic(+id)
+        .subscribe(
+          res => {
+            this.bookService.getTopicById(this.snapId).subscribe(
+              data=>this.topics=data.data,
+              err=>console.log(err)
+            );
+            this.toastr.warning('Deleted successfully', 'Topic has been Deleted');
+          },
+          err => {
+            console.log(err);
+          }
+        )
+    }
+  }
+
+  goToTopic(){
+    this.route.navigate(['home/book/chapter/create',this.snapId])
+  }
+  method() {
+    this.route.navigate(['edit/', this.snapId])
+}
 
 }

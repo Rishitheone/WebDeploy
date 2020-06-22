@@ -16,10 +16,27 @@ import { Location } from '@angular/common';
   styleUrls: ['./subsubtimline.component.scss']
 })
 export class SubsubtimlineComponent implements OnInit {
-  topics = [];
+  topics2 = [];
   list = true;
-  
-  constructor(private _formBuilder: FormBuilder,private _location: Location,
+  lastView = false;
+  bookId: number;
+  topics = [];
+
+  PiechartOn: string;
+
+  subtopic = [];
+  subtopicList = [];
+  ///////////////////
+  Subsubtopic = [];
+  SubsubtopicList = [];
+  //////////////
+  LastSub = [];
+  LastSubList = [];
+
+  selectedIdForSubPieId: number;
+  LastSubid: number;
+
+  constructor(private _formBuilder: FormBuilder, private _location: Location,
     private seriesService: SeriesService,
     private authorService: AuthorService,
     private categoryService: CategoryService, private userService: UserService,
@@ -27,15 +44,27 @@ export class SubsubtimlineComponent implements OnInit {
     private service: BookPageCreateService,
     private _route: ActivatedRoute, private toastr: ToastrService, private route: Router) { }
 
+  snapId = +this._route.snapshot.paramMap.get('id');
+
   ngOnInit() {
+
+    this.bookId = this.userService.getChap();
+    this.bookService.getTopicById(this.bookId).subscribe(
+      res => {
+        console.log(res),
+          this.topics = res.data;
+      },
+      err => console.log(err)
+    )
+
     const id = +this._route.snapshot.paramMap.get('id');
     this.bookService.getSubSubSubTimelineById(id).subscribe(
       res => {
         console.log(res),
-          this.topics = res.data;
-          if(res.data.length>0){
-            this.list = false;
-          }
+          this.topics2 = res.data;
+        if (res.data.length > 0) {
+          this.list = false;
+        }
         // console.log(res.data)
       },
       err => console.log(err)
@@ -47,4 +76,153 @@ export class SubsubtimlineComponent implements OnInit {
     this.userService.setChap(1)
   }
 
+  deleteDis(id: number) {
+    if (confirm('Are you sure to delete this record ?')) {
+      this.bookService.deleteTimelineId(+id)
+        .subscribe(
+          res => {
+            console.log(res)
+            this.bookService.getSubSubSubTimelineById(this.snapId).subscribe(
+              data => {
+                this.list = false;
+                this.topics2 = data.data
+                if (data.data.length === 0) {
+                  this.lastView = true;
+                }
+              },
+              err => console.log(err)
+            );
+            this.toastr.warning('Deleted successfully', 'Sub-topic has been Deleted');
+          },
+          err => {
+            console.log(err);
+          }
+        )
+    }
+  }
+
+  goToTopic() {
+    this.route.navigate(['home/book/chapter/create', this.bookId])
+  }
+
+  onSectionOne(one) {
+    this.subtopicList = [];
+    this.categoryService.getAllSubCategoryforTopic(one)
+      .subscribe(
+        res => {
+          this.subtopic = res.data
+          if (this.subtopic) {
+            this.SubPie();
+          }
+        },
+        err => console.log(err)
+      )
+  }
+
+  SubPie() {
+    var i;
+    for (i = 0; i < this.subtopic.length; i++) {
+      if (this.subtopic[i].is_timeline == 1) {
+        this.subtopicList.push(this.subtopic[i]);
+      }
+    }
+    return this.subtopicList;
+  }
+
+  onResetarray() {
+    this.subtopic = [];
+    this.subtopicList = [];
+  }
+
+
+  /////////////////////subsubs section/////////////////////
+  onsectionTwo(two) {
+    this.SubsubtopicList = [];
+    this.LastSubList = [];
+    this.categoryService.getAllSubCategoryforTopic(two)
+      .subscribe(
+        res => {
+          this.Subsubtopic = res.data
+          if (this.Subsubtopic) {
+            this.SubSubTime();
+          }
+        },
+        err => console.log(err)
+      )
+  }
+  onLastSubsUB(lastTow) {
+    this.LastSubList = [];
+    this.categoryService.getLastArr(lastTow)
+      .subscribe(
+        res => {
+          this.LastSub = res.data
+          if (this.LastSub) {
+            this.Extra();
+          }
+          console.log(res)
+
+        },
+        err => console.log(err)
+      )
+  }
+  Extra() {
+    var i;
+    for (i = 0; i < this.LastSub.length; i++) {
+      if (this.LastSub[i].is_timeline == 1
+      ) {
+        this.LastSubList.push(this.LastSub[i]);
+      }
+    }
+    return this.LastSubList;
+  }
+  SubSubTime() {
+    var i;
+    for (i = 0; i < this.Subsubtopic.length; i++) {
+      if (this.Subsubtopic[i].is_column == 0 && this.Subsubtopic[i].is_pichart == 0 &&
+        this.Subsubtopic[i].is_graphp == 0 && this.Subsubtopic[i].is_timeline == 0 &&
+        this.Subsubtopic[i].is_website == 0
+      ) {
+        this.SubsubtopicList.push(this.Subsubtopic[i]);
+      }
+    }
+    return this.SubsubtopicList;
+  }
+
+  goToSubTimeLine(id: number) {
+    if (this.selectedIdForSubPieId) {
+      this.route.navigate(['home/topic/sub-topic/timeline/create/', id])
+    } else {
+      this.route.navigate(['edit/', this.snapId])
+    }
+  }
+
+  goToSubSubTimeLine(id: number) {
+    if (this.LastSubid) {
+      this.route.navigate(['home/topic/sub-sub-topic/timeline/create/', id])
+    } else {
+      this.route.navigate(['edit/', this.snapId])
+    }
+
+  }
+  onSubTimline(id) {
+    this.route.navigate(['home/topic/sub-topic/timeline/list/', id])
+  }
+  onSubSubTimline(id) {
+    this.bookService.getSubSubSubTimelineById(id).subscribe(
+      res => {
+        this.list = false;
+        this.lastView = false;
+        console.log(res),
+        this.topics2 = res.data
+        this.route.navigate(['home/topic/sub-sub-topic/timeline/list/', id])
+        if (res.data.length === 0) {
+          this.lastView = true;
+        }
+        // console.log(res.data)
+      },
+      err => console.log(err)
+    )
+  }
+
 }
+

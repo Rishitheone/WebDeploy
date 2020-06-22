@@ -4,7 +4,7 @@
       <span> Update Category</span>
       </mat-toolbar-row>
   </mat-toolbar>
-<form [formGroup]="form" (ngSubmit)="onSubmit()">
+<form [formGroup]="form">
     <!-- ======form part===============  -->
     <div class="row m-0 bg-light">
       <div class="col-md-7 border">
@@ -56,12 +56,14 @@
           <div class=" border" *ngIf="selectedFood2 == 'preschool'">
             <mat-list-item role="listitem">Parent Category
               <div class="dis2 search-div px-3">
-                <mat-form-field class="search-form-field" floatLabel="never">
-                  <mat-select name="type" formControlName="parent_category_id" >
-                    <mat-option value=''>no Parent</mat-option>
-                    <mat-option *ngFor="let primary of primary" [value]="primary.id">
-                      {{primary.name}}
-                    </mat-option>
+                <mat-form-field class="search-form-field" floatLabel="never" >
+                  <mat-select name="type" formControlName="parent_category_id">
+                    <mat-option value='no_parent'>no Parent</mat-option>
+                    <span *ngIf="forNoparent">
+                      <mat-option *ngFor="let primary of primary" [value]="primary.id">
+                        {{primary.name}}
+                      </mat-option>
+                    </span>
                   </mat-select>
                 </mat-form-field>
               </div>
@@ -73,10 +75,12 @@
               <div class="dis2 search-div px-3">
                 <mat-form-field class="search-form-field" floatLabel="never">
                   <mat-select name="type" formControlName="parent_category_id" >
-                    <mat-option value=''>no Parent</mat-option>
+                    <mat-option value='no_parent'>no Parent</mat-option>
+                    <span *ngIf="forNoparent">
                     <mat-option *ngFor="let secondary of secondary" [value]="secondary.id">
                       {{secondary.name}}
                     </mat-option>
+                    </span>
                   </mat-select>
                 </mat-form-field>
               </div>
@@ -88,10 +92,12 @@
               <div class="dis2 search-div px-3">
                 <mat-form-field class="search-form-field" floatLabel="never">
                   <mat-select name="type" formControlName="parent_category_id" >
-                    <mat-option value=''>no Parent</mat-option>
+                    <mat-option value='no_parent'>no Parent</mat-option>
+                    <span *ngIf="forNoparent">
                     <mat-option *ngFor="let higher of higher" [value]="higher.id">
                       {{higher.name}}
                     </mat-option>
+                    </span>
                   </mat-select>
                 </mat-form-field>
               </div>
@@ -104,10 +110,12 @@
               <div class="dis2 search-div px-3">
                 <mat-form-field class="search-form-field" floatLabel="never">
                   <mat-select name="type" formControlName="parent_category_id" >
-                    <mat-option value=''>no Parent</mat-option>
+                    <mat-option value='no_parent'>no Parent</mat-option>
+                    <span *ngIf="forNoparent">
                     <mat-option *ngFor="let higher of SecondarySchool" [value]="higher.id">
                       {{higher.name}}
                     </mat-option>
+                    </span>
                   </mat-select>
                 </mat-form-field>
               </div>
@@ -119,11 +127,13 @@
             <mat-list-item role="listitem">Parent Category
               <div class="dis2 search-div px-3">
                 <mat-form-field class="search-form-field" floatLabel="never">
-                  <mat-select name="type" formControlName="parent_category_id" >
-                    <mat-option value=''>no Parent</mat-option>
+                  <mat-select name="type" formControlName="parent_category_id">
+                    <mat-option value='no_parent'>no Parent</mat-option>
+                    <span *ngIf="forNoparent">
                     <mat-option *ngFor="let higher of Friction" [value]="higher.id">
                       {{higher.name}}
                     </mat-option>
+                    </span>
                   </mat-select>
                 </mat-form-field>
               </div>
@@ -136,10 +146,12 @@
               <div class="dis2 search-div px-3">
                 <mat-form-field class="search-form-field" floatLabel="never">
                   <mat-select name="type" formControlName="parent_category_id" >
-                    <mat-option value=''>no Parent</mat-option>
+                    <mat-option value='no_parent'>no Parent</mat-option>
+                    <span *ngIf="forNoparent">
                     <mat-option *ngFor="let higher of NonFriction" [value]="higher.id">
                       {{higher.name}}
                     </mat-option>
+                    </span>
                   </mat-select>
                 </mat-form-field>
               </div>
@@ -152,10 +164,12 @@
               <div class="dis2 search-div px-3">
                 <mat-form-field class="search-form-field" floatLabel="never">
                   <mat-select name="type" formControlName="parent_category_id" >
-                    <mat-option value=''>no Parent</mat-option>
+                    <mat-option value='no_parent'>no Parent</mat-option>
+                    <span *ngIf="forNoparent">
                     <mat-option *ngFor="let higher of Comic" [value]="higher.id">
                       {{higher.name}}
                     </mat-option>
+                    </span>
                   </mat-select>
                 </mat-form-field>
               </div>
@@ -168,10 +182,12 @@
               <div class="dis2 search-div px-3">
                 <mat-form-field class="search-form-field" floatLabel="never">
                   <mat-select name="type" formControlName="parent_category_id" >
-                    <mat-option value=''>no Parent</mat-option>
+                    <mat-option value='no_parent'>no Parent</mat-option>
+                    <span *ngIf="forNoparent">
                     <mat-option *ngFor="let higher of EducationReference" [value]="higher.id">
                       {{higher.name}}
                     </mat-option>
+                    </span>
                   </mat-select>
                 </mat-form-field>
               </div>
@@ -184,10 +200,12 @@
               <div class="dis2 search-div px-3">
                 <mat-form-field class="search-form-field" floatLabel="never">
                   <mat-select name="type" formControlName="parent_category_id" >
-                    <mat-option value=''>no Parent</mat-option>
+                    <mat-option value='no_parent'>no Parent</mat-option>
+                    <span *ngIf="forNoparent">
                     <mat-option *ngFor="let higher of LiteraryCollections" [value]="higher.id">
                       {{higher.name}}
                     </mat-option>
+                    </span>
                   </mat-select>
                 </mat-form-field>
               </div>
@@ -200,10 +218,12 @@
               <div class="dis2 search-div px-3">
                 <mat-form-field class="search-form-field" floatLabel="never">
                   <mat-select name="type" formControlName="parent_category_id" >
-                    <mat-option value=''>no Parent</mat-option>
+                    <mat-option value='no_parent'>no Parent</mat-option>
+                    <span *ngIf="forNoparent">
                     <mat-option *ngFor="let higher of NonClassifiable" [value]="higher.id">
                       {{higher.name}}
                     </mat-option>
+                    </span>
                   </mat-select>
                 </mat-form-field>
               </div>
@@ -217,7 +237,7 @@
     <mat-toolbar-row>
       <span></span>
       <span class="example-spacer"></span>
-      <button mat-raised-button  type="submit" color="primary" [disabled]="!form.valid">Save</button>
+      <button mat-raised-button (click)="onSubmit()"  type="submit" color="primary" [disabled]="!form.valid">Save</button>
     </mat-toolbar-row>
   </mat-toolbar>
 </form>

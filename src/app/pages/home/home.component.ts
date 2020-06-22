@@ -84,13 +84,13 @@ export class HomeComponent implements OnInit {
     this.router.navigate(['home/book/edit/',id])
   }
   onUpdateChap(id:number){
-    this.router.navigate(['home/book/edit/',id]),
+    this.router.navigate(['home/book/chapter/create',id]),
     this.userService.setChap(1)
     // this.service.setData(id);
   }
 
   deleteAuthorList(id: number) {
-    if (confirm('Are you sure to delete this record ?')) {
+    if (confirm('Are you sure to delete this Book ?')) {
       this._allBook.deleteBook(+id)
         .subscribe(
           res => {
@@ -98,7 +98,7 @@ export class HomeComponent implements OnInit {
               data=>this.books=data.data,
               err=>console.log(err)
             );
-            this.toastr.warning('Deleted successfully', 'Payment Detail Register');
+            this.toastr.warning('Deleted successfully', 'Book has been deleted successfully');
           },
           err => {
             console.log(err);

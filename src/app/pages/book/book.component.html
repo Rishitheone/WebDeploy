@@ -1,19 +1,13 @@
-<div class="m-5 border-c">
-  <mat-toolbar>
-    <span class="example-spacer"></span>
-    <span>{{pageTitle}}</span>
-    <span class="example-spacer"></span>
-  </mat-toolbar>
-  <mat-card *ngIf="isDataAble">
-    <mat-spinner style="margin: 30px auto;"></mat-spinner>
-  </mat-card>
-
-  <mat-horizontal-stepper *ngIf="!isDataAble" [linear]="isLinear" #stepper>
-    <mat-step [stepControl]="form">
+<mat-card *ngIf="isDataAble" class="m-5">
+  <mat-spinner style="margin: 30px auto;"></mat-spinner>
+</mat-card>
+<div class="m-5 border-c" *ngIf="!isDataAble">
+  <div class="row mr-0 mb-3 pt-3 pb-3 bg-light">
+    <div class="col-md-12 text-center">
+      <h3>{{pageTitle}}</h3>
+    </div>
+  </div>
       <form [formGroup]="form" class="normal-form">
-        <ng-template matStepLabel>
-          eBook Details
-        </ng-template>
         <!-- for-language -->
         <div class="row mr-0 pt-3 pb-3 bg-light">
           <div class="col-md-3">
@@ -79,10 +73,10 @@
                 </mat-error>
               </mat-form-field>
               <mat-form-field class="example-full-width my-1 search-form-field" floatLabel="never">
-                <input matInput placeholder="Subtitle" formControlName="sub_title" required>
-                <mat-error *ngIf="!form.controls['sub_title'].valid && form.controls['sub_title'].touched">
+                <input matInput placeholder="Subtitle" formControlName="sub_title" >
+                <!-- <mat-error *ngIf="!form.controls['sub_title'].valid && form.controls['sub_title'].touched">
                   This field is <strong>required</strong>
-                </mat-error>
+                </mat-error> -->
               </mat-form-field>
             </div>
           </div>
@@ -104,7 +98,7 @@
                 <mat-label>Series Information</mat-label>
                 <mat-select formControlName="series_id" required>
                   <mat-option value=0>None</mat-option>
-                  <mat-option *ngFor="let series of series.data" [value]="series.id">
+                  <mat-option *ngFor="let series of series" [value]="series.id">
                     {{series.title}}
                   </mat-option>
                 </mat-select>
@@ -133,7 +127,7 @@
                     <mat-form-field class="search-form-field" floatLabel="never">
                       <mat-label>Select Author/Publisher</mat-label>
                       <mat-select formControlName="author_id" required>
-                        <mat-option *ngFor="let author of author.data" [value]="author.id">
+                        <mat-option *ngFor="let author of author" [value]="author.id">
                           {{author.first_name}}{{author.last_name}} {{author.role}}
                         </mat-option>
                       </mat-select>
@@ -163,9 +157,9 @@
             <div class="dis2 search-div example-container px-3">
               <!-- html editor start-->
               <div [ngxSummernote]="config" formControlName="description"></div>
-              <mat-error *ngIf="!form.controls['description'].valid && form.controls['description'].touched">
+              <!-- <mat-error *ngIf="!form.controls['description'].valid && form.controls['description'].touched">
                 This is required <strong>min 30 characters</strong> and <strong>max 4000 characters</strong>
-              </mat-error>
+              </mat-error> -->
               <!-- html editor end-->
             </div>
           </div>
@@ -233,7 +227,7 @@
                     <mat-form-field class="search-form-field" floatLabel="never">
                       <mat-label>Category</mat-label>
                       <mat-select formControlName="category" required>
-                        <mat-option *ngFor="let category of category.data" (click)="onSelect(category)"
+                        <mat-option *ngFor="let category of category" (click)="onSelect(category)"
                           [value]="category.id">
                           {{category.name}}
                         </mat-option>
@@ -246,7 +240,7 @@
                     <mat-form-field class="search-form-field" floatLabel="never">
                       <mat-label>Sub Categories</mat-label>
                       <mat-select formControlName="category_id" required>
-                        <mat-option *ngFor="let AllSubCategory of AllSubCategory.data" [value]="AllSubCategory.id">
+                        <mat-option *ngFor="let AllSubCategory of AllSubCategory" [value]="AllSubCategory.id">
                           {{AllSubCategory.name}}
                         </mat-option>
                       </mat-select>
@@ -471,9 +465,9 @@
             </div>
             <div class="dis2 search-div px-3">
               <mat-form-field class="search-form-field" floatLabel="never">
-                <mat-label>None</mat-label>
+                <!-- <mat-label>None</mat-label> -->
                 <mat-select formControlName="template">
-                  <mat-option *ngFor="let min of template" [value]="min.value">
+                  <mat-option *ngFor="let min of template" [value]=1>
                     {{min.viewValue}}
                   </mat-option>
                 </mat-select>
@@ -485,7 +479,7 @@
           </div>
         </div>
         <!-- for overview_title -->
-        <div class="row mr-0 mt-3 pt-3 pb-3 bg-light">
+        <!-- <div class="row mr-0 mt-3 pt-3 pb-3 bg-light">
           <div class="col-md-3">
             <h4 class="pt-3 px-5 lg-1 lg-1">Overview title</h4>
           </div>
@@ -501,9 +495,9 @@
               </mat-form-field>
             </div>
           </div>
-        </div>
+        </div> -->
         <!-- for overview_sub_title -->
-        <div class="row mr-0 mt-3 pt-3 pb-3 bg-light">
+        <!-- <div class="row mr-0 mt-3 pt-3 pb-3 bg-light">
           <div class="col-md-3">
             <h4 class="pt-3 px-5 lg-1 lg-1">Overview sub title</h4>
           </div>
@@ -519,9 +513,9 @@
               </mat-form-field>
             </div>
           </div>
-        </div>
+        </div> -->
         <!-- Overview description -->
-        <div class="row mr-0 mt-3 pt-3 pb-3 bg-light">
+        <!-- <div class="row mr-0 mt-3 pt-3 pb-3 bg-light">
           <div class="col-md-3">
             <h4 class="pt-3 px-5 lg-1 lg-1">Overview description</h4>
           </div>
@@ -532,255 +526,21 @@
               </p>
             </div>
             <div class="dis2 search-div example-container px-3">
-              <!-- html editor start-->
+              html editor start
               <div [ngxSummernote]="config" formControlName="overview_description"></div>
               <mat-error
                 *ngIf="!form.controls['overview_description'].valid && form.controls['overview_description'].touched">
                 This is required <strong>min 30 characters</strong> and <strong>max 4000 characters</strong>
               </mat-error>
-              <!-- html editor end-->
+              html editor end
             </div>
           </div>
-        </div>
+        </div> -->
         <button mat-button mat-raised-button class="bg-secondary m-2 " type="button" (click)="goBack()">Go
           Back</button>
-        <button mat-butto matStepperNext mat-raised-button type="submit" class="bg-warning arng m-2"
+        <button mat-butto mat-raised-button type="submit" class="bg-warning arng m-2"
           [disabled]="!form.valid" (click)="onSubmit()">Save and continue..</button>
       </form>
-    </mat-step>
-    <!-- ==================3rd form start============== -->
-    <mat-step>
-      <ng-template matStepLabel>eBook Finalise</ng-template>
-      <!-- <div class="row">
-            <div *ngIf="apiRes" class="col-md-2 adj">
-              <a (click)="method(passingId)">
-                <div class="card  border-d">
-                  <p class="center"> +</p>
-                </div>
-              </a>
-            </div>
-          </div> -->
-      <!-- topic box///////////////////////////////// -->
-      <div class="row mr-0 my-3 pt-3 bg-light" *ngIf="apiRes">
-        <div class="col-md-3">
-          <h4 class="pt-3 px-5 lg-1 lg-1 topic">Topic</h4>
-        </div>
-        <div class="col-md-9">
-          <div class="dis1 p-3">
-            <p>Lorem Ipsum refers to a dummy block of text that is often used in publishing and graphic
-              design to fill gaps in the page before the actual words are put into the finished product.
-              Lorem ipsum resembles Latin but has no real meaning
-            </p>
-            <section class="pt-5 pb-3">
-              <div class="example-button-row">
-                <a class="create" (click)="method(passingId)">Create</a>
-                <a class="see" (click)="allTopics()">See All</a>
-              </div>
-            </section>
-          </div>
-        </div>
-      </div>
-      <!-- subtopic box///////////////////////////// -->
-      <div class="row mr-0 my-3 pt-3 bg-light">
-        <div class="col-md-3">
-          <h4 class="pt-3 px-5 lg-1 lg-1 topic">Sub-Topic</h4>
-        </div>
-        <div class="col-md-9">
-          <div class="dis1 p-3">
-            <p>Lorem Ipsum refers to a dummy block of text that is often used in publishing and graphic
-              design to fill gaps in the page before the actual words are put into the finished product.
-              Lorem ipsum resembles Latin but has no real meaning
-            </p>
-            <div class="pt-5 pb-3 row">
-              <div class="search-div col-md-4">
-                <mat-form-field class="search-form-field" floatLabel="never">
-                  <mat-label>Select Topic</mat-label>
-                  <mat-select [(ngModel)]="selectedId">
-                    <mat-option *ngFor="let item of topics" [value]="item.id">
-                      {{item.title}}
-                    </mat-option>
-                  </mat-select>
-                </mat-form-field>
-              </div>
-              <div class="col-md-8" *ngIf="selectedId">
-                <a class="create"  (click)="methodSubTopic(selectedId)">Create</a>
-                <a class="see" (click)="subTopiclist(selectedId)">See All</a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- Sub-subtopic box///////////////////////////// -->
-      <div class="row mr-0 my-3 pt-3 bg-light">
-        <div class="col-md-3">
-          <h4 class="pt-3 px-5 lg-1 lg-1 topic">SubSub-Topic</h4>
-        </div>
-        <div class="col-md-9">
-          <div class="dis1 p-3">
-            <p>Lorem Ipsum refers to a dummy block of text that is often used in publishing and graphic
-              design to fill gaps in the page before the actual words are put into the finished product.
-              Lorem ipsum resembles Latin but has no real meaning
-            </p>
-            <div class="pt-5 pb-3 row">
-              <div class="search-div col-md-4">
-                  <mat-form-field class="search-form-field" floatLabel="never">
-                    <mat-label>Select Topic</mat-label>
-                    <mat-select [(ngModel)]="selectedIdForSub">
-                      <mat-option *ngFor="let item of topics" [value]="item.id" (click)="onClickSub(item.id)">
-                        {{item.title}}
-                      </mat-option>
-                    </mat-select>
-                  </mat-form-field>
-              </div>
-              <div class="search-div col-md-4">
-                  <mat-form-field class="search-form-field" floatLabel="never">
-                    <mat-label>Select Topic</mat-label>
-                    <mat-select [(ngModel)]="selectedIdForSubId">
-                      <mat-option *ngFor="let item of resArr" [value]="item.id">
-                        {{item.heading}}
-                      </mat-option>
-                    </mat-select>
-                  </mat-form-field>
-              </div>
-              <div class="col-md-4" *ngIf="selectedIdForSubId">
-                <a class="create" (click)="goToSubSubTopic(selectedIdForSubId)">Create</a>
-                <a class="see" (click)="subSubtopiclist(selectedIdForSubId)">See All</a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- Pie chart///////////////////////////// -->
-      <div class="row mr-0 my-3 pt-3 bg-light">
-        <div class="col-md-3">
-          <h4 class="pt-3 px-5 lg-1 lg-1 topic">Pie Chart</h4>
-        </div>
-        <div class="col-md-9">
-          <div class="dis1 p-3">
-            <p>Lorem Ipsum refers to a dummy block of text that is often used in publishing and graphic
-              design to fill gaps in the page before the actual words are put into the finished product.
-              Lorem ipsum resembles Latin but has no real meaning
-            </p>
-            <div class="pt-5 pb-3 row">
-              <div class="col-md-6 mb-3">
-                <label class="lab-1">Where do you want your Pie-chart entries?</label>
-                <mat-form-field class="search-form-field" floatLabel="never">
-                  <mat-select [(ngModel)]="PiechartOn">
-                    <mat-option value="sub" (click)="onResetarray()">Sub-Topic</mat-option>
-                    <mat-option value="sub-sub" (click)="onResetarray()">Sub Sub-Topic</mat-option>
-                  </mat-select>
-                </mat-form-field>
-              </div>
-              <div class="col-md-6 mb-3"></div>
-              <div class="search-div col-md-4" *ngIf="PiechartOn === 'sub'">
-                <mat-form-field class="search-form-field" floatLabel="never">
-                  <mat-label>Select Topic</mat-label>
-                  <mat-select>
-                    <mat-option *ngFor="let item of topics" [value]="item.id" (click)="onClickSubPie(item.id)">
-                      {{item.title}}
-                    </mat-option>
-                  </mat-select>
-                </mat-form-field>
-            </div>
-            <div class="search-div col-md-4" *ngIf="PiechartOn === 'sub'">
-                <mat-form-field class="search-form-field" floatLabel="never">
-                  <mat-label>Select Sub-Topic</mat-label>
-                  <mat-select [(ngModel)]="selectedIdForSubPieId">
-                    <mat-option *ngFor="let item of subpie" [value]="item.id">
-                      {{item.heading}}
-                    </mat-option>
-                  </mat-select>
-                </mat-form-field>
-            </div>
 
-            <!-- for sub sub topic dropdown---------------- -->
-            <div class="search-div col-md-4" *ngIf="PiechartOn === 'sub-sub'">
-              <mat-form-field class="search-form-field" floatLabel="never">
-                <mat-label>Select Topic</mat-label>
-                <mat-select>
-                  <mat-option *ngFor="let item of topics" [value]="item.id" (click)="onClickSubSubPie(item.id)">
-                    {{item.title}}
-                  </mat-option>
-                </mat-select>
-              </mat-form-field>
-          </div>
-          <div class="search-div col-md-4" *ngIf="PiechartOn === 'sub-sub'">
-              <mat-form-field class="search-form-field" floatLabel="never">
-                <mat-label>Select Sub-Topic</mat-label>
-                <mat-select [(ngModel)]="selectedIdForSubSubPieId">
-                  <mat-option *ngFor="let item of subSubpie" [value]="item.id" (click)="onLastSub(item.id)">
-                    {{item.heading}}
-                  </mat-option>
-                </mat-select>
-              </mat-form-field>
-          </div>
-          <div class="search-div col-md-4" *ngIf="PiechartOn === 'sub-sub'">
-              <mat-form-field class="search-form-field" floatLabel="never">
-                <mat-label>Select Sub-Sub-Topic</mat-label>
-                <mat-select [(ngModel)]="LastSub">
-                  <mat-option *ngFor="let item of ExtraArr" [value]="item.id" >
-                    {{item.heading}}
-                  </mat-option>
-                </mat-select>
-              </mat-form-field>
-          </div>
-              <div class="col-md-12" *ngIf="selectedIdForSubPieId">
-                <div *ngIf="PiechartOn === 'sub'">
-                <a class="create" (click)="goToSubSubPie(selectedIdForSubPieId)">Add Entries</a>
-                <a class="see" (click)="SubpieList(selectedIdForSubPieId)">See All</a>
-              </div>
-              </div>
-              <div class="col-md-12" *ngIf="LastSub">
-                <div *ngIf="PiechartOn === 'sub-sub'">
-                <a class="create" (click)="goToSubLastPie(LastSub)">Add Entries</a>
-                <a class="see" (click)="SubsubpieList(LastSub)">See All</a>
-              </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- TimeLine///////////////////////////// -->
-      <app-timeline-view></app-timeline-view>
-      <!-- Bar Graph///////////////////////////// -->
-      <!-- <div class="row mr-0 my-3 pt-3 bg-light">
-        <div class="col-md-3">
-          <h4 class="pt-3 px-5 lg-1 lg-1 topic">Bar Graph</h4>
-        </div>
-        <div class="col-md-9">
-          <div class="dis1 p-3">
-            <p>Lorem Ipsum refers to a dummy block of text that is often used in publishing and graphic
-              design to fill gaps in the page before the actual words are put into the finished product.
-              Lorem ipsum resembles Latin but has no real meaning
-            </p>
-            <div class="pt-5 pb-3 row">
-              <div class="search-div col-md-4">
-                <mat-form-field class="search-form-field" floatLabel="never">
-                  <mat-label>SubTopic or SubSub-Topic Bar Graph</mat-label>
-                  <mat-select>
-                    <mat-option *ngFor="let food of foods" [value]="food.value">
-                      {{food.viewValue}}
-                    </mat-option>
-                  </mat-select>
-                </mat-form-field>
-              </div>
-              <div class="col-md-8">
-                <a class="create" routerLink="">Add Entries</a>
-                <a class="see" routerLink="">See All</a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div> -->
-       <!-- Web///////////////////////////// -->
-      <app-web-view></app-web-view>
-    </mat-step>
-  </mat-horizontal-stepper>
-</div>
+      <!-- {{category | json}} -->
 
-<!-- {{resArr | json}} -->
-{{ExtraArr | json}}
-
-<!-- <ul *ngFor="let item of subpie">
-  <li>{{item.heading}}</li>
-</ul> -->

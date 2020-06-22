@@ -33,7 +33,7 @@ export class CategoryFormComponent implements OnInit {
   types = [
     { value: 'preschool', viewValue: 'Preschool' },
     { value: 'lower-middle-school', viewValue: 'Lower Middle School' },
-    { value: 'upprer-middle-school', viewValue: 'Upprer Middle School' },
+    { value: 'upper-middle-school', viewValue: 'Upper Middle School' },
     { value: 'secondary-school', viewValue: 'Secondary School' },
     { value: 'friction', viewValue: 'Friction' },
     { value: 'non-friction', viewValue: 'Non-Friction' },

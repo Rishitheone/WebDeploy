@@ -101,6 +101,10 @@
   </div>
   <div class="row m-0 border p-3"
     *ngFor="let book of books | orderBy: order:reverse:'case-insensitive'  |paginate: { itemsPerPage: 10, currentPage: p} | filter:searchText , let i=index,">
+    <div class="mat-card text-center col-12 p-5" *ngIf="books.length === '0'">
+      <h3>No book found !!</h3>
+      <p>Please ceate a book...</p>
+    </div>
     <div class="col-md-4 border-right px-5 py-4">
       <div class="book-cover  border-d">
         <img src="{{book.book_cover}}" alt="Book Cover" class="book-img">

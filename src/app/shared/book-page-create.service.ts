@@ -10,7 +10,7 @@ export class BookPageCreateService {
   id:number;
   timeId:number;
   SubtimeId:number;
-  private _baseUrl = 'https://samydigital.com/api/admin'
+  private _baseUrl = 'https://samystudios.com/api/admin'
   constructor(private _http: HttpClient) { }
 
   createTopic(form): Observable<any> {

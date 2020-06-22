@@ -19,7 +19,7 @@ export class SubWebComponent implements OnInit {
   selectedsubbtn: string;
   apiResSp = false;
   arr: FormArray;
-  id :number;
+  id: number;
   formNumber = 0;
   config: any = {
     height: '200px',
@@ -37,7 +37,7 @@ export class SubWebComponent implements OnInit {
 
   constructor(private fb: FormBuilder, private _route: ActivatedRoute, private userService: UserService,
     private service: BookPageCreateService, private toastr: ToastrService,
-    private route: Router, private imageUpload: ImageUploadService,private _location: Location ) { }
+    private route: Router, private imageUpload: ImageUploadService, private _location: Location) { }
 
   ngOnInit() {
 
@@ -59,10 +59,10 @@ export class SubWebComponent implements OnInit {
   addItem() {
     this.arr = this.mySubForm.get('arr') as FormArray;
     this.arr.push(this.createItem());
-    this.formNumber = this.formNumber+=1
+    this.formNumber = this.formNumber += 1
   }
   deleteInvoiceParticulars(i) {
-    this.formNumber = this.formNumber-=1
+    this.formNumber = this.formNumber -= 1
     console.log(i);
     this.invoiceparticularsArray.removeAt(i);
   }
@@ -87,21 +87,21 @@ export class SubWebComponent implements OnInit {
   //     url:'',
   //     ar_url: '',
   //   })
-      
+
   // }
- 
+
   onAllsaveform() {
     var i;
-    for (i = 0;i<= this.formNumber; i++) {
+    for (i = 0; i <= this.formNumber; i++) {
       this.onSubSubClick(i)
-      this.toastr.success('Submitted successfully', 'Topic has been submitted');
+      this.toastr.success('Submitted successfully', 'Sub topic web has been submitted');
     }
-    if(this.formNumber = i){
+    if (this.formNumber = i) {
       setTimeout(() => {
-        this.route.navigate(['home'])
+        this.route.navigate(['home/topic/sub-topic/Web/list/', this.id])
         this.userService.setChap(1)
       }, 2000);
-    }else{
+    } else {
       return;
     }
   }

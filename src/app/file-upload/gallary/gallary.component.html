@@ -50,7 +50,7 @@
   <div class="dis2 search-div example-container px-3">
     <mat-form-field class="example-full-width my-1 search-form-field" floatLabel="never">
       <mat-label>Url</mat-label>
-      <input matInput type="text" [value]="imageUrl">
+      <input matInput type="text" [value]="res" disabled>
       <button mat-button *ngIf="imageUrl" matSuffix mat-icon-button aria-label="Clear" (click)="onClear()">
         <mat-icon>close</mat-icon>
       </button>

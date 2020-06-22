@@ -15,6 +15,7 @@
             <mat-option value="image">Image</mat-option>
             <mat-option value="video">Video</mat-option>
             <mat-option value="gif">Gif</mat-option>
+            <mat-option value="html">Html</mat-option>
           </mat-select>
         </mat-form-field>
       </div>
@@ -34,8 +35,8 @@
       </div>
       <div class="col-md-9" *ngIf="imgtype">
         <div class="upload-btn-wrapper mt-5">
-          <button class="btn">Upload Image/Video</button>
-          <input type="file" name="file" accept=".png, .jpg, .jpeg, .sfb , .gif , .mp4" (change)="onFileSelect($event)" required />
+          <button class="btn">Upload {{imgtype}}</button>
+          <input type="file" name="file" accept=".png, .jpg, .jpeg, .sfb ,.html, .gif , .mp4" (change)="onFileSelect($event)" required />
         </div>
         <button (click)="onSubmitImage()" class="brt" [disabled]="!imageForm.valid" mat-raised-button>Upload on
           Server</button>
@@ -50,7 +51,7 @@
               aria-valuemin="0" aria-valuemax="100">{{fileUpload.message}}%</div>
           </div>
         </div>
-        <div *ngIf="imgRes.url">Image URL :<br>
+        <div *ngIf="imgRes">URL :<br>
           {{imgRes.url}}
         </div>
       </div>

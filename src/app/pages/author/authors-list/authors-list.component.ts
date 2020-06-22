@@ -35,10 +35,10 @@ export class AuthorsListComponent implements OnInit {
         .subscribe(
           res => {
             this.service.getAllAuthor().subscribe(
-              data=>this.AuthorList=data,
+              data=>this.AuthorList=data.data,
               error=>this.error = error
             );
-            this.toastr.warning('Deleted successfully', 'Payment Detail Register');
+            this.toastr.warning('Deleted successfully', 'Author has been deleted !!');
           },
           err => {
             console.log(err);

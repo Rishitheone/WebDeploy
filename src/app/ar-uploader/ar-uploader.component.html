@@ -18,15 +18,16 @@
             aria-valuemin="0" aria-valuemax="100">{{fileUploads.message}}%</div>
         </div>
       </div>
-      <div>AR URL :<br>
-        {{ARurl}}</div>
-    </div>
-    <div class="col-md-12">
-      <div class="upload-btn-wrapper mt-5">
-        <button class="btn">Upload AR</button>
-        <input type="file" name="file" accept=".zip" (change)="onARSelect($event)" />
-      </div><br>
-      <button (click)="onSubmitAR()" mat-raised-button>Upload on Server</button>
-    </div>
+      <div *ngIf="ARurl">AR URL :<br>
+        {{ARurl.url}}</div>
+    
   </div>
+  <div class="col-md-12">
+    <div class="upload-btn-wrapper mt-5">
+      <button class="btn">Upload AR</button>
+      <input type="file" name="file" accept=".zip" (change)="onARSelect($event)" />
+    </div><br>
+    <button (click)="onSubmitAR()" mat-raised-button>Upload on Server</button>
+  </div>
+</div>
 </div>

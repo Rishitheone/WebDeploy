@@ -15,7 +15,7 @@ export class UserService {
   private title = new BehaviorSubject<String>('App title');
   private title$ = this.title.asObservable();
 
-  private _baseUrl = 'https://samydigital.com/api/admin'
+  private _baseUrl = 'https://samystudios.com/api/admin'
   
   constructor(private http:HttpClient,private _router:Router) { }
 

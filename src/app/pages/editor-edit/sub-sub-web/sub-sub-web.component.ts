@@ -93,11 +93,11 @@ export class SubSubWebComponent implements OnInit {
     var i;
     for (i = 0;i<= this.formNumber; i++) {
       this.onSubSubClick(i)
-      this.toastr.success('Submitted successfully', 'Topic has been submitted');
+      this.toastr.success('Submitted successfully', 'Sub-sub topic web has been submitted');
     }
     if(this.formNumber = i){
       setTimeout(() => {
-        this.route.navigate(['home'])
+        this.route.navigate(['home/topic/sub-sub-topic/Web/list/', this.id])
         this.userService.setChap(1)
       }, 2000);
     }else{

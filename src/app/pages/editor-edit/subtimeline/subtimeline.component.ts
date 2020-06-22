@@ -59,6 +59,7 @@ export class SubtimelineComponent implements OnInit {
   addItem() {
     this.arr = this.mySubtimeForm.get('arr') as FormArray;
     this.arr.push(this.createItem());
+    this.formNumber = this.formNumber +=1
   }
   createItem() {
     return this.fb.group({
@@ -77,6 +78,7 @@ export class SubtimelineComponent implements OnInit {
   deleteInvoiceParticulars(i) {
     console.log(i);
     this.invoiceparticularsArray.removeAt(i);
+    this.formNumber = this.formNumber -=1
   }
   get invoiceparticularsArray(): FormArray {
     return this.mySubtimeForm.get('arr') as FormArray;
@@ -90,11 +92,11 @@ export class SubtimelineComponent implements OnInit {
     var i;
     for (i = 0; i <= this.formNumber; i++) {
       this.ontimeLineContent(i)
-      this.toastr.success('Submitted successfully', 'Topic has been submitted');
+      this.toastr.success('Submitted successfully', 'Sub-Sub-timeline has been submitted');
     }
     if (this.formNumber = i) {
       setTimeout(() => {
-        this._location.back();
+        this.route.navigate(['home/topic/sub-sub-topic/timeline/list/', this.id])
         this.userService.setChap(1)
       }, 2000);
     } else {
@@ -106,12 +108,7 @@ export class SubtimelineComponent implements OnInit {
     const data = JSON.stringify(my_array[index])
     console.log(data)
     this.service.createsubTimeline(data).subscribe(
-      res => {
-        if (res.status === 1) {
-          this.toastr.success('Submitted successfully', 'Topic has been submitted');
-        }
-        console.log(res)
-      },
+      res => console.log("Submit"),
       err => console.log(err)
     )
   }

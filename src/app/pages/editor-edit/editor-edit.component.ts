@@ -51,6 +51,8 @@ export class EditorEditComponent implements OnInit {
     { value: 0, viewValue: 'No' },
   ];
 
+  snapid = +this._route.snapshot.paramMap.get('id');
+  
   constructor(private fb: FormBuilder, private _route: ActivatedRoute, private userService: UserService,
     private service: BookPageCreateService, private toastr: ToastrService,
     private route: Router, private imageUpload: ImageUploadService, private _location: Location,
@@ -67,7 +69,7 @@ export class EditorEditComponent implements OnInit {
       description:'',
       topic_cover:'',
       bg_image:'',
-      color_code:'',
+      color_code:'#',
     });
   }
 
@@ -93,7 +95,8 @@ export class EditorEditComponent implements OnInit {
             this.forShow = false;
             this.addHide = true;
             this.toastr.success('Submitted successfully', 'Topic has been submitted');
-            this.Editorform.reset();
+            this.route.navigate(['home/books/topic/', this.snapid])
+            // this.Editorform.reset();
           } else {
             return;
           }

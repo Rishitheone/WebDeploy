@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class ExploreBrowseService {
 
-  private _baseUrl = 'https://samydigital.com/api/admin'
+  private _baseUrl = 'https://samystudios.com/api/admin'
 
   constructor(private _http:HttpClient) { }
 

@@ -16,8 +16,21 @@ import { Location } from '@angular/common';
   styleUrls: ['./subpie-list.component.scss']
 })
 export class SubpieListComponent implements OnInit {
+  topics2 = [];
   topics = [];
+  subpie = [];
+  subSubpie = [];
+  ExtraArr = [];
+  LastSubArr = [];
+  LastSub: number;
+  selectedIdForSubPieId: number;
   list = true;
+  lastView = false;
+  SubsubpieArr = [];
+  bookId:number;
+  PiechartOn:string;
+  selectedIdForSubNext = [];
+  selectedIdForSubNextpie = [];
   
   constructor(private _formBuilder: FormBuilder,
     private seriesService: SeriesService,private _location: Location,
@@ -27,14 +40,30 @@ export class SubpieListComponent implements OnInit {
     private service: BookPageCreateService,
     private _route: ActivatedRoute, private toastr: ToastrService, private route: Router) { }
 
+    snapId = +this._route.snapshot.paramMap.get('id');
+
   ngOnInit() {
+    this.bookId  = this.userService.getChap();
+
+    if (this.bookId) {
+      this.bookService.getTopicById(this.bookId).subscribe(
+        res => {
+          console.log(res),
+            this.topics = res.data;
+          // console.log(res.data)
+        },
+        err => console.log(err)
+      )
+    }
+
     const id = +this._route.snapshot.paramMap.get('id');
     this.bookService.getSubpieById(id).subscribe(
       res => {
+        this.list = false;
         console.log(res),
-          this.topics = res.data;
-          if(res.data.length>0){
-            this.list = false;
+          this.topics2 = res.data;
+          if (res.data.length === 0) {
+            this.lastView = true;
           }
         // console.log(res.data)
       },
@@ -44,6 +73,153 @@ export class SubpieListComponent implements OnInit {
   backClicked() {
     this._location.back();
     this.userService.setChap(1)
+  }
+
+  deleteDis(id: number) {
+    if (confirm('Are you sure to delete this record ?')) {
+      this.bookService.deletepieId(+id)
+        .subscribe(
+          res => {
+            this.bookService.getSubpieById(this.snapId).subscribe(
+              data=>{
+                this.list = false;
+                this.topics2=data.data
+                if (data.data.length === 0) {
+                  this.lastView = true;
+                }
+              },
+              err=>console.log(err)
+            );
+            this.toastr.warning('Deleted successfully', 'Sub-topic has been Deleted');
+          },
+          err => {
+            console.log(err);
+          }
+        )
+    }
+  }
+  goToTopic(){
+    this.route.navigate(['home/book/chapter/create',this.bookId])
+  }
+ 
+  onResetarray(){
+    this.subpie = [];
+    this.subSubpie = [];
+    this.subSubpie = [];
+    this.ExtraArr = [];
+  }
+
+  onClickSubPie(sub) {
+    this.subpie = [];
+    this.categoryService.getAllSubCategoryforTopic(sub)
+      .subscribe(
+        res => {
+          this.selectedIdForSubNextpie = res.data
+          if (this.selectedIdForSubNextpie) {
+            this.SubPie();
+          }
+        },
+        err => console.log(err)
+      )
+  }
+
+  onClickSubSubPie(sub) {
+    this.subSubpie = [];
+    this.ExtraArr = [];
+    this.categoryService.getAllSubCategoryforTopic(sub)
+      .subscribe(
+        res => {
+          this.SubsubpieArr = res.data
+          if (this.SubsubpieArr) {
+            this.SubSubPie();
+          }
+        },
+        err => console.log(err)
+      )
+  }
+  SubSubPie() {
+    var i;
+    for (i = 0; i < this.SubsubpieArr.length; i++) {
+      if (this.SubsubpieArr[i].is_column == 0 && this.SubsubpieArr[i].is_pichart == 0 &&
+        this.SubsubpieArr[i].is_graphp == 0 && this.SubsubpieArr[i].is_timeline == 0 &&
+        this.SubsubpieArr[i].is_website == 0
+        ) {
+        this.subSubpie.push(this.SubsubpieArr[i]);
+      }
+    }
+    return this.subSubpie;
+  }
+
+  SubPie() {
+    var i;
+    for (i = 0; i < this.selectedIdForSubNextpie.length; i++) {
+      if (this.selectedIdForSubNextpie[i].is_pichart == 1) {
+        this.subpie.push(this.selectedIdForSubNextpie[i]);
+      }
+    }
+    return this.subpie;
+  }
+
+  onLastSub(sub) {
+    this.ExtraArr = [];
+    this.categoryService.getLastArr(sub)
+      .subscribe(
+        res => {
+          this.LastSubArr = res.data
+          if (this.LastSubArr) {
+            this.Extra();
+          }
+          console.log(res)
+         
+        },
+        err => console.log(err)
+      )
+  }
+
+  Extra() {
+    var i;
+    for (i = 0; i < this.LastSubArr.length; i++) {
+      if (this.LastSubArr[i].is_pichart == 1 
+        ) {
+        this.ExtraArr.push(this.LastSubArr[i]);
+      }
+    }
+    return this.ExtraArr;
+  }
+
+  goToSubSubPie(id: number) {
+    if (this.selectedIdForSubPieId) {
+      this.route.navigate(['home/topic/sub-topic/pie-chart/create/', id])
+    } else {
+      this.route.navigate(['edit/', this.snapId])
+    }
+  }
+
+  SubpieList(id) {
+    this.bookService.getSubpieById(id).subscribe(
+      data=>{
+        this.list = false;
+        this.lastView = false;
+        this.topics2=data.data,
+        this.route.navigate(['home/books/Sub-topic/pie/', id])
+        if (data.data.length === 0) {
+          this.lastView = true;
+        }
+      },
+      err=>console.log(err)
+    );
+  }
+
+  SubsubpieList(id) {
+    this.route.navigate(['home/books/Sub-Sub-topic/pie/', id])
+  }
+
+  goToSubLastPie(id: number) {
+    if (this.LastSub) {
+      this.route.navigate(['home/topic/sub-sub-topic/pie-chart/create/', id])
+    } else {
+      this.route.navigate(['edit/', this.snapId])
+    }
   }
 
 }

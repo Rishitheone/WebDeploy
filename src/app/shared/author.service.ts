@@ -9,10 +9,7 @@ import { catchError, map} from 'rxjs/operators';
 })
 export class AuthorService {
    
-  private _baseUrl=' https://samydigital.com/api/admin'
-  // private _getAllAuthorList = "http://35.173.187.82/aplis/public/api/admin/get-all-authors"
-  // private _saveAuthorList = "http://35.173.187.82/aplis/public/api/admin/save-author"
-  // private _deleteAuthorList = "http://35.173.187.82/aplis/public/api/admin/delete-author?author_id="
+  private _baseUrl= 'https://samystudios.com/api/admin'
   
 
   constructor(private _http: HttpClient) { }

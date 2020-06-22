@@ -33,14 +33,15 @@ export class SubTopicComponent implements OnInit {
     { value: 1, viewValue: 'Yes' },
     { value: 0, viewValue: 'No' },
   ];
-
+  
+  snapid = +this._route.snapshot.paramMap.get('id');
 
   types = [
     { value: 'is_text', viewValue: 'Text' },
     { value: 'is_timeline', viewValue: 'TimeLine' },
-    { value: 'is_graphp', viewValue: 'Graph' },
+    // { value: 'is_graphp', viewValue: 'Graph' },
     { value: 'is_pichart', viewValue: 'Pie Chart' },
-    { value: 'is_column', viewValue: 'Column' },
+    // { value: 'is_column', viewValue: 'Column' },
     { value: 'is_website', viewValue: 'Web' }
   ];
 
@@ -58,7 +59,7 @@ export class SubTopicComponent implements OnInit {
     ],
   };
 
-  constructor(private fb: FormBuilder, private _route: ActivatedRoute,private userService: UserService,
+  constructor(private fb: FormBuilder, private _route: ActivatedRoute, private route: Router,private userService: UserService,
     private service: BookPageCreateService, private toastr: ToastrService, private _location: Location ) { }
 
   ngOnInit() {
@@ -72,7 +73,7 @@ export class SubTopicComponent implements OnInit {
         ar_url: '',
         bg_image: '',
         btn_image: '',
-        color_code: '',
+        color_code: '#',
         show_button_text:0,
         type: '',
         sub_topic_files: this.fb.array([
@@ -84,14 +85,10 @@ export class SubTopicComponent implements OnInit {
  
   someFunction(sub){
     var i;
-    // if(sub == 'is_text'){
-    //     this.addPlayer();
-    // }else{
       for(i = 1;i<9;i++){
         this.deleteInvoiceParticulars(i);
       }
       
-    // }
   }
 
   addPlayer() {
@@ -153,21 +150,22 @@ export class SubTopicComponent implements OnInit {
             this.selectedbtn = null;
             this.selectedback = null;
             this.toastr.success('Submitted successfully', 'Sub-Topic has been submitted');
-            this.myForm.setValue({
-              topic_id: +this.id,
-              heading: '',
-              sub_heading: '',
-              html_content: '',
-              ar_url: '',
-              bg_image: '',
-              btn_image: '',
-              color_code: '',
-              show_button_text:0,
-              type: '',
-              sub_topic_files: this.fb.array([
-               this.addReset()
-              ])
-            })
+            this.route.navigate(['home/books/Sub-topic/', this.snapid])
+            // this.myForm.setValue({
+            //   topic_id: +this.id,
+            //   heading: '',
+            //   sub_heading: '',
+            //   html_content: '',
+            //   ar_url: '',
+            //   bg_image: '',
+            //   btn_image: '',
+            //   color_code: '',
+            //   show_button_text:0,
+            //   type: '',
+            //   sub_topic_files: this.fb.array([
+            //    this.addReset()
+            //   ])
+            // })
           } else {
             return;
           }

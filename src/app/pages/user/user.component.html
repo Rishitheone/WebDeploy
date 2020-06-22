@@ -58,7 +58,21 @@
 				<ng-container matColumnDef="status">
 					<th mat-header-cell *matHeaderCellDef>Status</th>
 					<td mat-cell *matCellDef="let element">
-						{{ element.status}}
+						<!-- {{ element.status}} -->
+						<span class="Activbtn" *ngIf="element.status == 'active'"></span>
+						<span class="disablebtn" *ngIf="element.status == 'inactive'"></span>
+						<button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+							<mat-icon>more_vert</mat-icon>
+						</button>
+						<mat-menu #menu="matMenu">
+							<button mat-menu-item *ngIf="element.status == 'active'">
+								<span (click)="changeStatus(element.id)">Change Status</span>
+							</button>
+							<button mat-menu-item *ngIf="element.status == 'inactive'">
+								<span (click)="changeStatusInact(element.id)">Change Status</span>
+							</button>
+						</mat-menu>
+						<!-- <p class="changebtn" (click)="changeStatus()">Change Status</p> -->
 					</td>
 				</ng-container>
 				<!-- new row start-->

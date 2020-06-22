@@ -1,3 +1,25 @@
+<div class="container m-5">
+  <!-- topic box///////////////////////////////// -->
+  <div class="row mr-0 my-3 pt-3 bg-light">
+      <div class="col-md-3">
+          <h4 class="pt-3 px-5 lg-1 lg-1 topic">Topic</h4>
+      </div>
+      <div class="col-md-9">
+          <div class="dis1 p-3">
+              <p>Lorem Ipsum refers to a dummy block of text that is often used in publishing and graphic
+                  design to fill gaps in the page before the actual words are put into the finished product.
+                  Lorem ipsum resembles Latin but has no real meaning
+              </p>
+              <section class="pt-5 pb-3">
+                  <div class="example-button-row">
+                      <a class="create" (click)="method()">Create</a>
+                      <!-- <a class="see" (click)="allTopics()">See All</a> -->
+                  </div>
+              </section>
+          </div>
+      </div>
+  </div>
+</div>
 <div class="row m-5">
   <div class="col-md-3 adj" *ngFor="let discover of topics">
     <mat-card class="example-card">
@@ -7,13 +29,18 @@
       <div class="text-for">
         <h4>{{discover.title}}</h4>
         <p>{{discover.description}}</p>
-        <button mat-raised-button (click)="deleteDis(discover.id)">Delete</button>
-        <button mat-raised-button (click)="onEditExp(discover.id)" class="editbtn">Edit</button>
+        <button mat-raised-button class="dtlbtn" (click)="deleteDis(discover.id)">Delete</button>
+        <!-- <button mat-raised-button  class="dtlbtn" (click)="onEditExp(discover.id)" class="editbtn">Edit</button> -->
         <p>
           {{discover.title_description}}
         </p>
       </div>
     </mat-card>
+  </div>
+  <div class="col-md-3">
+    <div class="box bg-light border" (click)="method()">
+      <p class="center"><b>+</b></p>
+    </div>
   </div>
 </div>
 
@@ -24,6 +51,6 @@
 
 <div class="row mr-0  mb-5 p-0">
   <div class="col-md-12 text-right">
-    <button type="button" (click)="backClicked()" class="back" mat-raised-button>Back</button>
+    <button type="button" (click)="goToTopic()" class="back" mat-raised-button>Back</button>
   </div>
 </div>

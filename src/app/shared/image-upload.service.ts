@@ -8,7 +8,7 @@ import { map, catchError } from 'rxjs/operators';
 })
 export class ImageUploadService {
 
-  private _baseUrl = 'https://samydigital.com/api/admin'
+  private _baseUrl = 'https://samystudios.com/api/admin'
 
   constructor(private _http: HttpClient) { }
 

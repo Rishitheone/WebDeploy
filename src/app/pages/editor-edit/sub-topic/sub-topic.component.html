@@ -5,13 +5,13 @@ https://samydigital.com/storage/3d ciyu/scene.gltf
 
 <form [formGroup]="myForm">
   <div class="row m-5">
-    <div class="col-md-3 pr-3"  *ngIf="forShow">
+    <div class="col-md-3 pr-3">
       <div class=" edit-2 p-2 bg-light">
         <ul class="edit-1 p-1 mt-1">
-          <h3 class="text-center">Sub-Topic</h3>
+          <h3 class="text-center">Create Sub-Topic</h3>
           <li class="search-div">
+            <label>Sub topic type</label>
             <mat-form-field class="search-form-field" floatLabel="never">
-              <mat-label>Select Sub-content type</mat-label>
               <!-- (valueChange)="someFunction($event)" -->
               <mat-select formControlName="type" [(ngModel)]="expression" (valueChange)="someFunction($event)">
                 <mat-option *ngFor="let food of types" [value]="food.value">{{food.viewValue}}</mat-option>
@@ -19,11 +19,11 @@ https://samydigital.com/storage/3d ciyu/scene.gltf
             </mat-form-field>
           </li>
           <li>
-            <label>Heading</label>
+            <label>Sub-topic Heading</label>
             <input type="text" formControlName="heading">
           </li>
           <li>
-            <label>Sub Heading</label>
+            <label>Sub-topic sub-Heading</label>
             <input type="text" formControlName="sub_heading">
           </li>
           <li *ngIf="expression !== 'is_timeline' && expression !=='is_website'">
@@ -47,13 +47,13 @@ https://samydigital.com/storage/3d ciyu/scene.gltf
               </mat-form-field>
             </div>
           </li> -->
-          <li *ngIf="expression !=='is_website'">
+          <!-- <li *ngIf="expression !=='is_website'">
             <label>Background Image</label>
             <input type="text" formControlName="bg_image" placeholder="image url...">
-          </li>
-          <li *ngIf="expression !=='is_website'">
-            <label>Color code</label>
-            <input type="text" formControlName="color_code" placeholder="color code,eg:#fffff">
+          </li> -->
+          <li>
+            <label>Button Color code *</label>
+            <input type="text" formControlName="color_code" >
           </li>
           <!-- <li>
             <label>Select button background Type</label>
@@ -66,9 +66,9 @@ https://samydigital.com/storage/3d ciyu/scene.gltf
               </mat-form-field>
             </div>
           </li> -->
-          <li *ngIf="expression !=='is_website'">
-            <label>Background Image</label>
-            <input type="text" formControlName="btn_image" placeholder="image url...">
+          <li >
+            <label>Button Background Image *</label>
+            <input type="text" formControlName="btn_image" >
           </li>
           <!-- <li *ngIf="selectedbtn == 'color'">
             <label>Background color</label>
@@ -84,7 +84,7 @@ https://samydigital.com/storage/3d ciyu/scene.gltf
             </mat-radio-group>
           </li> -->
 
-          <div formArrayName="sub_topic_files" *ngIf="expression === 'is_text' || expression ==='is_website'">
+          <div formArrayName="sub_topic_files" *ngIf="expression === 'is_text'">
             <li class="mt-4" *ngFor="let a of myForm['controls'].sub_topic_files['controls']; let i = index"
               formGroupName="{{i}}">
               <button  *ngIf="myForm.controls.sub_topic_files.length > 1" (click)="deleteInvoiceParticulars(i)" class="closebtn" type="button">x</button>
@@ -108,18 +108,18 @@ https://samydigital.com/storage/3d ciyu/scene.gltf
           </div>
           <li>
             <div class="edit-2 p-2 bg-light text-right">
-              <button type="submit" (click)="onClick(i)" mat-raised-button style="background:#E8C864;">Save</button>
+              <button type="submit" (click)="onClick()" mat-raised-button style="background:#E8C864;">Save</button>
             </div>
           </li>
         </ul>
       </div>
     </div>
-    <div class="col-md-3 adj" *ngIf="addHide">
+    <!-- <div class="col-md-3 adj" *ngIf="addHide">
       <div class="card  border-d mr-4 ml-4 bg-light" (click)="addItem()">
         <p class="center"> +</p>
         <h4 class="content-add">Create Sub-Topic</h4>
       </div>
-    </div>
+    </div> -->
   </div>
 </form>
 

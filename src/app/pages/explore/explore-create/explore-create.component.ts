@@ -18,7 +18,7 @@ import { element } from 'protractor';
 })
 export class ExploreCreateComponent implements OnInit {
   array = [];
-  ARurl:string;
+  ARurl:{};
   pageTitle: string;
   percentDone: number;
   uploadSuccess: boolean;
@@ -155,6 +155,7 @@ export class ExploreCreateComponent implements OnInit {
         this.fileUploads = data;
         console.log(data)
       },
+
       err => console.log(err)
     );
     console.log(this.form.value)

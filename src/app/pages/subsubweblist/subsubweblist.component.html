@@ -1,24 +1,121 @@
-<div class="row m-5">
-  <div class="col-md-3 adj" *ngFor="let discover of topics">
+<div class="m-5">
+  <!-- https://samydigital.omc/storage/3d ciyu/scene.gltf -->
+<div class="row mr-0 my-3 pt-3 bg-light">
+  <div class="col-md-3">
+    <h4 class="pt-3 px-5 lg-1 lg-1 topic">Web</h4>
+  </div>
+  <div class="col-md-9">
+    <div class="dis1 p-3">
+      <p>Lorem Ipsum refers to a dummy block of text that is often used in publishing and graphic
+        design to fill gaps in the page before the actual words are put into the finished product.
+        Lorem ipsum resembles Latin but has no real meaning
+      </p>
+      <div class="pt-5 pb-3 row">
+        <div class="col-md-6 mb-3">
+          <label class="lab-1">Where do you want your Web entries?</label>
+          <mat-form-field class="search-form-field" floatLabel="never">
+            <mat-select [(ngModel)]="PiechartOn">
+              <mat-option value="sub" (click)="onResetarray()">Sub-Topic</mat-option>
+              <mat-option value="sub-sub" (click)="onResetarray()">Sub Sub-Topic</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="col-md-6 mb-3"></div>
+        <div class="search-div col-md-4" *ngIf="PiechartOn === 'sub'">
+          <mat-form-field class="search-form-field" floatLabel="never">
+            <mat-label>Select Topic</mat-label>
+            <mat-select>
+              <mat-option *ngFor="let item of topics" [value]="item.id" (click)="onSectionOne(item.id)">
+                {{item.title}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="search-div col-md-4" *ngIf="PiechartOn === 'sub'">
+          <mat-form-field class="search-form-field" floatLabel="never">
+            <mat-label>Select Sub-Topic</mat-label>
+            <mat-select [(ngModel)]="selectedIdForSubPieId">
+              <mat-option *ngFor="let item of subtopicList" [value]="item.id">
+                {{item.heading}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+        <!-- for sub sub topic dropdown---------------- -->
+        <div class="search-div col-md-4" *ngIf="PiechartOn === 'sub-sub'">
+          <mat-form-field class="search-form-field" floatLabel="never">
+            <mat-label>Select Topic</mat-label>
+            <mat-select>
+              <mat-option *ngFor="let item of topics" [value]="item.id" (click)="onsectionTwo(item.id)">
+                {{item.title}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="search-div col-md-4" *ngIf="PiechartOn === 'sub-sub'">
+          <mat-form-field class="search-form-field" floatLabel="never">
+            <mat-label>Select Sub-Topic</mat-label>
+            <mat-select [(ngModel)]="selectedIdForSubSubPieId">
+              <mat-option *ngFor="let item of SubsubtopicList" [value]="item.id" (click)="onLastSubsUB(item.id)">
+                {{item.heading}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="search-div col-md-4" *ngIf="PiechartOn === 'sub-sub'">
+          <mat-form-field class="search-form-field" floatLabel="never">
+            <mat-label>Select Sub-Sub-Topic</mat-label>
+            <mat-select [(ngModel)]="LastSubid">
+              <mat-option *ngFor="let item of LastSubList" [value]="item.id">
+                {{item.heading}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="col-md-4" *ngIf="PiechartOn === 'sub'">
+          <a class="create" (click)="goToSubTimeLine(selectedIdForSubPieId)">Add Entries</a>
+          <!-- <a class="see" (click)="subweb(selectedIdForSubPieId)">See All</a> -->
+        </div>
+        <div class="col-md-4" *ngIf="PiechartOn === 'sub-sub'">
+          <a class="create" (click)="goToSubSubTimeLine(LastSubid)">Add Entries</a>
+          <!-- <a class="see" (click)="subsubweb(LastSubid)">See All</a> -->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div>
+<div class="row m-5 p-0">
+  <div class="col-md-3 adj" *ngFor="let discover of topics2">
     <mat-card class="example-card">
       <div class="imght">
-        <img class="forimg" src="{{discover.topic_cover}}" alt="cover pic">
+        <img class="forimg" src="{{discover.url}}" alt="cover pic">
       </div>
       <div class="text-for">
         <h4>{{discover.title}}</h4>
         <p>{{discover.description}}</p>
-        <button mat-raised-button (click)="deleteDis(discover.id)">Delete</button>
-        <button mat-raised-button (click)="onEditExp(discover.id)" class="editbtn">Edit</button>
+        <button mat-raised-button class="dtlbtn" (click)="deleteDis(discover.id)">Delete</button>
+        <!-- <button mat-raised-button class="dtlbtn"  (click)="onEditExp(discover.id)" class="editbtn">Edit</button> -->
         <p>
           {{discover.title_description}}
         </p>
       </div>
     </mat-card>
   </div>
+  <div class="col-md-3">
+    <div class="box bg-light border" (click)="goToTopic()">
+      <p class="center"><b>+</b></p>
+    </div>
+  </div>
 </div>
 <div class="text-center m-5" *ngIf="list">
   <h3 class="danger m-5 p-5">Uploading data,please wait....</h3>
   <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+</div>
+<div class="text-center m-5" *ngIf="nodata">
+  <h3 class="m-5 p-5">No data....Please create</h3>
 </div>
 
 <div class="row mr-0  mb-5 p-0">

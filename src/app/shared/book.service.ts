@@ -10,7 +10,7 @@ import { map } from 'rxjs/operators';
 })
 export class BookService {
 
-  private _baseUrl = 'https://samydigital.com/api/admin'
+  private _baseUrl = 'https://samystudios.com/api/admin'
 
   constructor(private _http: HttpClient, private fb: FormBuilder, ) { }
   formData: Datum[] = [];
@@ -45,12 +45,27 @@ export class BookService {
   getTopicById(id: number): Observable<any> {
     return this._http.get<any>(this._baseUrl + '/get-topics?book_id=' + id)
   }
+  getSubTopicById(id: number): Observable<any> {
+    return this._http.post<any>(this._baseUrl + '/delete-sub-topic?sub_topic_id=' + id,id)
+  }
+
+  getSubSubById(id: number): Observable<any> {
+    return this._http.post<any>(this._baseUrl + '/delete-sub-sub-topic?sub_sub_topic_id=' + id,id)
+  }
+  deletepieId(id: number): Observable<any> {
+    return this._http.post<any>(this._baseUrl + '/delete-piechart?piechart_id=' + id,id)
+  }
+  deleteTimelineId(id: number): Observable<any> {
+    return this._http.post<any>(this._baseUrl + '/delete-timeline-entry?timeline_entry_id=' + id,id)
+  }
+  deletewebbyId(id: number): Observable<any> {
+    return this._http.post<any>(this._baseUrl + '/delete-website?website_id=' + id,id)
+  }
+
   getsubWebById(id: number): Observable<any> {
-    return this._http.get<any>(this._baseUrl + '/get-topics?book_id=' + id)
+    return this._http.get<any>(this._baseUrl + '/get-websites?sub_topic_id=' + id)
   }
-  getsubsubWebById(id: number): Observable<any> {
-    return this._http.get<any>(this._baseUrl + '/get-topics?book_id=' + id)
-  }
+
   getSubpieById(id: number): Observable<any> {
     return this._http.get<any>(this._baseUrl + '/get-piecharts?sub_topic_id=' + id)
   }
@@ -58,9 +73,9 @@ export class BookService {
     return this._http.get<any>(this._baseUrl + '/get-timeline-entries?sub_topic_id=' + id)
   }
   getSubSubSubTimelineById(id: number): Observable<any> {
-    return this._http.get<any>(this._baseUrl + '/get-timeline-entries?sub_topic_id=' + id)
+    return this._http.get<any>(this._baseUrl + '/get-timeline-entries?sub_sub_topic_id=' + id)
   }
-  getSubSubpieById(id: number): Observable<any> {
+  subSubpieId(id: number): Observable<any> {
     return this._http.get<any>(this._baseUrl + '/get-piecharts?sub_sub_topic_id=' + id)
   }
 

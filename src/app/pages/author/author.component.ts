@@ -85,7 +85,8 @@ export class AuthorsComponent implements OnInit {
       author_id:[null],
       first_name: ['',Validators.required],
       last_name: ['',Validators.required],
-      description: ['',Validators.compose([Validators.required,Validators.minLength(30),Validators.maxLength(4000)])],
+      description: [''],
+      // description: ['',Validators.compose([Validators.required,Validators.minLength(30),Validators.maxLength(4000)])],
       status: ['published'],
       language: ['',Validators.required],
       profile_pic: ['',Validators.required],
@@ -160,9 +161,9 @@ export class AuthorsComponent implements OnInit {
       this.service.updateAuthor(formData).subscribe(
         res =>{ 
           console.log(res),
-          this.toastr.success('Submitted successfully', 'Author has been Updated');
           this.form.reset();
           if(res.status === 1){
+            this.toastr.success('Submitted successfully', 'Author has been Updated');
             this.router.navigateByUrl('/home/author');
           }else{
             return ;
@@ -174,9 +175,9 @@ export class AuthorsComponent implements OnInit {
     this.service.createAuthor(formData).subscribe(
       res =>{ 
         console.log(res),
-        this.toastr.success('Submitted successfully', 'Book has been submitted');
         this.form.reset();
         if(res.status === 1){
+          this.toastr.success('Submitted successfully', 'Author has been created');
           this.router.navigateByUrl('/home/author');
         }else{
           return ;

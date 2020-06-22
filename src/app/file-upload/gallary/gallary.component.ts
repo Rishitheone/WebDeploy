@@ -13,6 +13,7 @@ export class GallaryComponent implements OnInit {
   gifs:any=[]
   ar:any=[]
   imageUrl:string = "";
+  res:string = "";
   constructor( public dialogRef: MatDialogRef<GallaryComponent>, private imageUpload: ImageUploadService) { }
 
   ngOnInit() {
@@ -69,6 +70,7 @@ export class GallaryComponent implements OnInit {
   getImg(item){
     console.log(item)
     this.imageUrl = item;
+    this.res = item;
   }
   onClear(){
     this.imageUrl = "";

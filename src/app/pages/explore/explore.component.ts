@@ -10,12 +10,17 @@ import { Router } from '@angular/router';
 })
 export class ExploreComponent implements OnInit {
   discovers:any=[];
+  cardImg:boolean = false;
+  headerImg:boolean = false;
   constructor(private explore:ExploreBrowseService,private toastr: ToastrService,
       private router:Router) { }
 
   ngOnInit() {
     this.explore.getAllDiscover().subscribe(
-      res => this.discovers = res.data,
+      res =>{
+        console.log(res.data)
+        this.discovers = res.data
+      },
       err=>console.log(err),
     )
     
@@ -34,7 +39,7 @@ export class ExploreComponent implements OnInit {
               data=>this.discovers=data.data,
               err=>console.log(err)
             );
-            this.toastr.warning('Deleted successfully', 'Payment Detail Register');
+            this.toastr.warning('Deleted successfully', 'Explore has been Deleted');
           },
           err => {
             console.log(err);

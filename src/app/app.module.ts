@@ -4,7 +4,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NavbarComponent } from './navbar/navbar.component';
-import {MatToolbarModule} from '@angular/material/toolbar';
+import { MatToolbarModule} from '@angular/material/toolbar'
+
 import { HomeComponent } from './pages/home/home.component';
 import { BookComponent } from './pages/book/book.component';
 import { MaterialModule } from './material/material.module';
@@ -65,6 +66,7 @@ import { SubsubtimlineComponent } from './pages/subsubtimline/subsubtimline.comp
 import { WeblistComponent } from './pages/weblist/weblist.component';
 import { SubsubweblistComponent } from './pages/subsubweblist/subsubweblist.component';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
+import { CreateChapterComponent } from './create-chapter/create-chapter.component';
 
 @NgModule({
   declarations: [
@@ -113,6 +115,7 @@ import { HashLocationStrategy, LocationStrategy } from '@angular/common';
     SubsubtimlineComponent,
     WeblistComponent,
     SubsubweblistComponent,
+    CreateChapterComponent,
     
   ],
   imports: [

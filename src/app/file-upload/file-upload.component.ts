@@ -12,8 +12,8 @@ import { GallaryComponent } from './gallary/gallary.component';
 })
 export class FileUploadComponent implements OnInit {
   imageForm: FormGroup;
-  imgtype:string;
   pictureUrl = null;
+  imgtype:string;
   fileUpload = { status: '', message: '', filePath: '' };
   imgRes = [];
   constructor(

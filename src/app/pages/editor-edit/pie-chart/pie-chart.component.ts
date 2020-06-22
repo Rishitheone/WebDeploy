@@ -53,7 +53,7 @@ export class PieChartComponent implements OnInit {
       heading: [],
       sub_heading: [],
       description: [],
-      color_code: [],
+      color_code: ['#'],
       numaric_value: [],
       mime_type: [],
       url: [],
@@ -102,7 +102,7 @@ export class PieChartComponent implements OnInit {
     }
     if (this.formNumber = i) {
       setTimeout(() => {
-        this._location.back();
+        this.route.navigate(['home/books/Sub-topic/pie/', this.id])
         this.userService.setChap(1)
       }, 2000);
     } else {

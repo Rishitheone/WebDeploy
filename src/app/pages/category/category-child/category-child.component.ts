@@ -14,6 +14,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 })
 export class CategoryChildComponent implements OnInit {
   form: FormGroup;
+  forNoparent = false;
   //this is for dropdown value
   selectedFood2: string;
   pageTitle:string;
@@ -60,7 +61,10 @@ export class CategoryChildComponent implements OnInit {
       this.pageTitle = 'Update Author Details';
       this.service.getCategoryById(+id).subscribe(
         res => {
+          console.log(res.data)
           var test = res.data["tags"].split(',') 
+          if(res.data["parent_category_id"] !== null){
+            this.forNoparent = true;
           this.form.patchValue({
             status: res.data["status"],
             category_id: res.data["id"],
@@ -70,6 +74,20 @@ export class CategoryChildComponent implements OnInit {
             parent_category_id: res.data["parent_category_id"],
             tags: test,
           });
+        }
+          if(res.data["parent_category_id"] === null){
+            this.form.patchValue({
+              status: res.data["status"],
+              category_id: res.data["id"],
+              name: res.data["name"],
+              type: res.data["type"],
+              description: res.data["description"],
+              parent_category_id: 'no_parent',
+              tags: test,
+            });
+          } else{
+            return;
+          }
         }
       );
     } else {
@@ -210,6 +228,10 @@ export class CategoryChildComponent implements OnInit {
     if (!this.form.valid) {
       return;
     }
+    this.form.patchValue({
+      parent_category_id: null,
+    })
+    console.log(this.form.value)
     const data = JSON.stringify(this.form.value);
     this.service.updateBook(data)
       .subscribe(

@@ -68,7 +68,19 @@ button.editbtn.mat-raised-button {
          font-size:11px;
      }
 }
-.mat-raised-button {
+.dtlbtn {
     top: 150px;
     position: absolute;
 }
+.box{
+    cursor: pointer;
+}
+a.create {
+    background: #f7af0d;
+    padding: 7px 25px;
+    margin: 5px 17px;
+    border-radius: 36px;
+    color: #000000;
+    text-decoration: none;
+    cursor: pointer;
+  }

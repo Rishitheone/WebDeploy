@@ -7,7 +7,7 @@ import { throwError } from 'rxjs';
   providedIn: 'root'
 })
 export class AlluserService {
-  private _baseUrl=' https://samydigital.com/api/admin'
+  private _baseUrl = 'https://samystudios.com/api/admin'
 
   constructor(private _http: HttpClient) { }
 
@@ -15,6 +15,10 @@ export class AlluserService {
       return this._http.get<any>(this._baseUrl+'/get-all-users?page=' + counter).pipe(
         catchError(this.handleError)
       );
+  }
+
+  userStatus(form){
+    return this._http.post<any>(this._baseUrl+'/change-user-status',form)
   }
 
   private handleError(error: HttpErrorResponse) {

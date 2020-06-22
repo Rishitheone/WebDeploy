@@ -17,9 +17,10 @@ export class SubSubTopicComponent implements OnInit {
   sub_sub_topic_id: number;
   id: number;
   submitRes = false;
+  expression:string;
 
-  selectedsubback:string;
-  selectedsubbtn:null;
+  selectedsubback: string;
+  selectedsubbtn: null;
 
   apiResSp = false;
   forShow = false;
@@ -48,16 +49,18 @@ export class SubSubTopicComponent implements OnInit {
   types = [
     { value: 'is_text', viewValue: 'Text' },
     { value: 'is_timeline', viewValue: 'TimeLine' },
-    { value: 'is_graphp', viewValue: 'Graph' },
+    // { value: 'is_graphp', viewValue: 'Graph' },
     { value: 'is_pichart', viewValue: 'Pie Chart' },
-    { value: 'is_column', viewValue: 'Column' },
+    // { value: 'is_column', viewValue: 'Column' },
     { value: 'is_website', viewValue: 'Web' }
   ];
+
+  snapid = +this._route.snapshot.paramMap.get('id');
 
   constructor(private fb: FormBuilder, private _route: ActivatedRoute, private userService: UserService,
     private service: BookPageCreateService, private toastr: ToastrService,
     private route: Router,
-    private subtopicService: SubtopicService,private _location: Location ) { }
+    private subtopicService: SubtopicService, private _location: Location) { }
 
   ngOnInit() {
     this.id = +this._route.snapshot.paramMap.get('id');
@@ -70,8 +73,8 @@ export class SubSubTopicComponent implements OnInit {
         ar_url: '',
         bg_image: '',
         btn_image: '',
-        color_code: '',
-        show_button_text:0,
+        color_code: '#',
+        show_button_text: 0,
         type: '',
         sub_sub_topic_files: this.fb.array([
           this.addImgurl(),
@@ -92,8 +95,8 @@ export class SubSubTopicComponent implements OnInit {
 
   addImgurl(): FormGroup {
     return this.fb.group({
-      url: [''],
-      mime_type: [''],
+      url: null,
+      mime_type:null,
     })
   }
 
@@ -111,7 +114,7 @@ export class SubSubTopicComponent implements OnInit {
     });
   }
 
-  addsubPlayer(){
+  addsubPlayer() {
     this.arr = this.mySubForm.get('sub_sub_topic_files') as FormArray;
     this.arr.push(this.addImgurl());
   }
@@ -119,20 +122,22 @@ export class SubSubTopicComponent implements OnInit {
   addItem() {
     this.forShow = true;
     this.addHide = false;
- }
+  }
 
- addReset(){
-  this.mySubForm.controls['sub_sub_topic_files'].reset();
-}
-backClicked() {
-  this._location.back();
-  this.userService.setChap(1)
-}
+  addReset() {
+    this.mySubForm.controls['sub_sub_topic_files'].reset();
+  }
+  backClicked() {
+    this._location.back();
+    this.userService.setChap(1)
+  }
 
   onSubSubClick() {
     this.apiResSp = true;
+    console.log(this.mySubForm.value)
     this.service.createSubSubTopic(this.mySubForm.value).subscribe(
       res => {
+        console.log(res)
         this.submitRes = true;
         res.data.forEach(element =>
           this.sub_sub_topic_id = +element.id);
@@ -141,23 +146,24 @@ backClicked() {
           this.forShow = false;
           this.addHide = true;
           this.selectedsubback = null;
-            this.selectedsubbtn = null;
+          this.selectedsubbtn = null;
           this.toastr.success('Submitted successfully', 'Sub-sub-Topic has been submitted');
-          this.mySubForm.setValue({
-            sub_topic_id: +this.id,
-            heading: '',
-            sub_heading: '',
-            html_content: '',
-            ar_url: '',
-            bg_image: '',
-            btn_image: '',
-            color_code: '',
-            show_button_text:0,
-            type: '',
-            sub_sub_topic_files: this.fb.array([
-              this.addReset(),
-            ])
-          })
+          this.route.navigate(['home/books/Sub-Sub-topic/', this.snapid])
+          // this.mySubForm.setValue({
+          //   sub_topic_id: +this.id,
+          //   heading: '',
+          //   sub_heading: '',
+          //   html_content: '',
+          //   ar_url: '',
+          //   bg_image: '',
+          //   btn_image: '',
+          //   color_code: '',
+          //   show_button_text:0,
+          //   type: '',
+          //   sub_sub_topic_files: this.fb.array([
+          //     this.addReset(),
+          //   ])
+          // })
         } else {
           return;
         }

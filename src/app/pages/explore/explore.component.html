@@ -32,9 +32,14 @@
   </div>
   <div class="col-md-3 adj" *ngFor="let discover of discovers">
     <mat-card class="example-card" >
-      <div class="imght">
+      <div class="imght" *ngIf="(discover.card_url) == null; else elseBlock">
         <img class="forimg" src="{{discover.header_url}}" alt="cover pic">
       </div>
+      <ng-template #elseBlock>
+      <div class="imght">
+        <img class="forimg" src="{{discover.card_url }}" alt="cover pic">
+      </div>
+    </ng-template>
       <div class="text-for">
         <h4>{{discover.title}}</h4>
         <button mat-raised-button (click)="deleteDis(discover.id)">Delete</button>
