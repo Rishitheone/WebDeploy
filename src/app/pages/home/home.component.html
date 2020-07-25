@@ -1,6 +1,8 @@
+
+
 <div class="p-3 m-5  bg-light border-c">
   <div class="row mx-5 pt-3 pb-3">
-    <div class="col-md-2 pt-1 ">
+    <div class="col pt-1 ">
       <a routerLink='/home/Explore'>
         <div class="card  border-d">
           <p class="center"> +</p>
@@ -8,7 +10,8 @@
         </div>
       </a>
     </div>
-    <div class="col-md-2 pt-1 ">
+    <div class='w-100 d-md-none'></div>
+    <div class="col pt-1 ">
       <a routerLink='/home/book/create'>
         <div class="card  border-d">
           <p class="center"> +</p>
@@ -16,7 +19,8 @@
         </div>
       </a>
     </div>
-    <div class="col-md-2 pt-1">
+    <div class='w-100 d-md-none'></div>
+    <div class="col pt-1">
       <a routerLink='/home/category'>
         <div class="card border-d">
           <p class="center"> +</p>
@@ -25,7 +29,8 @@
 
       </a>
     </div>
-    <div class="col-md-2 pt-1">
+    <div class='w-100 d-md-none'></div>
+    <div class="col pt-1">
       <a routerLink='/home/series'>
         <div class="card border-d">
           <p class="center"> +</p>
@@ -33,7 +38,8 @@
         </div>
       </a>
     </div>
-    <div class="col-md-2 pt-1">
+    <div class='w-100 d-md-none'></div>
+    <div class="col pt-1">
       <a routerLink='/home/user'>
         <div class="card border-d">
           <p class="center"> +</p>
@@ -41,11 +47,21 @@
         </div>
       </a>
     </div>
-    <div class="col-md-2 pt-1">
+    <div class='w-100 d-md-none'></div>
+    <div class="col pt-1">
       <a routerLink='/home/author'>
         <div class="card border-d">
           <p class="center"> +</p>
           <p class="text-center pt-3 name-1">Author</p>
+        </div>
+      </a>
+    </div>
+    <div class='w-100 d-md-none'></div>
+    <div class="col pt-1">
+      <a routerLink='/home/Institution'>
+        <div class="card border-d">
+          <p class="center"> +</p>
+          <p class="text-center pt-3 name-1">Institution</p>
         </div>
       </a>
     </div>
@@ -112,17 +128,17 @@
       <div class="title">
         <h2>{{book.title}}</h2>
         <h4>{{book.sub_title}}</h4>
-        <p>By Author</p>
+        <p>By {{book.author.first_name}}</p>
       </div>
     </div>
     <div class="col-md-8">
       <div class="dt-1 border-bottom">
         <p>Aplis eBook</p>
         <h3>{{book.status}}</h3>
-        <h5>Last Modifies on {{book.updated_at | date}}</h5>
+        <h5>Last Modifies on {{book.updated_at}}</h5>
       </div>
       <div class="for-b border-bottom pt-3">
-        <button (click)="onUpdate(book.id)">Continue</button>
+        <button (click)="onUpdate(book.id)">Edit</button>
         <button mat-button [matMenuTriggerFor]="menu" class="bg-secondary">...</button>
         <mat-menu #menu="matMenu">
           <button mat-menu-item (click)="deleteAuthorList(book.id)">Delete</button>
@@ -130,7 +146,7 @@
           <button mat-menu-item (click)="onUpdateChap(book.id)">Edit Chapter</button>
         </mat-menu>
       </div>
-      <div class="for-page">Page:36</div>
+      <!-- <div class="for-page">Page:36</div> -->
     </div>
   </div>
   <pagination-controls (pageChange)="p = $event"></pagination-controls>

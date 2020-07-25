@@ -1,0 +1,254 @@
+<mat-toolbar>
+    <mat-toolbar-row>
+        <span> New User</span>
+        <span class="example-spacer"></span>
+        <button mat-button mat-dialog-close type="reset">Close</button>
+        <button mat-button type="submit" (click)="onSubmitStudent(form)" [disabled]="!form.valid" *ngIf="selected === 'students'">Create</button>
+        <button mat-button type="submit" (click)="onSubmitteacher(Teacherform)" [disabled]="!Teacherform.valid"  *ngIf="selected === 'teacher'">Create</button>
+    </mat-toolbar-row>
+</mat-toolbar>
+<mat-dialog-content class="mat-typography">
+    <div class="row m-0">
+        <div class="col-md-12 search-div">
+            <mat-form-field class="pt-2 search-form-field" floatLabel="never">
+                <mat-label>Select user type</mat-label>
+                <mat-select [(value)]="selected">
+                    <mat-option value='teacher'>Teacher</mat-option>
+                    <mat-option value='students'>Student</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+    </div>
+    <form [formGroup]="form" *ngIf="selected === 'students'">
+        <div class="row m-0 border pt-2 pb-5" >
+            <div class="col-md-4">
+                <label>Institution id *</label>
+                <div class="dis">
+                    <mat-form-field class="search-form-field" floatLabel="never">
+                      <mat-select formControlName="institution_id" required (click)="getAllInstitutionS()">
+                        <mat-option *ngFor="let type of institution" [value]="type.id" >
+                          {{type.name}}
+                        </mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                  </div>
+                <mat-error *ngIf="!form.controls['institution_id'].valid && form.controls['institution_id'].touched">
+                    This field is <strong>required</strong>
+                </mat-error>
+            </div>
+            <div class="col-md-4">
+                <label>Name *</label>
+                <input type="text" name="name" formControlName="name" required>
+                <mat-error *ngIf="!form.controls['name'].valid && form.controls['name'].touched">
+                    This field is <strong>required</strong>
+                </mat-error>
+            </div>
+            <div class="col-md-4">
+                <label>Mobile *</label>
+                <input type="number" name="mobile" formControlName="mobile" required>
+                <mat-error *ngIf="!form.controls['mobile'].valid && form.controls['mobile'].touched">
+                    This field is <strong>required</strong>
+                </mat-error>
+            </div>
+            <div class="col-md-4">
+                <label>Email *</label>
+                <input type="email" name="email" formControlName="email" required>
+                <mat-error *ngIf="!form.controls['email'].valid && form.controls['email'].touched">
+                    This field is <strong>required</strong>
+                </mat-error>
+            </div>
+            <div class="col-md-4">
+                <label>Address *</label>
+                <input type="text" name="address" formControlName="address" required>
+                <mat-error *ngIf="!form.controls['address'].valid && form.controls['address'].touched">
+                    This field is <strong>required</strong>
+                </mat-error>
+            </div>
+            <div class="col-md-4">
+                <label>School type *</label>
+                <div class="dis">
+                    <mat-form-field class="search-form-field" floatLabel="never">
+                      <mat-select formControlName="school_type" required>
+                        <mat-option *ngFor="let type of types" [value]="type.value" >
+                          {{type.viewValue}}
+                        </mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                  </div>
+                <mat-error *ngIf="!form.controls['school_type'].valid && form.controls['school_type'].touched">
+                    This field is <strong>required</strong>
+                </mat-error>
+            </div>
+            <div class="col-md-4">
+                <label>Locality *</label>
+                <input type="text" name="locality" formControlName="locality" required>
+                <mat-error *ngIf="!form.controls['locality'].valid && form.controls['locality'].touched">
+                    This field is <strong>required</strong>
+                </mat-error>
+            </div>
+            <div class="col-md-4">
+                <label>City *</label>
+                <input type="text" name="city" formControlName="city" required>
+                <mat-error *ngIf="!form.controls['city'].valid && form.controls['city'].touched">
+                    This field is <strong>required</strong>
+                </mat-error>
+            </div>
+            <div class="col-md-4">
+                <label>State *</label>
+                <input type="text" name="state" formControlName="state" required>
+                <mat-error *ngIf="!form.controls['state'].valid && form.controls['state'].touched">
+                    This field is <strong>required</strong>
+                </mat-error>
+            </div>
+            <div class="col-md-4">
+                <label>Pincode *</label>
+                <input type="number" name="pin_code" formControlName="pin_code" required>
+                <mat-error *ngIf="!form.controls['pin_code'].valid && form.controls['pin_code'].touched">
+                    This field is <strong>required</strong>
+                </mat-error>
+            </div>
+            <div class="col-md-4">
+                <label>Country *</label>
+                <input type="text" name="country" formControlName="country" required>
+                <mat-error *ngIf="!form.controls['country'].valid && form.controls['country'].touched">
+                    This field is <strong>required</strong>
+                </mat-error>
+            </div>
+            <div class="col-md-4">
+                <label>Admission No *</label>
+                <input type="number" name="admission_no" formControlName="admission_no" required>
+                <mat-error *ngIf="!form.controls['admission_no'].valid && form.controls['admission_no'].touched">
+                    This field is <strong>required</strong>
+                </mat-error>
+            </div>
+            <div class="col-md-4">
+                <label>Guardian Name *</label>
+                <input type="text" name="guardian_name" formControlName="guardian_name" required>
+                <mat-error *ngIf="!form.controls['guardian_name'].valid && form.controls['guardian_name'].touched">
+                    This field is <strong>required</strong>
+                </mat-error>
+            </div>
+            <div class="col-md-4">
+                <label>Guardian Relationship *</label>
+                <input type="text" name="guardian_relationship" formControlName="guardian_relationship" required>
+                <mat-error
+                    *ngIf="!form.controls['guardian_relationship'].valid && form.controls['guardian_relationship'].touched">
+                    This field is <strong>required</strong>
+                </mat-error>
+            </div>
+            <div class="col-md-4">
+                <label>Class Enrollment *</label>
+                <input type="number" name="class_enrollment" formControlName="class_enrollment" required>
+                <mat-error
+                    *ngIf="!form.controls['class_enrollment'].valid && form.controls['class_enrollment'].touched">
+                    This field is <strong>required</strong>
+                </mat-error>
+            </div>
+
+        </div>
+    </form>
+    <form [formGroup]="Teacherform" *ngIf="selected === 'teacher'">
+        <div class="row m-0 border pt-2 pb-5" >
+            <div class="col-md-4">
+                <label>Institution id *</label>
+                <div class="dis">
+                    <mat-form-field class="search-form-field" floatLabel="never">
+                      <mat-select formControlName="institution_id" required (click)="getAllInstitutionT()">
+                        <mat-option *ngFor="let type of institution" [value]="type.id" >
+                          {{type.name}}
+                        </mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                  </div>
+                <mat-error *ngIf="!Teacherform.controls['institution_id'].valid && Teacherform.controls['institution_id'].touched">
+                    This field is <strong>required</strong>
+                </mat-error>
+            </div>
+            <div class="col-md-4">
+                <label>Name *</label>
+                <input type="text" name="name" formControlName="name" required>
+                <mat-error *ngIf="!Teacherform.controls['name'].valid && Teacherform.controls['name'].touched">
+                    This field is <strong>required</strong>
+                </mat-error>
+            </div>
+            <div class="col-md-4">
+                <label>Mobile *</label>
+                <input type="number" name="mobile" formControlName="mobile" required>
+                <mat-error *ngIf="!Teacherform.controls['mobile'].valid && Teacherform.controls['mobile'].touched">
+                    This field is <strong>required</strong>
+                </mat-error>
+            </div>
+            <div class="col-md-4">
+                <label>Email *</label>
+                <input type="email" name="email" formControlName="email" required>
+                <mat-error *ngIf="!Teacherform.controls['email'].valid && Teacherform.controls['email'].touched">
+                    This field is <strong>required</strong>
+                </mat-error>
+            </div>
+            <div class="col-md-4">
+                <label>Address *</label>
+                <input type="text" name="address" formControlName="address" required>
+                <mat-error *ngIf="!Teacherform.controls['address'].valid && Teacherform.controls['address'].touched">
+                    This field is <strong>required</strong>
+                </mat-error>
+            </div>
+            <div class="col-md-4">
+                <label>School type *</label>
+                <div class="dis">
+                    <mat-form-field class="search-form-field" floatLabel="never">
+                      <mat-select formControlName="school_type" required>
+                        <mat-option *ngFor="let type of types" [value]="type.value">
+                          {{type.viewValue}}
+                        </mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                  </div>
+                <mat-error *ngIf="!Teacherform.controls['school_type'].valid && Teacherform.controls['school_type'].touched">
+                    This field is <strong>required</strong>
+                </mat-error>
+            </div>
+            <div class="col-md-4">
+                <label>Locality *</label>
+                <input type="text" name="locality" formControlName="locality" required>
+                <mat-error *ngIf="!Teacherform.controls['locality'].valid && Teacherform.controls['locality'].touched">
+                    This field is <strong>required</strong>
+                </mat-error>
+            </div>
+            <div class="col-md-4">
+                <label>City *</label>
+                <input type="text" name="city" formControlName="city" required>
+                <mat-error *ngIf="!Teacherform.controls['city'].valid && Teacherform.controls['city'].touched">
+                    This field is <strong>required</strong>
+                </mat-error>
+            </div>
+            <div class="col-md-4">
+                <label>State *</label>
+                <input type="text" name="state" formControlName="state" required>
+                <mat-error *ngIf="!Teacherform.controls['state'].valid && Teacherform.controls['state'].touched">
+                    This field is <strong>required</strong>
+                </mat-error>
+            </div>
+            <div class="col-md-4">
+                <label>Pincode *</label>
+                <input type="number" name="pin_code" formControlName="pin_code" required>
+                <mat-error *ngIf="!Teacherform.controls['pin_code'].valid && Teacherform.controls['pin_code'].touched">
+                    This field is <strong>required</strong>
+                </mat-error>
+            </div>
+            <div class="col-md-4">
+                <label>Country *</label>
+                <input type="text" name="country" formControlName="country" required>
+                <mat-error *ngIf="!Teacherform.controls['country'].valid && Teacherform.controls['country'].touched">
+                    This field is <strong>required</strong>
+                </mat-error>
+            </div>
+            <div class="col-md-4">
+                <label>Employee id *</label>
+                <input type="number" name="employee_id" formControlName="employee_id" required>
+                <mat-error *ngIf="!Teacherform.controls['employee_id'].valid && Teacherform.controls['employee_id'].touched">
+                    This field is <strong>required</strong>
+                </mat-error>
+            </div>
+        </div>
+    </form>
+</mat-dialog-content>

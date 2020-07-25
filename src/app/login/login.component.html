@@ -1,37 +1,48 @@
-<div class="py-5">
-  <div class="row">
-    <div class="col-md-6 mx-auto">
-      <span class="anchor" id="formLogin"></span>
-      <div class="alert alert-danger" *ngIf="loginError">
-        {{loginError}}
-     </div>
-      <!-- form card login -->
-      <div class="card rounded-0">
-        <div class="card-header">
-          <h3 class="mb-0">Login</h3>
-        </div>
-        <div class="card-body">
-          <form class="form">
-            <div class="form-group">
-              <label for="uname1">Username..</label>
-              <input type="text" class="form-control rounded-0" [(ngModel)]="loginUserData.email" name="email" required>
+<!-- //////////////////new login page///////////////////// -->
+<div class="fixed-background">
+  <div class="container login-container  h-100 d-flex justify-content-center">
+    <div class="row my-auto">
+      <div class="col-lg-1"></div>
+      <div class="col-lg-10">
+        <div class="row p-0 m-0 for-sh">
+          <div class="col-lg-5 ads">
+            <p class="text-white h2">MAGIC IS IN THE DETAILS</p>
+            <p class="white mb-0"> Please use your credentials to login. </p>
+          </div>
+          <div class="col-lg-7 login-form">
+            <div class="profile-img">
+              <img src="https://mymediafiles0.s3.ap-south-1.amazonaws.com/Logo/Aplis+Logo.png" alt="profile_img"
+                height="auto" width="150px;">
             </div>
-            <div class="form-group">
-              <label>Password..</label>
-              <input type="password" class="form-control rounded-0" [(ngModel)]="loginUserData.password" name="password" required>
-            </div>
-            <button type="button" (click)="loginUser()" class="btn btn-success float-right">Login</button>
-          </form>
+            <h4 class="pt-1 pb-3">Login</h4>
+            <form>
+              <label class="form-group has-float-label">
+                <input type="text" class="form-control" [(ngModel)]="loginUserData.email" name="email" required>
+                <span>E-mail</span>
+              </label>
+              <label class="form-group has-float-label">
+                <input type="password" class="form-control" [(ngModel)]="loginUserData.password" name="password"
+                  required>
+                <span>Password</span>
+              </label>
+              <div class="form-group d-flex justify-content-between align-items-center">
+                <p class="error">{{message}}</p>
+                <button type="button" [disabled]="apiRes" class="btn btn-primary btn-lg btn-block"
+                  (click)="loginUser()">
+                  <div class="loader" *ngIf="apiRes"></div>
+                  <span *ngIf="!apiRes">LOGIN</span>
+                </button>
+              </div>
+
+              <div class="service-error" *ngIf="error">
+                <h1>{{error.errorTitle}}</h1>
+                <h3>{{error.errorDesc}}</h3>
+              </div>
+            </form>
+          </div>
         </div>
-        <!--/card-block-->
       </div>
-      <!-- /form card login -->
-
+      <div class="col-lg-1"></div>
     </div>
-    <div class="service-error" *ngIf="error">
-      <h1>{{error.errorTitle}}</h1>
-      <h3>{{error.errorDesc}}</h3>
-   </div>
-
   </div>
 </div>

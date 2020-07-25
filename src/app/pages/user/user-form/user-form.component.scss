@@ -1,0 +1,52 @@
+.mat-typography{
+    width: 100%;
+}
+.example-spacer{
+    flex:1 1 auto;
+}
+.search-form-field {
+    width:100% !important;
+    color: blue;
+    background:inherit;
+  }
+  .search-div {
+    margin: 10px 0px 10px 0px;
+    width: 100% !important;
+  }
+  .dis{
+    margin: 0px 10px 0px -9px;
+  }
+  .tex{
+    font-size: 1rem;
+  }
+  .for-w {
+    width: 100%;
+    padding: 1rem 3rem;
+}
+label {
+    width: 100%;
+}
+input,textarea{
+    width: 100%;
+}
+.example-radio-group {
+  display: flex;
+  flex-direction: row;
+  margin: 15px 0;
+}
+
+.example-radio-button {
+  margin: 5px;
+}
+.mat-error {
+  padding-top: 20px;
+}
+.example-additional-selection {
+    opacity: 0.75;
+    font-size: 0.75em;
+  }
+  
+.search-form-field {
+    color: #4E91E8;
+    background:inherit;
+  }

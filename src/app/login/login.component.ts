@@ -12,7 +12,8 @@ import { RootObject } from '../shared/all.model';
 })
 export class LoginComponent implements OnInit {
   error: {};
-  loginError: string;
+  apiRes:boolean = false;
+  message:string;
   loginUserData = {
     email:'',
     password:'',
@@ -26,15 +27,18 @@ export class LoginComponent implements OnInit {
   }
 
   loginUser () {
+    this.apiRes = true;
+    this.message = '';
     this._auth.loginUser(this.loginUserData)
     .subscribe(
       res => {
+        this.apiRes = false;
         console.log(res)
         if(res.status === 1){
           localStorage.setItem('token', res.user.jwtToken)
           this._router.navigate(['/home'])
         }else{
-          this.loginError = 'Username or password is incorrect.';
+          this.message = res.message;
         }
         
       },

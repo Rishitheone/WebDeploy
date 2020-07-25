@@ -82,9 +82,9 @@ export class WeblistComponent implements OnInit {
           res => {
             this.bookService.getsubWebById(this.snapId).subscribe(
               data=>{
-                this.topics2 = res.data;
+                this.topics2 = data.data;
                 this.list = false;
-                if(res.data.length=0){
+                if(data.data.length === 0){
                   this.nodata = true;
                 }
             },
@@ -203,9 +203,22 @@ export class WeblistComponent implements OnInit {
     
   }
   subweb(id){
-    this.route.navigate(['home/topic/sub-topic/Web/list/', id])
+    console.log(id)
+    this.bookService.getsubWebById(id).subscribe(
+      res => {
+          this.topics2 = res.data;
+          this.route.navigate(['home/topic/sub-topic/Web/list/', id])
+          this.list = false;
+          if(res.data.length === 0){
+            this.nodata = true;
+          }
+      },
+      err => console.log(err)
+    )
+    
   }
   subsubweb(id){
+    console.log(id)
     this.route.navigate(['home/topic/sub-sub-topic/Web/list/', id])
   }
 

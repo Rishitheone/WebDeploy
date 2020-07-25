@@ -75,11 +75,11 @@
         </div>
         <div class="col-md-4" *ngIf="PiechartOn === 'sub'">
           <a class="create" (click)="goToSubTimeLine(selectedIdForSubPieId)">Add Entries</a>
-          <!-- <a class="see" (click)="subweb(selectedIdForSubPieId)">See All</a> -->
+          <a class="see" (click)="subweb(selectedIdForSubPieId)">See All</a>
         </div>
         <div class="col-md-4" *ngIf="PiechartOn === 'sub-sub'">
           <a class="create" (click)="goToSubSubTimeLine(LastSubid)">Add Entries</a>
-          <!-- <a class="see" (click)="subsubweb(LastSubid)">See All</a> -->
+          <a class="see" (click)="subsubweb(LastSubid)">See All</a>
         </div>
       </div>
     </div>
@@ -104,11 +104,11 @@
       </div>
     </mat-card>
   </div>
-  <div class="col-md-3">
+  <!-- <div class="col-md-3">
     <div class="box bg-light border" (click)="goToTopic()">
       <p class="center"><b>+</b></p>
     </div>
-  </div>
+  </div> -->
 </div>
 <div class="text-center m-5" *ngIf="list">
   <h3 class="danger m-5 p-5">Uploading data,please wait....</h3>

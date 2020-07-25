@@ -169,39 +169,22 @@
           </p>
         </div>
         <div class="dis2 px-3 mb-3">
-          <div class="card">
-            <div class="card-body">
-              <div class="col-md-12">
-                <mat-radio-group aria-label="Select an option">
-                  <mat-radio-button value="1"> Ipsum refers to a dummy block of text that is often used in
-                    publishing and graphic design to fill gaps in the page</mat-radio-button>
-                </mat-radio-group>
-              </div>
-              <div class="row">
-                <div class="col-md-3 px-5">
-                  <div class="img-card">
-                    <div *ngIf="profile_pic">
-                      <img [src]="profile_pic" height="149px" width="99px">
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-9">
-                  <div class="upload-btn-wrapper mt-5">
-                    <button class="btn">Profile Photo</button>
-                    <input type="file" name="profile_pic" accept=".png, .jpg, .jpeg" (change)="onFileSelect($event)"
-                      required />
-                  </div>
+          <div class="row">
+            <div class="col-md-3 px-5">
+              <div class="round">
+                <div *ngIf="profile_pic">
+                  <img [src]="profile_pic" height="200px" width="150px">
                 </div>
               </div>
             </div>
-            <div class="card-footer">
-              <mat-radio-group aria-label="Select an option">
-                <mat-radio-button value="1"> Ipsum refers to a dummy block of text that is often used in publishing
-                  and graphic design to fill gaps in the page</mat-radio-button>
-              </mat-radio-group>
+            <div class="col-md-9">
+              <div class="upload-btn-wrapper mt-5">
+                <button class="btn">Profile Photo</button>
+                <input type="file" name="profile_pic" accept=".png, .jpg, .jpeg" (change)="onFileSelect($event)"
+                  required />
+              </div>
             </div>
           </div>
-
         </div>
       </div>
     </div>
@@ -218,46 +201,29 @@
           </p>
         </div>
         <div class="dis2 px-3 mb-3">
-          <div class="card">
-            <div class="card-body">
-              <div class="col-md-12">
-                <mat-radio-group aria-label="Select an option">
-                  <mat-radio-button value="1"> Ipsum refers to a dummy block of text that is often used in
-                    publishing and graphic design to fill gaps in the page</mat-radio-button>
-                </mat-radio-group>
-              </div>
-              <div class="row">
-                <div class="col-md-3 px-5">
-                  <div class="img-card">
-                    <div *ngIf="cover_pic">
-                      <img [src]="cover_pic" height="149px" width="99px">
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-9">
-                  <div class="upload-btn-wrapper mt-5">
-                    <button class="btn">Upload Background Cover</button>
-                    <input type="file" name="cover_pic" accept=".png, .jpg, .jpeg" (change)="onFileSelectCover($event)"
-                      required />
-                  </div>
+          <div class="row">
+            <div class="col-md-3 px-5">
+              <div class="img-card">
+                <div *ngIf="cover_pic">
+                  <img [src]="cover_pic" height="100px" width="150px">
                 </div>
               </div>
             </div>
-            <div class="card-footer">
-              <mat-radio-group aria-label="Select an option">
-                <mat-radio-button value="1"> Ipsum refers to a dummy block of text that is often used in publishing
-                  and graphic design to fill gaps in the page</mat-radio-button>
-              </mat-radio-group>
+            <div class="col-md-9">
+              <div class="upload-btn-wrapper mt-5">
+                <button class="btn">Upload Background Cover</button>
+                <input type="file" name="cover_pic" accept=".png, .jpg, .jpeg" (change)="onFileSelectCover($event)"
+                  required />
+              </div>
             </div>
           </div>
-
         </div>
       </div>
     </div>
     <!-- ////////// -->
     <div>
-      <button mat-button mat-raised-button  class="bg-secondary m-2 " (click)="onBack()">Go Back</button>
-      <button mat-butto mat-raised-button class="bg-warning arng m-2" (click)="onSubmit()">Save</button>
+      <button mat-button mat-raised-button class="bg-secondary m-2 " (click)="onBack()">Go Back</button>
+      <button mat-butto mat-raised-button class="bg-warning arng m-2" (click)="onSubmit()">Publish</button>
     </div>
   </form>
 </div>

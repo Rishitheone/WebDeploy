@@ -11,9 +11,9 @@
         </p>
       </div>
       <div class="dis2 search-div px-3">
-      <mat-form-field class="search-form-field" floatLabel="never">
+      <mat-form-field class="search-form-field" floatLabel="never" >
         <mat-label>None</mat-label>
-        <mat-select >
+        <mat-select [(value)]="forValue">
           <mat-option value="explore">Explore</mat-option>
           <mat-option value="browser">Browser</mat-option>
         </mat-select>

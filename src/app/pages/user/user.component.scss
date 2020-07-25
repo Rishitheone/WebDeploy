@@ -1,9 +1,40 @@
-
+.example-spacer {
+  flex: 1 1 auto;
+}
+.bgt{
+  background: #a8a8a8;
+}
+button.btn.btn12 {
+  border: 1px solid #b7b6b6;
+  border-radius: 0px;
+  padding: 10px 52px;
+  background: #a8a8a8;
+  font-weight: 300;
+    color: #000;
+}
 .avatar-upload {
     position: relative;
     max-width: 205px;
     margin: 10px auto 30px;
   }
+  .splas {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    z-index: 1025;
+    background: #b9b9b973;
+    top: 0px;
+}
+.for-center{
+    margin: 233px auto;
+}
+.texct{
+    z-index: 1026;
+    margin: 362px auto;
+    left: 42%;
+    top: 0px;
+    position: fixed;
+}
   
   .avatar-upload .avatar-edit {
     position: absolute;

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { Router } from '@angular/router';
@@ -46,6 +46,21 @@ export class UserService {
 
   getChap() {
     return this.chap;
+  }
+
+  saveStudents(form): Observable<any> {
+    return this.http.post<any>(this._baseUrl+"/save-student", form, {
+      headers: new HttpHeaders({
+        'Content-type': 'application/json'
+      })
+    })
+  }
+  saveTeachers(form): Observable<any> {
+    return this.http.post<any>(this._baseUrl+"/save-teacher", form, {
+      headers: new HttpHeaders({
+        'Content-type': 'application/json'
+      })
+    })
   }
 
 }

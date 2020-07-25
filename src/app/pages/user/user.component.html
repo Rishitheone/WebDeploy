@@ -1,4 +1,25 @@
 <div class="row mt-3 p-0 mr-0 ml-0 mb-5">
+	<mat-toolbar class="mr-3 ml-3">
+		<mat-toolbar-row>
+			<span> 
+				<div class="search-div">
+				<mat-form-field class="search-form-field" floatLabel="never">
+					<mat-label>User Type </mat-label>
+					<mat-select [(value)]='usersFor'>
+					  <mat-option value="0" (click)="getAllUser()">All users</mat-option>
+					  <mat-option value="1" (click)="getAllteachers()">All Teachers</mat-option>
+					  <mat-option value="2" (click)="getAllStudents()">All Students</mat-option>
+					</mat-select>
+				</mat-form-field>
+			</div>
+			</span>
+
+			<span class="example-spacer"></span>
+			<span>
+				<button class="btn btn12" (click)="openDialog()">Add New User</button>
+			</span>
+		</mat-toolbar-row>
+	</mat-toolbar>
 	<div class="col-md-12">
 		<div class="search-div">
 			<mat-form-field class="search-form-field" floatLabel="never">
@@ -15,15 +36,9 @@
 				</ng-container>
 
 				<!-- Name Column -->
-				<ng-container matColumnDef="first_name">
+				<ng-container matColumnDef="name">
 					<th mat-header-cell *matHeaderCellDef mat-sort-header>First Name</th>
-					<td mat-cell *matCellDef="let element">{{ element.first_name }}</td>
-				</ng-container>
-
-				<!-- Weight Column -->
-				<ng-container matColumnDef="last_name">
-					<th mat-header-cell *matHeaderCellDef mat-sort-header>Last Name</th>
-					<td mat-cell *matCellDef="let element">{{ element.last_name }}</td>
+					<td mat-cell *matCellDef="let element">{{ element.name }}</td>
 				</ng-container>
 
 				<!-- Symbol Column -->
@@ -65,11 +80,12 @@
 							<mat-icon>more_vert</mat-icon>
 						</button>
 						<mat-menu #menu="matMenu">
-							<button mat-menu-item *ngIf="element.status == 'active'">
-								<span (click)="changeStatus(element.id)">Change Status</span>
+							<button (click)="changeStatus(element.id)" mat-menu-item *ngIf="element.status == 'active'">
+								<span>Inactive</span>
 							</button>
-							<button mat-menu-item *ngIf="element.status == 'inactive'">
-								<span (click)="changeStatusInact(element.id)">Change Status</span>
+							<button (click)="changeStatusInact(element.id)" mat-menu-item
+								*ngIf="element.status == 'inactive'">
+								<span>Active</span>
 							</button>
 						</mat-menu>
 						<!-- <p class="changebtn" (click)="changeStatus()">Change Status</p> -->
@@ -104,6 +120,9 @@
 					<h6 class="text-center">{{error}}</h6>
 				</div>
 			</mat-card>
+			<mat-card class="text-center" *ngIf="storage">
+				No Data Found..
+			</mat-card>
 			<div class="container bg-light">
 				<ul class="nav justify-content-end">
 					<li class="nav-item">
@@ -123,14 +142,16 @@
 						</button>
 					</li>
 					<li class="nav-item">
-						<button mat-button matTooltip="Next Page" (click)="increment()" data-pager-action='next'>
+						<button mat-button matTooltip="Next Page" [disabled]="storage" (click)="increment()"
+							data-pager-action='next'>
 							<i class="material-icons">
 								skip_next
 							</i>
 						</button>
 					</li>
 					<li class="nav-item">
-						<button (click)="lastPage()" mat-button matTooltip="Last Page" data-pager-action='last'>
+						<button (click)="lastPage()" [disabled]="storage" mat-button matTooltip="Last Page"
+							data-pager-action='last'>
 							<i class="material-icons">
 								last_page
 							</i>
@@ -140,4 +161,11 @@
 			</div>
 		</div>
 	</div>
+</div>
+
+
+<div class="splas" *ngIf="apiResSp">
+	<mat-spinner class="for-center">
+	</mat-spinner>
+	<h4 class="texct">Please wait..</h4>
 </div>

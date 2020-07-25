@@ -19,7 +19,7 @@ export class SeriesComponent implements OnInit {
   dataSource: DatumSeries[] = []
   isLoading = true;
   constructor(public dialog: MatDialog, private _router: Router, private toastr: ToastrService,
-    public service: SeriesService, private fb: FormBuilder, ) { }
+    public service: SeriesService, private fb: FormBuilder,) { }
 
   onDelete(id: any) {
     this.deleteSeries(id.id);
@@ -39,21 +39,21 @@ export class SeriesComponent implements OnInit {
         err => console.log(err));
     });
   };
-  editSeries(series:DatumSeries){
-    const index = this.dataSource.findIndex(c=>c.id === series.id);
+  editSeries(series: DatumSeries) {
+    const index = this.dataSource.findIndex(c => c.id === series.id);
     this.dataSource[index] = series;
   }
-  getEditAll(){
+  getEditAll() {
     return this.dataSource;
   }
 
-  onEdit(id:number) {
-  const seriesAll = this.getEditAll().find(c => c.id === id);
+  onEdit(id: number) {
+    const seriesAll = this.getEditAll().find(c => c.id === id);
     let dialogRef = this.dialog.open(SeriesUpdateComponent, {
       width: '80%',
       autoFocus: true,
       disableClose: true,
-      data:seriesAll,
+      data: seriesAll,
     });
     //method run after dialog is close  
     dialogRef.afterClosed().subscribe(result => {

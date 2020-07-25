@@ -80,9 +80,9 @@ export class SubsubweblistComponent implements OnInit {
           res => {
             this.service.subsubId(this.snapId).subscribe(
               data => {
-                this.topics2 = res.data;
+                this.topics2 = data.data;
                 this.list = false;
-                if (res.data.length === 0) {
+                if (data.data.length === 0) {
                   this.nodata = true;
                 }
               },
@@ -204,7 +204,18 @@ export class SubsubweblistComponent implements OnInit {
     this.route.navigate(['home/topic/sub-topic/Web/list/', id])
   }
   subsubweb(id){
-    this.route.navigate(['home/topic/sub-sub-topic/Web/list/', id])
+    this.service.subsubId(id).subscribe(
+      res => {
+        this.topics2 = res.data;
+        this.route.navigate(['home/topic/sub-sub-topic/Web/list/', id])
+        this.list = false;
+        if (res.data.length === 0) {
+          this.nodata = true;
+        }
+      },
+      err => console.log(err)
+    )
+    
   }
 
 }

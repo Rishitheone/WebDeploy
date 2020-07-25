@@ -197,7 +197,7 @@
           </div>
           <!-- ///////// -->
           
-          <div class="border" *ngIf="selectedFood2 == 'education-reference'">
+          <!-- <div class="border" *ngIf="selectedFood2 == 'education-&-reference'">
             <mat-list-item role="listitem">Parent Category
               <div class="dis2 search-div px-3">
                 <mat-form-field class="search-form-field" floatLabel="never">
@@ -210,7 +210,7 @@
                 </mat-form-field>
               </div>
             </mat-list-item>
-          </div>
+          </div> -->
           <!-- ///////// -->
           
           <div class="border" *ngIf="selectedFood2 == 'literary-collections'">
@@ -249,3 +249,10 @@
     </div>
   </mat-dialog-content>
 </form>
+
+
+<div class="splas" *ngIf="apiResSp">
+  <mat-spinner class="for-center">
+  </mat-spinner>
+  <h4 class="texct">Submit Category....Please wait</h4>
+</div>

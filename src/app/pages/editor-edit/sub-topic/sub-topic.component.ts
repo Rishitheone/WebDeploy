@@ -63,6 +63,7 @@ export class SubTopicComponent implements OnInit {
     private service: BookPageCreateService, private toastr: ToastrService, private _location: Location ) { }
 
   ngOnInit() {
+    
     this.id = +this._route.snapshot.paramMap.get('id');
     if (+this.id) {
       this.myForm = this.fb.group({
@@ -71,6 +72,7 @@ export class SubTopicComponent implements OnInit {
         sub_heading: '',
         html_content: '',
         ar_url: '',
+        web_url: '',
         bg_image: '',
         btn_image: '',
         color_code: '#',

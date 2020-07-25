@@ -16,6 +16,7 @@ export class CategoryFormComponent implements OnInit {
   form: FormGroup;
   //this is for dropdown value
   selectedFood2: string;
+  apiResSp = false;
 
   // this is for fetch value for second dropdown
   public primary = [];
@@ -30,17 +31,18 @@ export class CategoryFormComponent implements OnInit {
   public NonClassifiable = [];
 
   // 1st dropdown static value
+  
   types = [
     { value: 'preschool', viewValue: 'Preschool' },
     { value: 'lower-middle-school', viewValue: 'Lower Middle School' },
     { value: 'upper-middle-school', viewValue: 'Upper Middle School' },
     { value: 'secondary-school', viewValue: 'Secondary School' },
-    { value: 'friction', viewValue: 'Friction' },
-    { value: 'non-friction', viewValue: 'Non-Friction' },
-    { value: 'comic', viewValue: 'Comic' },
-    { value: 'education-&-reference', viewValue: 'Education & Reference' },
-    { value: 'literary-collections', viewValue: 'Literary Collections' },
-    { value: 'non-classifiable', viewValue: 'Non Classifiable' },
+    // { value: 'friction', viewValue: 'Friction' },
+    // { value: 'non-friction', viewValue: 'Non-Friction' },
+    // { value: 'comic', viewValue: 'Comic' },
+    // { value: 'education-&-reference', viewValue: 'Education & Reference' },
+    // { value: 'literary-collections', viewValue: 'Literary Collections' },
+    // { value: 'non-classifiable', viewValue: 'Non Classifiable' },
   ];
 
 
@@ -50,7 +52,7 @@ export class CategoryFormComponent implements OnInit {
     return this.form.get('tags') as FormArray;
   }
   constructor(private service: CategoryService,
-    private toastr: ToastrService, private fb: FormBuilder, private _http: CategoryService, private _router: Router,public dialogRef: MatDialogRef<CategoryFormComponent>) { }
+    private toastr: ToastrService, private fb: FormBuilder, private _http: CategoryService, private _router: Router, public dialogRef: MatDialogRef<CategoryFormComponent>) { }
 
   ngOnInit() {
 
@@ -185,13 +187,17 @@ export class CategoryFormComponent implements OnInit {
 
   // For form submit
   onSubmit() {
+    // var staues:number;
+    this.apiResSp = true;
     if (!this.form.valid) {
       return;
     }
     const data = JSON.stringify(this.form.value);
+    console.log(data)
     this.service.saveAllCategory(data)
       .subscribe(
         res => {
+          this.apiResSp = false;
           this.toastr.success('Submitted successfully', 'Category has been submitted');
           this.form.reset();
           console.log(res);

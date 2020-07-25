@@ -16,6 +16,16 @@ export class AlluserService {
         catchError(this.handleError)
       );
   }
+  getAllTeachers(counter){
+      return this._http.get<any>(this._baseUrl+'/get-all-teachers?page='+ counter).pipe(
+        catchError(this.handleError)
+      );
+  }
+  getAllStudents(counter){
+      return this._http.get<any>(this._baseUrl+'/get-all-students?page='+ counter ).pipe(
+        catchError(this.handleError)
+      );
+  }
 
   userStatus(form){
     return this._http.post<any>(this._baseUrl+'/change-user-status',form)

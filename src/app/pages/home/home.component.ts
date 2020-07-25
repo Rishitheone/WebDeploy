@@ -73,6 +73,7 @@ export class HomeComponent implements OnInit {
     this._allBook.getAllBook()
     .subscribe(
       data=>{
+        console.log(data)
         this.isLoading = false;
         this.books=data.data;
       },

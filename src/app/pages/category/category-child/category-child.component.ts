@@ -17,7 +17,7 @@ export class CategoryChildComponent implements OnInit {
   forNoparent = false;
   //this is for dropdown value
   selectedFood2: string;
-  pageTitle:string;
+  pageTitle: string;
   // this is for fetch value for second dropdown
   public primary = [];
   public secondary = [];
@@ -26,7 +26,7 @@ export class CategoryChildComponent implements OnInit {
   public Friction = [];
   public NonFriction = [];
   public Comic = [];
-  public EducationReference = [];
+  // public EducationReference = [];
   public LiteraryCollections = [];
   public NonClassifiable = [];
 
@@ -34,12 +34,11 @@ export class CategoryChildComponent implements OnInit {
   types = [
     { value: 'preschool', viewValue: 'Preschool' },
     { value: 'lower-middle-school', viewValue: 'Lower Middle School' },
-    { value: 'upprer-middle-school', viewValue: 'Upprer Middle School' },
+    { value: 'upper-middle-school', viewValue: 'Upper Middle School' },
     { value: 'secondary-school', viewValue: 'Secondary School' },
     { value: 'friction', viewValue: 'Friction' },
     { value: 'non-friction', viewValue: 'Non-Friction' },
     { value: 'comic', viewValue: 'Comic' },
-    { value: 'education-&-reference', viewValue: 'Education & Reference' },
     { value: 'literary-collections', viewValue: 'Literary Collections' },
     { value: 'non-classifiable', viewValue: 'Non Classifiable' },
   ];
@@ -52,7 +51,7 @@ export class CategoryChildComponent implements OnInit {
   }
   constructor(private service: CategoryService,
     private toastr: ToastrService, private fb: FormBuilder,
-     private _http: CategoryService, private _router: Router,
+    private _http: CategoryService, private _router: Router,
     private route: ActivatedRoute) { }
 
   ngOnInit() {
@@ -62,20 +61,20 @@ export class CategoryChildComponent implements OnInit {
       this.service.getCategoryById(+id).subscribe(
         res => {
           console.log(res.data)
-          var test = res.data["tags"].split(',') 
-          if(res.data["parent_category_id"] !== null){
+          var test = res.data["tags"].split(',')
+          if (res.data["parent_category_id"] !== null) {
             this.forNoparent = true;
-          this.form.patchValue({
-            status: res.data["status"],
-            category_id: res.data["id"],
-            name: res.data["name"],
-            type: res.data["type"],
-            description: res.data["description"],
-            parent_category_id: res.data["parent_category_id"],
-            tags: test,
-          });
-        }
-          if(res.data["parent_category_id"] === null){
+            this.form.patchValue({
+              status: res.data["status"],
+              category_id: res.data["id"],
+              name: res.data["name"],
+              type: res.data["type"],
+              description: res.data["description"],
+              parent_category_id: res.data["parent_category_id"],
+              tags: test,
+            });
+          }
+          if (res.data["parent_category_id"] === null) {
             this.form.patchValue({
               status: res.data["status"],
               category_id: res.data["id"],
@@ -85,7 +84,7 @@ export class CategoryChildComponent implements OnInit {
               parent_category_id: 'no_parent',
               tags: test,
             });
-          } else{
+          } else {
             return;
           }
         }
@@ -99,7 +98,7 @@ export class CategoryChildComponent implements OnInit {
     // form value
     this.form = this.fb.group({
       status: ['published', Validators.required],
-      category_id:[null],
+      category_id: [null],
       name: ['', Validators.required],
       description: ['', Validators.required],
       type: ['', Validators.required],
@@ -188,17 +187,17 @@ export class CategoryChildComponent implements OnInit {
           }
         }
       )
-    this._http.getEducationReference()
-      .subscribe(
-        data => this.EducationReference = data.data,
-        err => {
-          if (err instanceof HttpErrorResponse) {
-            if (err.status === 401) {
-              this._router.navigate(['/login'])
-            }
-          }
-        }
-      )
+    // this._http.getEducationReference()
+    //   .subscribe(
+    //     data => this.EducationReference = data.data,
+    //     err => {
+    //       if (err instanceof HttpErrorResponse) {
+    //         if (err.status === 401) {
+    //           this._router.navigate(['/login'])
+    //         }
+    //       }
+    //     }
+    //   )
     this._http.getLiteraryCollections()
       .subscribe(
         data => this.LiteraryCollections = data.data,
@@ -228,9 +227,12 @@ export class CategoryChildComponent implements OnInit {
     if (!this.form.valid) {
       return;
     }
-    this.form.patchValue({
-      parent_category_id: null,
-    })
+    if (this.form.value['parent_category_id'] == 'no_parent') {
+      this.form.patchValue({
+        parent_category_id: null,
+      })
+    }
+
     console.log(this.form.value)
     const data = JSON.stringify(this.form.value);
     this.service.updateBook(data)
@@ -247,6 +249,41 @@ export class CategoryChildComponent implements OnInit {
         },
         err => console.log(err)
       )
+  }
+
+  onClickType(type) {
+    // this.primary = [];
+    // this.secondary = [];
+    // this.higher = [];
+    // this.SecondarySchool = [];
+    // this.Friction = [];
+    // this.NonFriction = [];
+    // this.Comic = [];
+    // this.LiteraryCollections = [];
+    // this.NonClassifiable = [];
+    this.forNoparent = true;
+    console.log(type)
+    this._http.getCategory(type).subscribe(
+      data => {
+        console.log(data)
+        this.primary = data.data
+        this.secondary = data.data
+        this.higher = data.data
+        this.SecondarySchool = data.data
+        this.Friction = data.data
+        this.NonFriction = data.data
+        this.Comic = data.data
+        // this.EducationReference = data.data
+        this.LiteraryCollections = data.data
+        this.NonClassifiable = data.data
+      },
+      err => {
+        if (err instanceof HttpErrorResponse) {
+          if (err.status === 401) {
+            this._router.navigate(['/login'])
+          }
+        }
+      })
   }
 }
 

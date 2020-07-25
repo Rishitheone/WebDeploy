@@ -12,6 +12,7 @@ export class ExploreComponent implements OnInit {
   discovers:any=[];
   cardImg:boolean = false;
   headerImg:boolean = false;
+  forValue  = 'explore';
   constructor(private explore:ExploreBrowseService,private toastr: ToastrService,
       private router:Router) { }
 

@@ -33,6 +33,9 @@ import { SubtimlineListComponent } from './pages/subtimline/subtimline.component
 import { WeblistComponent } from './pages/weblist/weblist.component';
 import { SubsubweblistComponent } from './pages/subsubweblist/subsubweblist.component';
 import { CreateChapterComponent } from './create-chapter/create-chapter.component';
+import { InstitutionComponent } from './pages/institution/institution.component';
+import { AboutInstituionComponent } from './pages/institution/about-instituion/about-instituion.component';
+import { TestingComponent } from './testing/testing.component';
 
 const routes: Routes = [
   { path: '', redirectTo:'/login', pathMatch: 'full' },
@@ -51,6 +54,7 @@ const routes: Routes = [
   { path: 'edit/:id', component: EditorEditComponent,canActivate:[AuthGuard]},
   { path: 'search', component: SearchboxComponent,canActivate:[AuthGuard]},
   { path: 'home/Explore', component: ExploreComponent,canActivate:[AuthGuard]},
+  { path: 'home/Institution', component: InstitutionComponent,canActivate:[AuthGuard]},
   { path: 'home/Explore/create', component: ExploreCreateComponent,canActivate:[AuthGuard]},
   { path: 'home/Explore/edit/:id', component: ExploreCreateComponent,canActivate:[AuthGuard]},
   { path: 'home/topic/sub-topic/create/:id', component: SubTopicComponent,canActivate:[AuthGuard]},
@@ -71,6 +75,8 @@ const routes: Routes = [
   { path: 'home/topic/sub-topic/Web/list/:id', component: WeblistComponent,canActivate:[AuthGuard]},
   { path: 'home/topic/sub-sub-topic/Web/list/:id', component: SubsubweblistComponent,canActivate:[AuthGuard]},
   { path: 'home/book/chapter/create/:id', component: CreateChapterComponent,canActivate:[AuthGuard]},
+  { path: 'home/Institution-about', component: AboutInstituionComponent,canActivate:[AuthGuard]},
+  { path: 'home/test', component: TestingComponent,canActivate:[AuthGuard]},
   
 ];
 

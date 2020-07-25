@@ -39,13 +39,14 @@ export class CategoryComponent implements OnInit {
   public AllSubCategory = [];
   isHidden = true;
   isLoading = true;
+  panelOpenState = false;
 
   public parent_category_id = '';
   constructor(public dialog: MatDialog, private service: UserService, private _allCategory: CategoryService,
     private _router: Router, private toastr: ToastrService) { }
 
   onSelect(selectedItem: any) {
-    
+    this.AllSubCategory = [];
     // this.parent_category_id = selectedItem.id;
     this.callSubCateApi(selectedItem.id);
     // console.log("Selected item Id: ", this.parent_category_id); // You get the Id of the selected item here
@@ -123,6 +124,7 @@ export class CategoryComponent implements OnInit {
   }
 
   onClassifiable(){
+    this.AllSubCategory = [];
     this._allCategory.getNonClassifiable()
     .subscribe(
       data => {
@@ -140,6 +142,7 @@ export class CategoryComponent implements OnInit {
   }
 
   onCollections(){
+    this.AllSubCategory = [];
     this._allCategory.getLiteraryCollections()
     .subscribe(
       data => {
@@ -157,9 +160,11 @@ export class CategoryComponent implements OnInit {
   }
 
   onReference(){
+    this.AllSubCategory = [];
     this._allCategory.getEducationReference()
     .subscribe(
       data =>{
+        console.log(data)
         this.isLoading = false;
         this.EducationReference = data.data;
       },
@@ -174,6 +179,7 @@ export class CategoryComponent implements OnInit {
   }
 
   onComic(){
+    this.AllSubCategory = [];
     this._allCategory.getComic()
     .subscribe(
       data => {
@@ -191,6 +197,7 @@ export class CategoryComponent implements OnInit {
   }
 
   onNonFriction(){
+    this.AllSubCategory = [];
     this._allCategory.getNonFriction()
       .subscribe(
         data => {
@@ -208,6 +215,7 @@ export class CategoryComponent implements OnInit {
   }
 
   onFriction(){
+    this.AllSubCategory = [];
     this._allCategory.getFriction()
       .subscribe(
         data => { 
@@ -225,6 +233,7 @@ export class CategoryComponent implements OnInit {
   }
 
   onSecondary(){
+    this.AllSubCategory = [];
     this._allCategory.getSecondarySchool()
     .subscribe(
       data => {
@@ -259,6 +268,7 @@ export class CategoryComponent implements OnInit {
   }
 
   onLower(){
+    this.AllSubCategory = [];
     this._allCategory.getDropSecondary()
       .subscribe(
         data => {
@@ -276,6 +286,7 @@ export class CategoryComponent implements OnInit {
   }
 
   onPreschool(){
+    this.AllSubCategory = [];
     this._allCategory.getDropPrimary()
     .subscribe(
       data =>{

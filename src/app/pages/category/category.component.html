@@ -17,7 +17,7 @@
   </mat-toolbar>
   <!-- ///////////////// 1staccordion -->
   <mat-accordion class="example-headers-align">
-    <mat-expansion-panel class="for-bg">
+    <mat-expansion-panel class="for-bg" >
       <mat-expansion-panel-header class="set-bg" (click)="onPreschool()">
         <mat-panel-title class="w-100 fs">
           Preschool
@@ -40,7 +40,7 @@
               </mat-panel-title>
               <mat-panel-title class="w-15">
                 <div class="Nbtn1">
-                  {{node.created_at | date}}
+                  {{node.created_at }}
                 </div>
               </mat-panel-title>
               <mat-panel-title class="w-15">
@@ -75,11 +75,11 @@
         </mat-accordion>
       </div>
     </mat-expansion-panel>
-  </mat-accordion>
+  <!-- </mat-accordion> -->
   <!-- ///////end////////// -->
   <!-- ///////////////// 2nd accordion -->
-  <mat-accordion class="example-headers-align">
-    <mat-expansion-panel class="mt-1 for-bg">
+  <!-- <mat-accordion class="example-headers-align"> -->
+    <mat-expansion-panel class="mt-1 for-bg" (opened)="panelOpenState = true" (closed)="panelOpenState = false">
       <mat-expansion-panel-header class="set-bg" (click)="onLower()">
         <mat-panel-title class="w-100 fs">
           Lower Middle School
@@ -101,7 +101,7 @@
                 </div>
               </mat-panel-title>
               <mat-panel-description class="w-15">
-                <div class="Nbtn1">{{node.created_at | date}}</div>
+                <div class="Nbtn1">{{node.created_at }}</div>
               </mat-panel-description>
               <mat-panel-description class="w-15">
                 <div class="Nbtn1">{{node.status}}</div>
@@ -135,11 +135,11 @@
 
       </div>
     </mat-expansion-panel>
-  </mat-accordion>
+  <!-- </mat-accordion> -->
   <!-- ///////end////////// -->
   <!-- ///////////////// 3rdaccordion -->
-  <mat-accordion class="example-headers-align">
-    <mat-expansion-panel class="mt-1 for-bg">
+  <!-- <mat-accordion class="example-headers-align"> -->
+    <mat-expansion-panel class="mt-1 for-bg" (opened)="panelOpenState = true" (closed)="panelOpenState = false">
       <mat-expansion-panel-header class="set-bg" (click)="onUpprer()">
         <mat-panel-title class="w-100 fs">
           Upper Middle School
@@ -161,7 +161,7 @@
                 </div>
               </mat-panel-title>
               <mat-panel-description class="w-15">
-                <div class="Nbtn1">{{node.created_at | date}}</div>
+                <div class="Nbtn1">{{node.created_at }}</div>
               </mat-panel-description>
               <mat-panel-description class="w-15">
                 <div class="Nbtn1">{{node.status}}</div>
@@ -193,10 +193,10 @@
         </mat-accordion>
       </div>
     </mat-expansion-panel>
-  </mat-accordion>
+  <!-- </mat-accordion> -->
   <!-- ///////////////// 4rdaccordion -->
-  <mat-accordion class="example-headers-align">
-    <mat-expansion-panel class="mt-1 for-bg">
+  <!-- <mat-accordion class="example-headers-align"> -->
+    <mat-expansion-panel class="mt-1 for-bg"  (opened)="panelOpenState = true" (closed)="panelOpenState = false">
       <mat-expansion-panel-header class="set-bg" (click)="onSecondary()">
         <mat-panel-title class="w-100 fs">
           Secondary School
@@ -218,7 +218,7 @@
                 </div>
               </mat-panel-title>
               <mat-panel-description class="w-15">
-                <div class="Nbtn1">{{node.created_at | date}}</div>
+                <div class="Nbtn1">{{node.created_at }}</div>
               </mat-panel-description>
               <mat-panel-description class="w-15">
                 <div class="Nbtn1">{{node.status}}</div>
@@ -250,13 +250,13 @@
         </mat-accordion>
       </div>
     </mat-expansion-panel>
-  </mat-accordion>
+  <!-- </mat-accordion> -->
   <!-- ///////////////// 5 rdaccordion -->
-  <mat-accordion class="example-headers-align">
-    <mat-expansion-panel class="mt-1 for-bg">
+  <!-- <mat-accordion class="example-headers-align"> -->
+    <!-- <mat-expansion-panel class="mt-1 for-bg"  (opened)="panelOpenState = true" (closed)="panelOpenState = false">
       <mat-expansion-panel-header class="set-bg" (click)="onFriction()">
         <mat-panel-title class="w-100 fs">
-          Friction
+          Fiction
         </mat-panel-title>
       </mat-expansion-panel-header>
       <div>
@@ -275,7 +275,7 @@
                 </div>
               </mat-panel-title>
               <mat-panel-description class="w-15">
-                <div class="Nbtn1">{{node.created_at | date}}</div>
+                <div class="Nbtn1">{{node.created_at }}</div>
               </mat-panel-description>
               <mat-panel-description class="w-15">
                 <div class="Nbtn1">{{node.status}}</div>
@@ -306,14 +306,14 @@
           </mat-expansion-panel>
         </mat-accordion>
       </div>
-    </mat-expansion-panel>
-  </mat-accordion>
+    </mat-expansion-panel> -->
+  <!-- </mat-accordion> -->
   <!-- ///////////////// 6 rdaccordion -->
-  <mat-accordion class="example-headers-align">
-    <mat-expansion-panel class="mt-1 for-bg">
+  <!-- <mat-accordion class="example-headers-align"> -->
+    <!-- <mat-expansion-panel class="mt-1 for-bg"  (opened)="panelOpenState = true" (closed)="panelOpenState = false">
       <mat-expansion-panel-header class="set-bg" (click)="onNonFriction()">
         <mat-panel-title class="w-100 fs">
-          Non-Friction
+          Non-Fiction
         </mat-panel-title>
       </mat-expansion-panel-header>
       <div>
@@ -332,7 +332,7 @@
                 </div>
               </mat-panel-title>
               <mat-panel-description class="w-15">
-                <div class="Nbtn1">{{node.created_at | date}}</div>
+                <div class="Nbtn1">{{node.created_at }}</div>
               </mat-panel-description>
               <mat-panel-description class="w-15">
                 <div class="Nbtn1">{{node.status}}</div>
@@ -363,11 +363,11 @@
           </mat-expansion-panel>
         </mat-accordion>
       </div>
-    </mat-expansion-panel>
-  </mat-accordion>
+    </mat-expansion-panel> -->
+  <!-- </mat-accordion> -->
   <!-- ///////////////// 7 rdaccordion -->
-  <mat-accordion class="example-headers-align">
-    <mat-expansion-panel class="mt-1 for-bg">
+  <!-- <mat-accordion class="example-headers-align"> -->
+    <!-- <mat-expansion-panel class="mt-1 for-bg"  (opened)="panelOpenState = true" (closed)="panelOpenState = false">
       <mat-expansion-panel-header class="set-bg" (click)="onComic()">
         <mat-panel-title class="w-100 fs">
           Comic
@@ -389,7 +389,7 @@
                 </div>
               </mat-panel-title>
               <mat-panel-description class="w-15">
-                <div class="Nbtn1">{{node.created_at | date}}</div>
+                <div class="Nbtn1">{{node.created_at }}</div>
               </mat-panel-description>
               <mat-panel-description class="w-15">
                 <div class="Nbtn1">{{node.status}}</div>
@@ -420,10 +420,10 @@
           </mat-expansion-panel>
         </mat-accordion>
       </div>
-    </mat-expansion-panel>
-  </mat-accordion>
+    </mat-expansion-panel> -->
+  <!-- </mat-accordion> -->
    <!-- ///////////////// 8 rdaccordion -->
-   <mat-accordion class="example-headers-align">
+   <!-- <mat-accordion class="example-headers-align">
     <mat-expansion-panel class="mt-1 for-bg">
       <mat-expansion-panel-header class="set-bg" (click)="onReference()">
         <mat-panel-title class="w-100 fs">
@@ -446,7 +446,7 @@
                 </div>
               </mat-panel-title>
               <mat-panel-description class="w-15">
-                <div class="Nbtn1">{{node.created_at | date}}</div>
+                <div class="Nbtn1">{{node.created_at }}</div>
               </mat-panel-description>
               <mat-panel-description class="w-15">
                 <div class="Nbtn1">{{node.status}}</div>
@@ -478,10 +478,10 @@
         </mat-accordion>
       </div>
     </mat-expansion-panel>
-  </mat-accordion>
-   <!-- ///////////////// 9 rdaccordion -->
-   <mat-accordion class="example-headers-align">
-    <mat-expansion-panel class="mt-1 for-bg">
+  </mat-accordion>  -->
+   <!-- ///////////////// 9 rdaccordion
+  <mat-accordion class="example-headers-align"> -->
+    <!-- <mat-expansion-panel class="mt-1 for-bg"  (opened)="panelOpenState = true" (closed)="panelOpenState = false">
       <mat-expansion-panel-header class="set-bg" (click)="onCollections()">
         <mat-panel-title class="w-100 fs">
           Literary Collections
@@ -503,7 +503,7 @@
                 </div>
               </mat-panel-title>
               <mat-panel-description class="w-15">
-                <div class="Nbtn1">{{node.created_at | date}}</div>
+                <div class="Nbtn1">{{node.created_at }}</div>
               </mat-panel-description>
               <mat-panel-description class="w-15">
                 <div class="Nbtn1">{{node.status}}</div>
@@ -534,11 +534,12 @@
           </mat-expansion-panel>
         </mat-accordion>
       </div>
-    </mat-expansion-panel>
-  </mat-accordion>
+    </mat-expansion-panel> -->
+  <!-- </mat-accordion> -->
   <!-- ///////////////// 9 rdaccordion -->
-  <mat-accordion class="example-headers-align">
-    <mat-expansion-panel class="mt-1 for-bg">
+  <!-- <mat-accordion class="example-headers-align"> -->
+
+    <!-- <mat-expansion-panel class="mt-1 for-bg"  (opened)="panelOpenState = true" (closed)="panelOpenState = false">
       <mat-expansion-panel-header class="set-bg"  (click)="onClassifiable()">
         <mat-panel-title class="w-100 fs">
           Non Classifiable
@@ -560,7 +561,7 @@
                 </div>
               </mat-panel-title>
               <mat-panel-description class="w-15">
-                <div class="Nbtn1">{{node.created_at | date}}</div>
+                <div class="Nbtn1">{{node.created_at }}</div>
               </mat-panel-description>
               <mat-panel-description class="w-15">
                 <div class="Nbtn1">{{node.status}}</div>
@@ -592,8 +593,8 @@
         </mat-accordion>
       </div>
     </mat-expansion-panel>
-  </mat-accordion>
+  </mat-accordion> -->
   <!-- ///////end////////// -->
 
-
+</mat-accordion>
 </div>

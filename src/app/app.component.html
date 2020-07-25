@@ -1,3 +1,110 @@
-<app-navbar></app-navbar>
-<router-outlet></router-outlet>
+<!-- <app-navbar></app-navbar> -->
+<!-- <span > -->
+    <mat-toolbar class="tool-navbar" *ngIf="_authService.loggedIn()">
+        <mat-toolbar-row class="tool-row pr-5 pl-5">
+            <span (click)="drawer.toggle()" class="main-menu">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 9 17" class="main">
+                    <rect x="0.48" y="0.5" width="7" height="1"></rect>
+                    <rect x="0.48" y="7.5" width="7" height="1"></rect>
+                    <rect x="0.48" y="15.5" width="7" height="1"></rect>
+                </svg>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18 17" class="sub">
+                    <rect x="1.56" y="0.5" width="16" height="1"></rect>
+                    <rect x="1.56" y="7.5" width="16" height="1"></rect>
+                    <rect x="1.56" y="15.5" width="16" height="1"></rect>
+                </svg>
+            </span>
+            <span class="example-spacer"></span>
+            <span class="navbar-brand">Aplis</span>
+            <span class="example-spacer"></span>
 
+            <button type="button" [matMenuTriggerFor]="menu" class="btn btn-empty p-0" aria-haspopup="true"
+                aria-expanded="false">
+                <span class="name">Sarah Cortney</span>
+                <span class="img-span">
+                    <img alt="Profile Picture"
+                        src="https://vien-angular.coloredstrategies.com/assets/img/profiles/l-1.jpg">
+                </span>
+            </button>
+            <mat-menu #menu="matMenu" xPosition="before" class="border">
+                <button mat-menu-item>
+                    <span>Home</span>
+                </button>
+                <button mat-menu-item>
+                    <span>Account</span>
+                </button>
+                <mat-divider></mat-divider>
+                <button mat-menu-item (click)="_authService.logoutUser()">
+                    <span>Log out</span>
+                </button>
+            </mat-menu>
+
+        </mat-toolbar-row>
+    </mat-toolbar>
+<!-- </span> -->
+
+<mat-drawer-container class="example-container">
+        <mat-drawer #drawer [opened]="!mobileQuery.matches && _authService.loggedIn()" class="example-sidenav" mode="side">
+            <div class="menu">
+                <div class="main-menu">
+                    <div class="ps-content">
+                        <ul class="list-unstyled">
+                            <li class="active">
+                                <!---->
+                                <a href="/app/dashboards">
+                                    <i class="fa fa-tachometer" aria-hidden="true"></i> Dashboards</a>
+                                <!---->
+                                <!---->
+                            </li>
+                            <li class="">
+                                <!----><a href="/app/pages">
+                                    <i class="fa fa-book" aria-hidden="true"></i> e-book</a>
+                                <!---->
+                                <!---->
+                            </li>
+                            <li class="">
+                                <!---->
+                                <a href="/app/applications">
+                                    <i class="fa fa-cube" aria-hidden="true"></i> Category</a>
+                                <!---->
+                                <!---->
+                            </li>
+                            <li class="">
+                                <!----><a href="/app/ui">
+                                    <i class="fa fa-paw" aria-hidden="true"></i>Series</a>
+                                <!---->
+                                <!---->
+                            </li>
+                            <li class="">
+                                <!---->
+                                <a href="/app/menu"><i class="iconsminds-three-arrow-fork">
+
+                                    </i> Menu</a>
+                                <!---->
+                                <!---->
+                            </li>
+                            <li>
+                                <!---->
+                                <!---->
+                                <a href="/app/blank-page"><i class="iconsminds-bucket">
+
+                                    </i> Blank Page</a>
+                                <!---->
+                            </li>
+                            <li><a rel="noopener noreferrer" target="_blank"
+                                    href="https://vien-docs.coloredstrategies.com/"><i
+                                        class="iconsminds-library"></i>Docs</a>
+                                <!---->
+                                <!---->
+                                <!---->
+                            </li>
+                            <!---->
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </mat-drawer>
+    <div class="example-sidenav-content">
+        <router-outlet></router-outlet>
+    </div>
+</mat-drawer-container>

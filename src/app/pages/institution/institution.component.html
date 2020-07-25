@@ -1,0 +1,48 @@
+<div class="m-5 ">
+    <mat-toolbar>
+      <mat-toolbar-row>
+        <span>School Management</span>
+        <span class="example-spacer"></span>
+        <span>
+          <button class="btn btn12" (click)="openDialog()">Add New Instituion</button>
+        </span>
+      </mat-toolbar-row>
+    </mat-toolbar>
+    <mat-toolbar class="my-2 bgt">
+      <mat-toolbar-row style="width: 100%;">
+        <span style="width: 35%;">Instituion Name</span>
+        <span style="width: 15%;">Instituion Code</span>
+        <span style="width: 15%;">No of Teacher</span>
+        <span style="width: 15%;">Number of Student</span>
+        <span style="width: 15%;">Date</span>
+        <span >Stauts</span>
+      </mat-toolbar-row>
+    </mat-toolbar>
+    <table style="width: 100%;" class="mt-4">
+      <tr class="bg-light ht border" *ngFor='let Instituion of dataSource' >
+        <td style="width: 35%;">{{Instituion.name}}
+          <br>
+          <button class="btn btn1" (click)="onEdit(Instituion.id)">Edit&nbsp;&nbsp;|</button>
+          <button class="btn btn2" (click)="onDelete(Instituion)">Delete&nbsp;&nbsp;|</button>
+          <button class="btn btn3" (click)="onAbout(Instituion)">View</button>
+        </td>
+        <td style="width: 15%;">{{Instituion.institution_code}}</td>
+        <td style="width: 15%;">{{Instituion.total_teachers}}
+            300
+        </td>
+        <td style="width: 15%;">
+            {{Instituion.total_students}}
+            2000
+        </td>
+        <td style="width: 15%;">{{Instituion.created_at}}
+            </td>
+        <td style="width: 15%;">published</td>
+        <!-- <td style="width: 15%;">{{Instituion.id}}</td> -->
+      </tr>
+    </table>
+  </div>
+  
+  <div class="m-5 " *ngIf="isLoading" 
+     style="display: flex; justify-content: center; align-items: center">
+    <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+  </div>

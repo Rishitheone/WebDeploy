@@ -67,6 +67,13 @@ import { WeblistComponent } from './pages/weblist/weblist.component';
 import { SubsubweblistComponent } from './pages/subsubweblist/subsubweblist.component';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { CreateChapterComponent } from './create-chapter/create-chapter.component';
+import { InstitutionComponent } from './pages/institution/institution.component';
+import { InstitutionFormComponent } from './pages/institution/institution-form/institution-form.component';
+import { InstitutionUpdateComponent } from './pages/institution/institution-update/institution-update.component';
+import { AboutInstituionComponent } from './pages/institution/about-instituion/about-instituion.component';
+import { UserFormComponent } from './pages/user/user-form/user-form.component';
+import { UserUpdateComponent } from './pages/user/user-update/user-update.component';
+import { TestingComponent } from './testing/testing.component';
 
 @NgModule({
   declarations: [
@@ -116,6 +123,13 @@ import { CreateChapterComponent } from './create-chapter/create-chapter.componen
     WeblistComponent,
     SubsubweblistComponent,
     CreateChapterComponent,
+    InstitutionComponent,
+    InstitutionFormComponent,
+    InstitutionUpdateComponent,
+    AboutInstituionComponent,
+    UserFormComponent,
+    UserUpdateComponent,
+    TestingComponent,
     
   ],
   imports: [
@@ -148,7 +162,11 @@ import { CreateChapterComponent } from './create-chapter/create-chapter.componen
     CategoryFormComponent,
     SeriesFormComponent,
     SeriesUpdateComponent,
-    GallaryComponent
+    GallaryComponent,
+    InstitutionFormComponent,
+    InstitutionUpdateComponent,
+    UserFormComponent,
+    UserUpdateComponent,
   ],
 })
 export class AppModule { }

@@ -1,0 +1,130 @@
+<form [formGroup]="form" (submit)=onSubmit(form)>
+    <mat-toolbar>
+        <mat-toolbar-row>
+            <span>Update Institute</span>
+            <span class="example-spacer"></span>
+            <button mat-button mat-dialog-close type="reset">Close</button>
+            <button mat-button type="submit" [disabled]="!form.valid">Publish</button>
+
+        </mat-toolbar-row>
+    </mat-toolbar>
+    <mat-dialog-content class="mat-typography">
+        <div class="row m-0 border pt-2 pb-5">
+            <div class="col-md-4">
+                <label>Name *</label>
+                <input type="text" name="name" formControlName="name" required>
+                <mat-error *ngIf="!form.controls['name'].valid && form.controls['name'].touched">
+                    This field is <strong>required</strong>
+                </mat-error>
+            </div>
+            <div class="col-md-4">
+                <label>Curriculum *</label>
+                <input type="text" name="curriculum" formControlName="curriculum" required>
+                <mat-error *ngIf="!form.controls['curriculum'].valid && form.controls['curriculum'].touched">
+                    This field is <strong>required</strong>
+                </mat-error>
+            </div>
+            <div class="col-md-4">
+                <label>logo *</label>
+                <input type="text" name="logo" formControlName="logo" required>
+                <mat-error *ngIf="!form.controls['logo'].valid && form.controls['logo'].touched">
+                    This field is <strong>required</strong>
+                </mat-error>
+            </div>
+            <div class="col-md-8">
+                <label>Address *</label>
+                <input type="text" name="address" formControlName="address" required>
+                <mat-error *ngIf="!form.controls['address'].valid && form.controls['address'].touched">
+                    This field is <strong>required</strong>
+                </mat-error>
+            </div>
+            <div class="col-md-4">
+                <label>Locality *</label>
+                <input type="text" name="locality" formControlName="locality" required>
+                <mat-error *ngIf="!form.controls['locality'].valid && form.controls['locality'].touched">
+                    This field is <strong>required</strong>
+                </mat-error>
+            </div>
+            <div class="col-md-4">
+                <label>City *</label>
+                <input type="text" name="city" formControlName="city" required>
+                <mat-error *ngIf="!form.controls['city'].valid && form.controls['city'].touched">
+                    This field is <strong>required</strong>
+                </mat-error>
+            </div>
+            <div class="col-md-4">
+                <label>State *</label>
+                <input type="text" name="state" formControlName="state" required>
+                <mat-error *ngIf="!form.controls['state'].valid && form.controls['state'].touched">
+                    This field is <strong>required</strong>
+                </mat-error>
+            </div>
+            <div class="col-md-4">
+                <label>Pincode *</label>
+                <input type="text" name="pin_code" formControlName="pin_code" required>
+                <mat-error *ngIf="!form.controls['pin_code'].valid && form.controls['pin_code'].touched">
+                    This field is <strong>required</strong>
+                </mat-error>
+            </div>
+            <div class="col-md-4">
+                <label>Phone Number *</label>
+                <input type="text" name="phone" formControlName="phone" required>
+                <mat-error *ngIf="!form.controls['phone'].valid && form.controls['phone'].touched">
+                    This field is <strong>required</strong>
+                </mat-error>
+            </div>
+            <div class="col-md-4">
+                <label>Country *</label>
+                <input type="text" name="country" formControlName="country" required>
+                <mat-error *ngIf="!form.controls['country'].valid && form.controls['country'].touched">
+                    This field is <strong>required</strong>
+                </mat-error>
+            </div>
+            <div class="col-md-4">
+                <label>Website *</label>
+                <input type="text" name="website" formControlName="website" required>
+                <mat-error *ngIf="!form.controls['website'].valid && form.controls['website'].touched">
+                    This field is <strong>required</strong>
+                </mat-error>
+            </div>
+            <div class="col-md-4">
+                <label>Email *</label>
+                <input type="text" name="email" formControlName="email" required>
+                <mat-error *ngIf="!form.controls['email'].valid && form.controls['email'].touched">
+                    This field is <strong>required</strong>
+                </mat-error>
+            </div>
+            <div class="col-md-4">
+                <label>Contact Person Name *</label>
+                <input type="text" name="contact_person_name" formControlName="contact_person_name" required>
+                <mat-error *ngIf="!form.controls['contact_person_name'].valid && form.controls['contact_person_name'].touched">
+                    This field is <strong>required</strong>
+                </mat-error>
+            </div>
+            <div class="col-md-4">
+                <label>Level *</label>
+                <input type="text" name="level" formControlName="level" required>
+                <mat-error *ngIf="!form.controls['level'].valid && form.controls['level'].touched">
+                    This field is <strong>required</strong>
+                </mat-error>
+            </div>
+
+        </div>
+        <!-- <div class="col-md-5 border">
+          <mat-list role="list">
+            <mat-list-item role="listitem">Series Code :
+              <div class="dis2 search-div px-3">
+                <mat-form-field class="search-form-field" floatLabel="never">
+                  <input matInput placeholder="Series Code" name="series_code" formControlName="series_code" required>
+                  <mat-error *ngIf="!form.controls['series_code'].valid && form.controls['series_code'].touched">
+                    This field is <strong>required</strong>
+                  </mat-error>
+                </mat-form-field>
+              </div>
+            </mat-list-item>
+          </mat-list>
+  
+        </div> -->
+        <!-- </div> -->
+    </mat-dialog-content>
+</form>

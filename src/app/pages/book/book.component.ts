@@ -55,7 +55,7 @@ export class BookComponent implements OnInit, OnDestroy {
     { value: 'friction', viewValue: 'Friction' },
     { value: 'non-friction', viewValue: 'Non-Friction' },
     { value: 'comic', viewValue: 'Comic' },
-    { value: 'education-&-reference', viewValue: 'Education & Reference' },
+    // { value: 'education-&-reference', viewValue: 'Education & Reference' },
     { value: 'literary-collections', viewValue: 'Literary Collections' },
     { value: 'non-classifiable', viewValue: 'Non-Classifiable' },
   ]

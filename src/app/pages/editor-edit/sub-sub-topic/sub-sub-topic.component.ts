@@ -71,6 +71,7 @@ export class SubSubTopicComponent implements OnInit {
         sub_heading: '',
         html_content: '',
         ar_url: '',
+        web_url: '',
         bg_image: '',
         btn_image: '',
         color_code: '#',

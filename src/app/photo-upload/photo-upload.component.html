@@ -13,6 +13,7 @@
             <mat-option value="video">Video</mat-option>
             <mat-option value="gif">Gif</mat-option>
             <mat-option value="html">Html</mat-option>
+            <mat-option value="AR">Ar</mat-option>
           </mat-select>
         </mat-form-field>
       </div>
@@ -33,7 +34,7 @@
       <div class="col-md-9" *ngIf="imgtype">
         <div class="upload-btn-wrapper mt-5">
           <button class="btn">Upload {{imgtype}}</button>
-          <input type="file" name="file" accept=".png, .jpg, .jpeg, .html, .sfb , .gif , .mp4" (change)="onFileSelect($event)" required />
+          <input type="file" name="file" accept=".png, .jpg, .jpeg, .html, .sfb , .gif , .mp4 , .glb" (change)="onFileSelect($event)" required />
         </div>
         <button (click)="onSubmitImage()" class="brt" [disabled]="!imageForm.valid" mat-raised-button>Upload on
           Server</button>

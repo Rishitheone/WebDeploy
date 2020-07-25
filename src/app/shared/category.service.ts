@@ -35,6 +35,9 @@ export class CategoryService {
   getAllDropDown() {
     return this.http.get<any>(this._baseUrl+'/get-all-categories?type=');
   }
+  getCategory(type){
+    return this.http.get<any>(this._baseUrl+'/get-all-categories?type='+ type);
+  }
   getAllCategory() {
     return this.http.get<any>(this._baseUrl+'/get-all-categories?type=primary');
   }
@@ -46,7 +49,7 @@ export class CategoryService {
     return this.http.get<any>(this._baseUrl+'/get-all-categories?type=' + 'lower-middle-school');
   }
   getDropHigher(): Observable<any> {
-    return this.http.get<any>(this._baseUrl+'/get-all-categories?type=' + 'upprer-middle-school');
+    return this.http.get<any>(this._baseUrl+'/get-all-categories?type=' + 'upper-middle-school');
   }
   getSecondarySchool(): Observable<any> {
     return this.http.get<any>(this._baseUrl+'/get-all-categories?type=' + 'secondary-school');

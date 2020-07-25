@@ -42,7 +42,7 @@
             <div class="dis2 search-div px-3">
               <mat-form-field class="search-form-field" floatLabel="never">
                 <mat-select name="type" formControlName="type" [(ngModel)]="selectedFood2"  required>
-                  <mat-option *ngFor="let type of types" [value]="type.value">
+                  <mat-option *ngFor="let type of types" (click)="onClickType(type.value)" [value]="type.value">
                     {{type.viewValue}}
                   </mat-option>
                 </mat-select>
@@ -52,14 +52,16 @@
               </mat-form-field>
             </div>
           </mat-list-item>
+
           <mat-divider></mat-divider>
+          
           <div class=" border" *ngIf="selectedFood2 == 'preschool'">
             <mat-list-item role="listitem">Parent Category
               <div class="dis2 search-div px-3">
                 <mat-form-field class="search-form-field" floatLabel="never" >
                   <mat-select name="type" formControlName="parent_category_id">
                     <mat-option value='no_parent'>no Parent</mat-option>
-                    <span *ngIf="forNoparent">
+                    <span >
                       <mat-option *ngFor="let primary of primary" [value]="primary.id">
                         {{primary.name}}
                       </mat-option>
@@ -76,7 +78,7 @@
                 <mat-form-field class="search-form-field" floatLabel="never">
                   <mat-select name="type" formControlName="parent_category_id" >
                     <mat-option value='no_parent'>no Parent</mat-option>
-                    <span *ngIf="forNoparent">
+                    <span >
                     <mat-option *ngFor="let secondary of secondary" [value]="secondary.id">
                       {{secondary.name}}
                     </mat-option>
@@ -87,13 +89,13 @@
             </mat-list-item>
           </div>
           
-          <div class="border" *ngIf="selectedFood2 == 'upprer-middle-school'">
+          <div class="border" *ngIf="selectedFood2 == 'upper-middle-school'">
             <mat-list-item role="listitem">Parent Category
               <div class="dis2 search-div px-3">
                 <mat-form-field class="search-form-field" floatLabel="never">
                   <mat-select name="type" formControlName="parent_category_id" >
                     <mat-option value='no_parent'>no Parent</mat-option>
-                    <span *ngIf="forNoparent">
+                    <span >
                     <mat-option *ngFor="let higher of higher" [value]="higher.id">
                       {{higher.name}}
                     </mat-option>
@@ -111,7 +113,7 @@
                 <mat-form-field class="search-form-field" floatLabel="never">
                   <mat-select name="type" formControlName="parent_category_id" >
                     <mat-option value='no_parent'>no Parent</mat-option>
-                    <span *ngIf="forNoparent">
+                    <span >
                     <mat-option *ngFor="let higher of SecondarySchool" [value]="higher.id">
                       {{higher.name}}
                     </mat-option>
@@ -129,7 +131,7 @@
                 <mat-form-field class="search-form-field" floatLabel="never">
                   <mat-select name="type" formControlName="parent_category_id">
                     <mat-option value='no_parent'>no Parent</mat-option>
-                    <span *ngIf="forNoparent">
+                    <span >
                     <mat-option *ngFor="let higher of Friction" [value]="higher.id">
                       {{higher.name}}
                     </mat-option>
@@ -147,7 +149,7 @@
                 <mat-form-field class="search-form-field" floatLabel="never">
                   <mat-select name="type" formControlName="parent_category_id" >
                     <mat-option value='no_parent'>no Parent</mat-option>
-                    <span *ngIf="forNoparent">
+                    <span >
                     <mat-option *ngFor="let higher of NonFriction" [value]="higher.id">
                       {{higher.name}}
                     </mat-option>
@@ -165,7 +167,7 @@
                 <mat-form-field class="search-form-field" floatLabel="never">
                   <mat-select name="type" formControlName="parent_category_id" >
                     <mat-option value='no_parent'>no Parent</mat-option>
-                    <span *ngIf="forNoparent">
+                    <span >
                     <mat-option *ngFor="let higher of Comic" [value]="higher.id">
                       {{higher.name}}
                     </mat-option>
@@ -177,13 +179,13 @@
           </div>
           <!-- ///////// -->
           
-          <div class="border" *ngIf="selectedFood2 == 'education-reference'">
+          <div class="border" *ngIf="selectedFood2 == 'education-&-reference'">
             <mat-list-item role="listitem">Parent Category
               <div class="dis2 search-div px-3">
                 <mat-form-field class="search-form-field" floatLabel="never">
                   <mat-select name="type" formControlName="parent_category_id" >
                     <mat-option value='no_parent'>no Parent</mat-option>
-                    <span *ngIf="forNoparent">
+                    <span >
                     <mat-option *ngFor="let higher of EducationReference" [value]="higher.id">
                       {{higher.name}}
                     </mat-option>
@@ -201,7 +203,7 @@
                 <mat-form-field class="search-form-field" floatLabel="never">
                   <mat-select name="type" formControlName="parent_category_id" >
                     <mat-option value='no_parent'>no Parent</mat-option>
-                    <span *ngIf="forNoparent">
+                    <span >
                     <mat-option *ngFor="let higher of LiteraryCollections" [value]="higher.id">
                       {{higher.name}}
                     </mat-option>
@@ -219,7 +221,7 @@
                 <mat-form-field class="search-form-field" floatLabel="never">
                   <mat-select name="type" formControlName="parent_category_id" >
                     <mat-option value='no_parent'>no Parent</mat-option>
-                    <span *ngIf="forNoparent">
+                    <span >
                     <mat-option *ngFor="let higher of NonClassifiable" [value]="higher.id">
                       {{higher.name}}
                     </mat-option>

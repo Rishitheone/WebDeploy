@@ -1,14 +1,14 @@
 <form [formGroup]="imageForm" class="normal-form">
   <div class="row mr-0 mt-3 pt-3 pb-3 bg-light">
     <div class="col-md-3 imageScet">
-      <h4 class="pt-3 px-5 lg-1 lg-1">Image/Video Upload</h4>
+      <h4 class="pt-3 px-5 lg-1 lg-1">Media Upload</h4>
     </div>
     <div class="col-md-9">
       <div class="dis1 p-3">
         <p>Lorem Ipsum refers to a dummy block of text that is often used in publishing and graphic
           design to fill gaps in the page
         </p><br>
-        <button (click)="onViewImage()" type="button" mat-raised-button>Browes Image & Video</button>
+        <button (click)="onViewImage()" type="button" mat-raised-button>Browes Media</button>
         <mat-form-field class="search-form-field" floatLabel="never">
           <mat-label>File Type</mat-label>
           <mat-select [(ngModel)]="imgtype" formControlName="type" >
@@ -16,6 +16,7 @@
             <mat-option value="video">Video</mat-option>
             <mat-option value="gif">Gif</mat-option>
             <mat-option value="html">Html</mat-option>
+            <mat-option value="glb">Glb</mat-option>
           </mat-select>
         </mat-form-field>
       </div>
@@ -36,7 +37,7 @@
       <div class="col-md-9" *ngIf="imgtype">
         <div class="upload-btn-wrapper mt-5">
           <button class="btn">Upload {{imgtype}}</button>
-          <input type="file" name="file" accept=".png, .jpg, .jpeg, .sfb ,.html, .gif , .mp4" (change)="onFileSelect($event)" required />
+          <input type="file" name="file" accept=".png, .jpg, .jpeg, .sfb ,.html, .gif , .mp4 ,.glb" (change)="onFileSelect($event)" required />
         </div>
         <button (click)="onSubmitImage()" class="brt" [disabled]="!imageForm.valid" mat-raised-button>Upload on
           Server</button>
